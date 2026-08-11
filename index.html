@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050607">
+<meta name="description" content="Oxford Blocks Brasil — Criatividade sem limites. Conectamos grandes marcas brasileiras a uma das maiores fabricantes de blocos de montar premium da Coreia do Sul. Colaborações exclusivas e linha comercial para varejo.">
+<title>Oxford Blocks Brasil — Criatividade sem limites</title>
+<link rel="icon" type="image/png" href="assets/oxford-logo-nav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/oxford-logo-nav.png">
+<style>
+:root{
+  --red:#D42B24; --red2:#9B1A14; --red-soft:rgba(212,43,36,.12);
+  --yellow:#F5A623; --ink:#050607; --ink2:#0a0c0d; --ink3:#101314;
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.05);
+  --text:#e9e8e3; --muted:#94999e; --muted2:#6b7075; --white:#f5f4f0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;background:var(--ink);color:var(--text);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.skipLink{position:absolute;left:-9999px;top:0;z-index:200;padding:12px 20px;background:var(--red);color:#fff;font-size:13px;font-weight:800;border-radius:0 0 4px 0;transition:left .2s}
+.skipLink:focus{left:0}
+
+/* ===== SHARED MOTIF: brick grid background ===== */
+.gridBg{position:absolute;inset:0;pointer-events:none;background-image:
+  linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:46px 46px;mask-image:radial-gradient(circle at 50% 40%,#000,transparent 72%)}
+.stud{position:absolute;width:14px;height:14px;border-radius:50% 50% 45% 45%;
+  background:linear-gradient(180deg,#e85a53,var(--red));box-shadow:2px 4px 10px rgba(0,0,0,.5)}
+
+/* ===== NAV ===== */
+.topbar{position:fixed;z-index:100;top:0;left:0;width:100%;height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4.5vw,64px);border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(4,5,6,.92),rgba(4,5,6,.55));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.brand{display:flex;align-items:center;gap:11px}
+.brand img{height:64px;width:auto;max-width:240px;object-fit:contain}
+.brand small{font-size:9px;font-weight:800;letter-spacing:.14em;color:var(--red);border:1px solid var(--red);padding:2px 6px;border-radius:3px}
+.nav{display:flex;gap:30px}
+.nav a{font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--muted);transition:.2s;text-transform:uppercase}
+.nav a:hover{color:var(--white)}
+.navCta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:9px;height:40px;padding:0 20px;border-radius:3px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;transition:.22s;border:1px solid transparent;white-space:nowrap}
+.btn--red{background:var(--red);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.btn--red:hover{background:#e8342b;transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.5)}
+.btn--ghost{border-color:var(--line);background:rgba(8,9,10,.6);color:var(--text)}
+.btn--ghost:hover{border-color:rgba(255,255,255,.3);background:var(--ink3)}
+.btn--lg{height:50px;padding:0 28px;font-size:12px}
+.btn .arr{transition:transform .22s}
+.btn:hover .arr{transform:translateX(4px)}
+.menuBtn{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:4px;align-items:center;justify-content:center;transition:.2s}
+.menuBtn:hover{border-color:var(--red);background:rgba(212,43,36,.06)}
+.menuBtn span{display:block;width:18px;height:2px;background:var(--text);position:relative;transition:.25s}
+.menuBtn span:before,.menuBtn span:after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--text);transition:.25s}
+.menuBtn span:before{top:-6px}.menuBtn span:after{top:6px}
+.menuBtn[aria-expanded="true"] span{background:transparent}
+.menuBtn[aria-expanded="true"] span:before{top:0;transform:rotate(45deg)}
+.menuBtn[aria-expanded="true"] span:after{top:0;transform:rotate(-45deg)}
+.nav--open{display:flex;flex-direction:column;position:fixed;top:88px;left:0;right:0;gap:0;background:rgba(5,6,7,.98);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:8px 20px 20px;z-index:99;overflow-y:auto;max-height:calc(100vh - 88px)}
+.nav--open a{padding:16px 0;border-bottom:1px solid var(--line2);font-size:15px;font-weight:700}
+.nav--open a:last-child{border-bottom:0}
+
+/* ===== HERO ===== */
+.hero{min-height:100svh;position:relative;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(circle at 50% 8%,#1a1414 0,var(--ink) 55%)}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 35%,var(--ink) 96%);z-index:5;pointer-events:none}
+.heroSun{position:absolute;width:62vw;height:62vw;max-width:820px;max-height:820px;border-radius:50%;left:50%;bottom:-34vw;transform:translateX(-50%);background:radial-gradient(circle,var(--red) 0,#be2018 20%,rgba(195,28,18,.16) 50%,transparent 68%);opacity:.5;z-index:1}
+.heroGrid{position:absolute;width:160%;height:48%;bottom:-14%;left:-30%;transform:perspective(620px) rotateX(66deg);transform-origin:center;background-image:linear-gradient(rgba(212,43,36,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(212,43,36,.14) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(180deg,transparent,#000 45%);z-index:2}
+.heroStuds{position:absolute;inset:0;z-index:3;pointer-events:none}
+.heroInner{position:relative;z-index:7;max-width:1180px;margin:0 auto;padding:120px clamp(20px,5vw,64px) 90px;width:100%}
+.heroEyebrow{display:inline-flex;align-items:center;gap:14px;font-size:11px;font-weight:700;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;margin:0 0 26px}
+.heroEyebrow i{display:block;width:38px;height:1px;background:var(--red)}
+.hero h1{margin:0;font-size:clamp(48px,8.2vw,124px);font-weight:900;line-height:.86;letter-spacing:-.04em;text-transform:uppercase;text-shadow:0 14px 50px rgba(0,0,0,.55);font-family:"Archivo Expanded","Archivo",system-ui,sans-serif}
+.hero h1 .red{color:var(--red)}
+.heroTagline{margin:24px 0 0;font-size:clamp(18px,2.4vw,30px);font-weight:600;font-style:italic;color:var(--yellow);letter-spacing:.005em}
+.heroLead{margin:18px 0 0;max-width:560px;font-size:clamp(15px,1.5vw,18px);line-height:1.7;color:var(--muted)}
+.heroPaths{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:860px;margin:40px 0 0}
+.pathCard .pBadge{position:absolute;top:16px;right:16px;font-size:8px;font-weight:800;letter-spacing:.12em;color:var(--yellow);text-transform:uppercase;opacity:.8}
+.pathCard .pBadge.first{color:var(--red)}
+.pathCard{display:block;padding:24px 26px;border:1px solid var(--line);background:linear-gradient(150deg,rgba(212,43,36,.07),rgba(8,9,10,.4));border-radius:5px;transition:.25s;position:relative;overflow:hidden}
+.pathCard:hover{border-color:var(--red);transform:translateY(-3px);box-shadow:0 16px 44px rgba(0,0,0,.5)}
+.pathCard .ptag{font-size:10px;font-weight:800;letter-spacing:.18em;color:var(--red);text-transform:uppercase}
+.pathCard h3{margin:10px 0 6px;font-size:19px;font-weight:800;letter-spacing:-.01em}
+.pathCard p{margin:0;font-size:13px;color:var(--muted);line-height:1.55}
+.pathCard .parr{margin-top:16px;font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--text);text-transform:uppercase;display:inline-flex;gap:8px;align-items:center}
+.pathCard:hover .parr .arr{transform:translateX(5px)}
+.scrollHint{position:absolute;z-index:8;bottom:26px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.22em;color:var(--muted2);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:9px}
+.scrollHint i{height:24px;width:1px;background:linear-gradient(var(--red),transparent);animation:pulse 1.6s infinite}
+
+/* ===== SECTION SHELL ===== */
+.section{padding:clamp(80px,11vw,150px) clamp(20px,5vw,64px);position:relative}
+.section--alt{background:linear-gradient(180deg,var(--ink),var(--ink2) 50%,var(--ink))}
+.wrap{max-width:1180px;margin:0 auto}
+.kicker{display:inline-flex;align-items:center;gap:12px;font-size:11px;font-weight:800;letter-spacing:.22em;color:var(--red);text-transform:uppercase;margin:0 0 22px}
+.kicker i{display:block;width:30px;height:1px;background:var(--red)}
+.sHead{display:grid;grid-template-columns:1.25fr .75fr;gap:60px;align-items:end;margin:0 0 64px}
+.sHead h2{margin:0;font-size:clamp(34px,4.6vw,68px);font-weight:900;line-height:.95;letter-spacing:-.035em;text-transform:uppercase;font-family:"Archivo Expanded","Archivo",system-ui,sans-serif}
+.sHead h2 .red{color:var(--red)}
+.sHead .sCopy{font-size:15px;line-height:1.75;color:var(--muted);max-width:420px;margin:0}
+
+/* ===== HISTORY ===== */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--ink2)}
+.tlItem{padding:40px 32px;border-right:1px solid var(--line);position:relative;overflow:hidden}
+.tlItem:last-child{border-right:0}
+.tlItem:nth-child(even){background:rgba(212,43,36,.035)}
+.tlYear{font-size:clamp(34px,3.6vw,52px);font-weight:900;letter-spacing:-.04em;color:var(--red);line-height:1;margin:0 0 14px}
+.tlItem h3{margin:0 0 10px;font-size:16px;font-weight:800;letter-spacing:-.01em}
+.tlItem p{margin:0;font-size:13px;color:var(--muted);line-height:1.65}
+.historyExtra{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.heCard{padding:30px 28px;border:1px solid var(--line);border-radius:5px;background:var(--ink2)}
+.heCard .heIco{font-size:22px;margin-bottom:14px;display:block}
+.heCard h4{margin:0 0 8px;font-size:15px;font-weight:800}
+.heCard p{margin:0;font-size:13px;color:var(--muted);line-height:1.6}
+.licenseStrip{margin-top:14px;padding:26px 30px;border:1px solid var(--line);border-radius:5px;background:linear-gradient(100deg,rgba(212,43,36,.08),transparent 70%);display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px}
+.licenseStrip b{font-size:11px;letter-spacing:.18em;color:var(--red);text-transform:uppercase;font-weight:800;width:100%;margin-bottom:4px}
+.licenseStrip span{font-size:14px;font-weight:700;color:var(--text);letter-spacing:.01em}
+.evidenceNote{display:inline-flex;align-items:flex-start;gap:9px;margin-top:26px;font-size:11px;color:var(--muted2);line-height:1.6;max-width:560px}
+.evidenceNote i{width:7px;height:7px;background:var(--yellow);border-radius:50%;flex-shrink:0;margin-top:4px}
+
+/* ===== COLLABS ===== */
+.collabIntro{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin:0 0 56px}
+.collabIntro p{font-size:17px;line-height:1.75;color:var(--text);margin:0;max-width:520px}
+.collabIntro p .hl{color:var(--yellow);font-weight:700}
+.collabFilters{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 36px}
+.filterBtn{padding:11px 20px;border:1px solid var(--line);border-radius:40px;font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--muted);transition:.2s;text-transform:uppercase}
+.filterBtn:hover{color:var(--text);border-color:rgba(255,255,255,.25)}
+.filterBtn.active{background:var(--red);border-color:var(--red);color:#fff}
+.brandGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.brandChip{padding:22px 20px;border:1px solid var(--line);border-radius:5px;background:var(--ink2);display:flex;flex-direction:column;justify-content:space-between;min-height:96px;transition:.22s;position:relative;overflow:hidden}
+.brandChip:hover{border-color:var(--red);transform:translateY(-2px);background:linear-gradient(150deg,rgba(212,43,36,.08),var(--ink2))}
+.brandChip .bName{font-size:15px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+.brandChip .bCat{font-size:9px;font-weight:700;letter-spacing:.16em;color:var(--red);text-transform:uppercase;margin-top:10px}
+.brandChip .bStud{position:absolute;top:14px;right:14px;width:9px;height:9px;border-radius:50% 50% 45% 45%;background:var(--red);opacity:0;transition:.22s}
+.brandChip:hover .bStud{opacity:1}
+.heritageRow{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:14px}
+.heritageCard{padding:26px 24px;border:1px solid var(--line);border-radius:5px;background:linear-gradient(160deg,rgba(212,43,36,.06),var(--ink2));position:relative;overflow:hidden}
+.heritageCard .hIco{font-size:26px;margin-bottom:12px;display:block}
+.heritageCard h4{margin:0 0 6px;font-size:16px;font-weight:800}
+.heritageCard p{margin:0;font-size:12px;color:var(--muted);line-height:1.55}
+.collabCoda{margin-top:48px;padding:38px 40px;background:var(--ink2);border-radius:5px;position:relative;overflow:hidden}
+.collabCoda:before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--red),transparent 60%)}
+.collabCoda p{margin:0;font-size:18px;line-height:1.6;font-weight:600;color:var(--text);max-width:760px}
+.collabCoda p .red{color:var(--red)}
+
+/* ===== BRAZIL VISION ===== */
+.visionLead{font-size:clamp(18px,2vw,24px);line-height:1.6;color:var(--text);max-width:780px;margin:0 0 50px;font-weight:500}
+.visionLead .red{color:var(--red);font-weight:800}
+.visionGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.visionTile{padding:28px 24px;border:1px solid var(--line);border-radius:5px;background:var(--ink2);transition:.22s;position:relative}
+.visionTile:hover{border-color:var(--red);transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.45)}
+.visionTile .vIco{font-size:28px;margin-bottom:14px;display:block}
+.visionTile h4{margin:0;font-size:16px;font-weight:800;letter-spacing:-.01em}
+.visionCoda{margin-top:46px;text-align:center}
+.visionCoda p{font-size:clamp(20px,2.6vw,32px);font-weight:800;letter-spacing:-.02em;line-height:1.25;margin:0;max-width:820px;margin-inline:auto}
+.visionCoda p .red{color:var(--red)}
+
+/* ===== COMMERCIAL LINE ===== */
+.commSplit{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.commBlock h3{font-size:13px;font-weight:800;letter-spacing:.16em;color:var(--red);text-transform:uppercase;margin:0 0 22px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.catList{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.catItem{padding:20px 22px;border:1px solid var(--line);border-radius:5px;background:var(--ink2);transition:.2s}
+.catItem:hover{border-color:rgba(212,43,36,.5);background:linear-gradient(150deg,rgba(212,43,36,.06),var(--ink2))}
+.catItem .cIco{font-size:24px;display:block;margin-bottom:10px}
+.catItem h4{margin:0 0 4px;font-size:15px;font-weight:800}
+.catItem p{margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+.channelList{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.channelList li{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--line2);font-size:15px;font-weight:600}
+.channelList li:last-child{border-bottom:0}
+.channelList .chIco{width:38px;height:38px;border:1px solid var(--line);border-radius:5px;display:grid;place-items:center;font-size:18px;flex-shrink:0;background:var(--ink3)}
+.commNote{margin-top:30px;padding:24px 26px;border:1px solid var(--line);border-radius:5px;background:linear-gradient(100deg,rgba(245,166,35,.07),transparent 70%);font-size:14px;line-height:1.65;color:var(--text)}
+.commNote b{color:var(--yellow)}
+
+/* ===== WHY OXFORD ===== */
+.whyGrid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.whyPillar{padding:44px 34px;border-right:1px solid var(--line);position:relative;overflow:hidden}
+.whyPillar:last-child{border-right:0}
+.whyPillar:nth-child(odd){background:linear-gradient(155deg,rgba(212,43,36,.1),rgba(212,43,36,.02))}
+.whyPillar:nth-child(even){background:var(--ink2)}
+.whyIco{font-size:30px;display:block;margin-bottom:18px}
+.whyBar{display:block;width:24px;height:2px;background:var(--yellow);margin-bottom:16px}
+.whyPillar h4{margin:0 0 10px;font-size:17px;font-weight:800;letter-spacing:-.01em}
+.whyPillar p{margin:0;font-size:13px;color:var(--muted);line-height:1.65}
+
+/* ===== PARTNER CTA ===== */
+.partner{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--ink),#0c0a0a 50%,var(--ink))}
+.partnerGrid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.014) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(circle,#000,transparent 70%)}
+.partnerInner{position:relative;z-index:2;text-align:center;max-width:900px;margin:0 auto}
+.partner h2{font-size:clamp(40px,6vw,88px);font-weight:900;line-height:.92;letter-spacing:-.035em;text-transform:uppercase;margin:0 0 18px;font-family:"Archivo Expanded","Archivo",system-ui,sans-serif}
+.partner h2 .red{color:var(--red)}
+.partner .pTag{display:block;color:var(--yellow);font-size:clamp(16px,2vw,24px);font-style:italic;font-weight:700;margin:0 0 18px}
+.partner .pSub{font-size:clamp(15px,1.6vw,19px);color:var(--muted);line-height:1.6;margin:0 0 44px;max-width:620px;margin-inline:auto}
+.partnerActions{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:960px;margin:0 auto}
+.paBtn{display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:32px 26px;border:1px solid var(--line);border-radius:6px;background:rgba(8,9,10,.55);transition:.24s;text-align:left;position:relative;overflow:hidden}
+.paBtn:hover{border-color:var(--red);background:linear-gradient(160deg,rgba(212,43,36,.1),rgba(8,9,10,.6));transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.4)}
+.paBtn .paIco{font-size:32px;display:block;margin-bottom:16px}
+.paBtn .paLabel{font-size:15px;font-weight:900;letter-spacing:-.01em;margin-bottom:4px}
+.paBtn .paSub{font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--red);text-transform:uppercase;margin-bottom:14px}
+.paBtn .paDesc{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 18px}
+.paBtn .paArr{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--text);text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;margin-top:auto}
+.paBtn .paArr .arr{transition:transform .22s}
+.paBtn:hover .paArr .arr{transform:translateX(5px)}
+.paBtn:hover .paArr{color:var(--red)}
+
+/* ===== FOOTER ===== */
+.footer{padding:40px clamp(20px,5vw,64px);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;font-size:12px;color:var(--muted2)}
+.footer .fBrand{display:flex;align-items:center;gap:10px}
+.footer .fBrand img{height:48px;width:auto}
+.footer .fLinks{display:flex;gap:24px}
+.footer .fLinks a{color:var(--muted);transition:.2s}
+.footer .fLinks a:hover{color:var(--text)}
+
+/* ===== PROOF SECTION ===== */
+.proof{background:linear-gradient(180deg,var(--ink),#0c0a0a 40%,var(--ink))}
+.proofLead{font-size:clamp(18px,2vw,24px);line-height:1.55;color:var(--text);max-width:720px;margin:0 0 48px;font-weight:500}
+.proofLead .red{color:var(--red);font-weight:800}
+.proofCases{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin:0 0 40px}
+.proofCase{padding:36px 34px;border:1px solid var(--line);border-radius:6px;background:var(--ink2);position:relative;overflow:hidden}
+.proofCase--hero{background:linear-gradient(155deg,rgba(212,43,36,.1),var(--ink2))}
+.proofCase .pcTag{font-size:10px;font-weight:800;letter-spacing:.18em;color:var(--red);text-transform:uppercase;margin:0 0 14px}
+.proofCase h3{margin:0 0 12px;font-size:clamp(20px,2.2vw,28px);font-weight:900;letter-spacing:-.02em}
+.proofCase p{margin:0;font-size:14px;color:var(--muted);line-height:1.7}
+.proofCase p .hl{color:var(--yellow);font-weight:700}
+.proofCase .pcDetail{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.proofCase .pcChip{font-size:11px;font-weight:700;padding:6px 12px;border:1px solid var(--line);border-radius:20px;color:var(--text);background:var(--ink3)}
+.proofPrecedent{padding:32px 34px;border:1px solid var(--red);border-radius:6px;background:linear-gradient(100deg,rgba(212,43,36,.08),var(--ink2))}
+.proofPrecedent p{margin:0;font-size:clamp(16px,1.8vw,22px);line-height:1.5;font-weight:600;color:var(--text)}
+.proofPrecedent p .red{color:var(--red)}
+
+/* ===== THREE BUSINESS ===== */
+.bizGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.bizCard{padding:36px 32px;border:1px solid var(--line);border-radius:6px;background:var(--ink2);position:relative;transition:.24s}
+.bizCard:hover{border-color:rgba(212,43,36,.4);transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.4)}
+.bizCard .bizPriority{position:absolute;top:18px;right:18px;font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--yellow);text-transform:uppercase}
+.bizCard.bizFirst{background:linear-gradient(155deg,rgba(212,43,36,.1),var(--ink2));border-color:rgba(212,43,36,.3)}
+.bizCard.bizFirst .bizPriority{color:var(--red)}
+.bizCard .bizIco{font-size:30px;display:block;margin-bottom:18px}
+.bizCard .bizLabel{font-size:10px;font-weight:800;letter-spacing:.16em;color:var(--red);text-transform:uppercase;margin:0 0 10px}
+.bizCard h3{margin:0 0 12px;font-size:20px;font-weight:900;letter-spacing:-.01em}
+.bizCard p{margin:0 0 16px;font-size:13px;color:var(--muted);line-height:1.65}
+.bizCard .bizBuyer{font-size:11px;color:var(--muted2);line-height:1.5;padding-top:14px;border-top:1px solid var(--line2)}
+.bizCard .bizBuyer b{color:var(--text);font-weight:700}
+.bizCard .bizCases{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+.bizCard .bizCases span{font-size:10px;font-weight:600;padding:4px 10px;border:1px solid var(--line2);border-radius:16px;color:var(--muted)}
+
+/* ===== WORKFLOW ===== */
+.workflow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--ink2)}
+.wfStep{padding:32px 24px;border-right:1px solid var(--line);position:relative}
+.wfStep:last-child{border-right:0}
+.wfStep:nth-child(odd){background:rgba(212,43,36,.03)}
+.wfNum{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--red);margin:0 0 14px}
+.wfStep h4{margin:0 0 8px;font-size:15px;font-weight:800}
+.wfStep p{margin:0;font-size:12px;color:var(--muted);line-height:1.55}
+
+/* ===== SEGMENT HOOKS TABLE ===== */
+.segTable{border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.segRow{display:grid;grid-template-columns:220px 1fr;gap:0;border-bottom:1px solid var(--line);transition:.2s}
+.segRow:last-child{border-bottom:0}
+.segRow:hover{background:rgba(212,43,36,.04)}
+.segRow .segName{padding:24px 28px;font-size:15px;font-weight:800;color:var(--text);border-right:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.segRow .segName .segIco{font-size:22px}
+.segRow .segHook{padding:24px 28px;font-size:14px;color:var(--muted);line-height:1.65;display:flex;align-items:center}
+.segRow .segHook .hl{color:var(--yellow);font-weight:700}
+
+/* ===== FAQ ===== */
+.faqList{display:grid;gap:12px}
+.faqItem{border:1px solid var(--line);border-radius:5px;background:var(--ink2);overflow:hidden}
+.faqItem summary{list-style:none;cursor:pointer;padding:24px 28px;font-size:16px;font-weight:700;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:16px;transition:.2s;outline-offset:-2px}
+.faqItem summary::-webkit-details-marker{display:none}
+.faqItem summary:hover{color:var(--red)}
+.faqItem summary:focus-visible{outline:2px solid var(--red);outline-offset:-2px;background:rgba(212,43,36,.04)}
+.faqItem summary .faqIcon{font-size:20px;color:var(--red);flex-shrink:0;transition:transform .25s;font-weight:400}
+.faqItem[open] summary .faqIcon{transform:rotate(45deg)}
+.faqItem .faqAns{padding:0 28px 24px;font-size:14px;color:var(--muted);line-height:1.7}
+.faqItem .faqAns .hl{color:var(--text);font-weight:700}
+
+/* ===== GWANGGAETO ===== */
+.gwanggaeto{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:48px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(155deg,rgba(212,43,36,.08),var(--ink2));position:relative;overflow:hidden}
+.gwanggaeto:before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--red),transparent 60%)}
+.gwanggaeto .ggText h3{margin:0 0 8px;font-size:clamp(24px,2.8vw,36px);font-weight:900;letter-spacing:-.02em}
+.gwanggaeto .ggText h3 .ko{color:var(--red);font-size:.7em;display:block;font-weight:700;letter-spacing:.02em;margin-bottom:4px}
+.gwanggaeto .ggText p{margin:0 0 16px;font-size:15px;color:var(--text);line-height:1.7}
+.gwanggaeto .ggText p .hl{color:var(--yellow);font-weight:700}
+.gwanggaeto .ggPoints{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.gwanggaeto .ggPoints li{font-size:13px;color:var(--muted);line-height:1.6;padding-left:22px;position:relative}
+.gwanggaeto .ggPoints li:before{content:"→";position:absolute;left:0;color:var(--red);font-weight:800}
+.gwanggaeto .ggVisual{display:grid;place-items:center;min-height:280px;border:1px solid var(--line);border-radius:6px;background:radial-gradient(circle at 50% 50%,rgba(212,43,36,.1),transparent 60%),var(--ink3);position:relative}
+.gwanggaeto .ggVisual .ggPlaceholder{text-align:center}
+.gwanggaeto .ggVisual .ggPlaceholder .ggCrown{font-size:64px;display:block;margin-bottom:14px}
+.gwanggaeto .ggVisual .ggPlaceholder span{font-size:11px;letter-spacing:.16em;color:var(--muted2);text-transform:uppercase;display:block}
+.gwanggaeto .ggVisual .ggPlaceholder b{font-size:18px;font-weight:900;color:var(--text);display:block;margin-top:6px}
+
+/* ===== ANIMATION ===== */
+@keyframes pulse{50%{opacity:.25;transform:translateY(6px)}}
+@keyframes floatStud{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,.8,.16,1),transform .7s cubic-bezier(.16,.8,.16,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.scrollHint i,.heroStuds .stud{animation:none}}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:980px){
+  .nav{display:none}
+  .menuBtn{display:flex}
+  .sHead{grid-template-columns:1fr;gap:24px}
+  .heroPaths{grid-template-columns:1fr}
+  .timeline{grid-template-columns:1fr 1fr}
+  .tlItem{border-bottom:1px solid var(--line)}
+  .tlItem:nth-child(2){border-right:0}
+  .tlItem:nth-child(3),.tlItem:nth-child(4){border-bottom:0}
+  .tlItem:nth-child(3){border-right:1px solid var(--line)}
+  .historyExtra{grid-template-columns:1fr}
+  .collabIntro{grid-template-columns:1fr;gap:24px}
+  .commSplit{grid-template-columns:1fr}
+  .whyGrid{grid-template-columns:1fr 1fr}
+  .whyPillar{border-bottom:1px solid var(--line)}
+  .whyPillar:nth-child(2){border-right:0}
+  .whyPillar:nth-child(3),.whyPillar:nth-child(4){border-bottom:0}
+  .partnerActions{grid-template-columns:1fr 1fr}
+  .proofCases{grid-template-columns:1fr}
+  .bizGrid{grid-template-columns:1fr}
+  .workflow{grid-template-columns:1fr 1fr}
+  .wfStep{border-bottom:1px solid var(--line)}
+  .wfStep:nth-child(2){border-right:0}
+  .wfStep:nth-child(3),.wfStep:nth-child(4){border-bottom:1px solid var(--line)}
+  .wfStep:nth-child(5){grid-column:1/-1;border-right:0}
+  .segRow{grid-template-columns:1fr}
+  .segRow .segName{border-right:0;border-bottom:1px solid var(--line2)}
+  .gwanggaeto{grid-template-columns:1fr;gap:32px;padding:32px}
+}
+@media(max-width:640px){
+  .topbar{height:74px}
+  .brand img{height:48px}
+  .timeline{grid-template-columns:1fr}
+  .tlItem{border-right:0}
+  .catList{grid-template-columns:1fr}
+  .whyGrid{grid-template-columns:1fr}
+  .whyPillar{border-right:0;border-bottom:1px solid var(--line)}
+  .whyPillar:last-child{border-bottom:0}
+  .partnerActions{grid-template-columns:1fr}
+  .workflow{grid-template-columns:1fr}
+  .wfStep{border-right:0}
+  .footer{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skipLink">Pular para o conteúdo</a>
+
+<!-- NAV -->
+<nav class="topbar">
+  <a class="brand" href="#top"><img src="assets/oxford-logo-nav.png" srcset="assets/oxford-logo-nav.png 1x, assets/oxford-logo-nav@2x.png 2x" alt="Oxford Blocks" width="148" height="200"><small>BRASIL</small></a>
+
+  <div class="nav" id="mainNav">
+    <a href="#prova">A Prova</a>
+    <a href="#historia">História</a>
+    <a href="#negocios">Negócios</a>
+    <a href="#coreia">Colaborações</a>
+    <a href="#brasil">Brasil</a>
+    <a href="#faq">Dúvidas</a>
+  </div>
+  <div class="navCta">
+    <a class="btn btn--red" href="parceiro.html">Seja um Parceiro <span class="arr">→</span></a>
+    <button class="menuBtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav"><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<main id="main">
+<section class="hero" id="top">
+  <div class="heroSun"></div>
+  <div class="heroGrid"></div>
+  <div class="heroStuds" id="heroStuds"></div>
+  <div class="gridBg"></div>
+  <div class="heroInner">
+    <p class="heroEyebrow"><i></i> Coreia do Sul × Brasil <i></i></p>
+    <h1>Oxford <span class="red">Blocks</span><br>Brasil</h1>
+    <p class="heroTagline">Grandes ideias. Construídas bloco a bloco.</p>
+    <p class="heroLead">A Oxford transforma marca em objeto. Não vendemos brinquedo: fabricamos a versão física da sua marca. A sua marca já tem fãs. O que falta é algo que eles possam colocar na estante.</p>
+    <div class="heroPaths">
+      <a class="pathCard" href="#negocios">
+        <span class="pBadge first">Comece por aqui</span>
+        <span class="ptag">Institucional & Corporativo</span>
+        <h3>A sua fábrica, em suas mãos</h3>
+        <p>A máquina-símbolo da sua empresa vira presente que ninguém esquece.</p>
+        <span class="parr">Ver casos <span class="arr">→</span></span>
+      </a>
+      <a class="pathCard" href="#coreia">
+        <span class="ptag">Collab de Marca</span>
+        <h3>Identidade que vira coleção</h3>
+        <p>Sua marca como coleção física: na loja oficial, na campanha, no sócio-torcedor.</p>
+        <span class="parr">Ver colaborações <span class="arr">→</span></span>
+      </a>
+      <a class="pathCard" href="#comercial">
+        <span class="ptag">Linha Regular</span>
+        <h3>Prateleira premium</h3>
+        <p>Catálogo permanente Oxford para o seu varejo. Sem projeto customizado, pronto para revender.</p>
+        <span class="parr">Ver linha comercial <span class="arr">→</span></span>
+      </a>
+    </div>
+  </div>
+  <div class="scrollHint"><i></i> Role para explorar</div>
+</section>
+
+<!-- A PROVA -->
+<section class="section proof" id="prova">
+  <div class="wrap">
+    <p class="kicker reveal"><i></i> A Prova que Convence</p>
+    <div class="sHead">
+      <h2 class="reveal">Não é ideia.<br>É produto que <span class="red">já rodou.</span></h2>
+      <p class="sCopy reveal">A Oxford não precisa prometer; ela já executou. Centenas de projetos para empresas, governos, museus e marcas. Estes são os casos que transformam hipótese em precedente.</p>
+    </div>
+
+    <p class="proofLead reveal">Ao falar com Flamengo, Corinthians ou Palmeiras, o argumento deixa de ser uma hipótese. <span class="red">Vira precedente:</span> a Oxford já fez isso com clubes na Coreia. Estádio, ônibus e jogadores em figura. Vendeu na loja oficial do clube.</p>
+
+    <div class="proofCases">
+      <div class="proofCase proofCase--hero reveal">
+        <p class="pcTag">Futebol Coreano</p>
+        <h3>Seongnam FC</h3>
+        <p>O estádio do clube em blocos, <span class="hl">mais sete jogadores em figura individual</span>, cada um com nome e número. Gwangju FC e Suwon Bluewings receberam o ônibus oficial do clube.</p>
+        <div class="pcDetail">
+          <span class="pcChip">🏟️ Estádio em blocos</span>
+          <span class="pcChip">⚽ Jogadores em figura</span>
+          <span class="pcChip">🚌 Ônibus do clube</span>
+          <span class="pcChip">🛍️ Loja oficial</span>
+        </div>
+      </div>
+      <div class="proofCase reveal">
+        <p class="pcTag">Liga Inteira</p>
+        <h3>KBO: Beisebol Coreano</h3>
+        <p>Figuras de jogadores, vestiários e ônibus para <span class="hl">dez clubes</span>. Não um piloto: um programa de liga inteira.</p>
+        <div class="pcDetail">
+          <span class="pcChip">⚾ 10 clubes</span>
+          <span class="pcChip">🏟️ Vestiários</span>
+          <span class="pcChip">🚌 Ônibus</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proofPrecedent reveal">
+      <p>E vale ainda mais para uma conversa com a <span class="red">CBF ou uma liga brasileira</span>: já existe um caso de rollout em liga inteira (dez clubes, não um piloto isolado). A Oxford já provou que marca vira objeto colecionável. No Brasil, falta só o primeiro.</p>
+    </div>
+
+    <p class="evidenceNote"><i></i> Casos (Seongnam FC, KBO, Gwangju FC, Suwon Bluewings) conforme portfólio da Oxford e referência do projeto. Fotos oficiais em alta resolução serão obtidas da Oxford Coreia antes do uso em material executivo final.</p>
+  </div>
+</section>
+
+<!-- HISTÓRIA -->
+<section class="section section--alt" id="historia">
+  <div class="wrap">
+    <p class="kicker reveal"><i></i> A História da Oxford</p>
+    <div class="sHead">
+      <h2 class="reveal">Décadas de <span class="red">precisão</span><br>coreana em cada bloco.</h2>
+      <p class="sCopy reveal">Da fundação na Coreia do Sul à fabricação própria e aos licenciamentos oficiais, a Oxford construiu uma trajetória de compatibilidade global e parcerias com marcas reconhecidas.</p>
+    </div>
+
+    <div class="timeline reveal">
+      <div class="tlItem">
+        <p class="tlYear">1961</p>
+        <h3>Raízes corporativas</h3>
+        <p>Origem corporativa da Oxford na Coreia do Sul, ponto de partida de uma trajetória industrial dedicada ao brinquedo.</p>
+      </div>
+      <div class="tlItem">
+        <p class="tlYear">1992</p>
+        <h3>Produção de blocos</h3>
+        <p>Início da fabricação de blocos de montar, dando origem à categoria que se tornaria o coração da marca.</p>
+      </div>
+      <div class="tlItem">
+        <p class="tlYear">1996</p>
+        <h3>Marco da marca Oxford</h3>
+        <p>Consolidação da Oxford Co., Ltd. e da marca Oxford como referência coreana em blocos de montar.</p>
+      </div>
+      <div class="tlItem">
+        <p class="tlYear">Hoje</p>
+        <h3>Três décadas de bloco</h3>
+        <p>Produção ininterrupta na Coreia, exportação para múltiplos países e arquivo de centenas de projetos corporativos e culturais.</p>
+      </div>
+    </div>
+
+    <div class="historyExtra">
+      <div class="heCard reveal">
+        <span class="heIco">🏭</span>
+        <h4>Do molde à embalagem</h4>
+        <p>Controle total da cadeia produtiva em uma única fábrica coreana: projeto, molde, injeção e acabamento sob o mesmo teto.</p>
+      </div>
+      <div class="heCard reveal">
+        <span class="heIco">🌍</span>
+        <h4>Encaixe universal</h4>
+        <p>Compatível com o padrão mundial: o consumidor monta junto com o que já tem em casa.</p>
+      </div>
+      <div class="heCard reveal">
+        <span class="heIco">⭐</span>
+        <h4>Marcas que confiam</h4>
+        <p>Da Disney à DAPA, décadas de licenciamentos com marcas que exigem rigor técnico e legal.</p>
+      </div>
+    </div>
+
+    <div class="licenseStrip reveal">
+      <b>Licenciamentos oficiais na história da marca</b>
+      <span>Disney</span><span>Hello Kitty</span><span>Hasbro</span><span>Baskin-Robbins</span><span>Laser Pegs</span><span>DAPA (Defesa Coreana)</span>
+    </div>
+
+    <p class="evidenceNote"><i></i> Datas corporativas conforme histórico oficial da Oxford. Atributos técnicos (certificações, especificações de material e precisão) estão em processo de verificação documental e serão confirmados antes do uso em material executivo final.</p>
+  </div>
+</section>
+
+<!-- GWANGGAETO — IP PRÓPRIO -->
+<section class="section" id="gwanggaeto">
+  <div class="wrap">
+    <p class="kicker reveal"><i></i> Personagem Próprio da Oxford</p>
+    <div class="sHead">
+      <h2 class="reveal">IP da própria Oxford.<br>Não <span class="red">licença</span> de terceiros.</h2>
+      <p class="sCopy reveal">A Oxford tem uma linha de heróis criada por ela mesma. Por isso, é o único personagem que a Oxford Brasil pode usar livremente, em comunicação, mascote, redes sociais e material de apresentação.</p>
+    </div>
+
+    <div class="gwanggaeto reveal">
+      <div class="ggText">
+        <h3><span class="ko">광개토대왕</span>Grande Rei Gwanggaeto</h3>
+        <p>Uma linha de heróis com <span class="hl">cavalaria blindada, tropa de cerco e carro Samjogo</span>, criada, desenvolvida e fabricada pela própria Oxford.</p>
+        <ul class="ggPoints">
+          <li>Base correta para qualquer avatar 3D da marca no Brasil.</li>
+          <li>Prova a capacidade de criar um personagem original, não apenas um prédio ou uma máquina.</li>
+          <li>Argumento direto para uma marca brasileira que queira o próprio personagem em blocos.</li>
+        </ul>
+      </div>
+      <div class="ggVisual">
+        <div class="ggPlaceholder">
+          <span class="ggCrown">👑⚔️</span>
+          <span>Foto do produto</span>
+          <b>Gwanggaeto</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRÊS NEGÓCIOS -->
+<section class="section section--alt" id="negocios">
+  <div class="wrap">
+    <p class="kicker reveal"><i></i> Três Negócios, Não Um</p>
+    <div class="sHead">
+      <h2 class="reveal">Receitas diferentes.<br>Compradores <span class="red">diferentes.</span></h2>
+      <p class="sCopy reveal">O erro seria vender só "collab". A Oxford Brasil tem três receitas com compradores, ciclos e riscos diferentes, vendidas separadamente.</p>
+    </div>
+
+    <div class="bizGrid">
+      <div class="bizCard bizFirst reveal">
+        <span class="bizPriority">Comece por aqui</span>
+        <span class="bizIco">🏭</span>
+        <p class="bizLabel">A · Institucional / Corporativo</p>
+        <h3>A planta inteira, bloco a bloco</h3>
+        <p>A linha de produção, o produto em catálogo, a sede corporativa ou a máquina que define a empresa: tudo ganha forma física. Presente de fim de ano, brinde de feira, ferramenta de recrutamento, aniversário institucional.</p>
+        <div class="bizCases"><span>SK Hynix</span><span>LG Display</span><span>Hyundai</span><span>Bobcat</span><span>KIA</span><span>Museus</span></div>
+        <p class="bizBuyer"><b>Comprador:</b> marketing corporativo, comunicação interna, RH.<br><b>Por que primeiro:</b> ciclo curto, orçamento já existe, sem risco de estoque, sem ponto de venda. A receita mais rápida de desbloquear no Brasil.</p>
+      </div>
+      <div class="bizCard reveal">
+        <span class="bizPriority">Ticket maior</span>
+        <span class="bizIco">🤝</span>
+        <p class="bizLabel">B · Collab de Marca / Licenciamento</p>
+        <h3>A identidade visual, em coleção</h3>
+        <p>A marca vira série colecionável, distribuída em campanha sazonal, mecânica de fidelidade, ativação de trade ou canal exclusivo. O consumidor leva para casa um pedaço da marca que ele ama.</p>
+        <div class="bizCases"><span>Subway</span><span>Outback</span><span>Baskin Robbins</span><span>7-Eleven</span><span>Daiso</span><span>Korean Air</span></div>
+        <p class="bizBuyer"><b>Comprador:</b> marketing de marca, trade, licenciamento.<br><b>Perfil:</b> ticket maior, ciclo mais longo, maior potencial de repetição.</p>
+      </div>
+      <div class="bizCard reveal">
+        <span class="bizPriority">Mais lento</span>
+        <span class="bizIco">🏪</span>
+        <p class="bizLabel">C · Linha Regular: Varejo</p>
+        <h3>Prateleira com DNA coreano</h3>
+        <p>Os produtos de catálogo Oxford, sem customização, sem molde novo, prontos para a sua loja. Importação, estoque e logística por conta da Oxford Brasil.</p>
+        <div class="bizCases"><span>Lojas</span><span>Papelarias</span><span>Hobby Shops</span><span>E-commerce</span></div>
+        <p class="bizBuyer"><b>Comprador:</b> comprador de varejo, e-commerce, papelaria.<br><b>Atenção:</b> único dos três que precisa de importação, estoque e logística. Mais lento e capital-intensivo, não é o eixo da primeira fase.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="section" id="como">
+  <div class="wrap">
+    <p class="kicker reveal"><i></i> Como Funciona</p>
+    <div class="sHead">
+      <h2 class="reveal">Da ideia à entrega.<br>Cinco <span class="red">etapas.</span></h2>
+      <p class="sCopy reveal">Do briefing ao produto nas mãos do cliente, cada etapa é mapeada e gerenciada pela Oxford Coreia e Oxford Brasil.</p>
+    </div>
+
+    <div class="workflow reveal">
+      <div class="wfStep">
+        <p class="wfNum">01</p>
+        <h4>Briefing</h4>
+        <p>Entendemos a marca, o conceito e o objetivo. O que, da sua marca, as pessoas gostariam de ter em cima da mesa?</p>
+      </div>
+      <div class="wfStep">
+        <p class="wfNum">02</p>
+        <h4>Projeto 3D</h4>
+        <p>Desenvolvimento do design em 3D. A marca vê o produto antes de ele existir: aprova, ajusta, refina.</p>
+      </div>
+      <div class="wfStep">
+        <p class="wfNum">03</p>
+        <h4>Protótipo físico</h4>
+        <p>A marca toca, aprova e ajusta antes de um único bloco ser produzido em série. Zero surpresa na entrega final.</p>
+      </div>
+      <div class="wfStep">
+        <p class="wfNum">04</p>
+        <h4>Fabricação</h4>
+        <p>Produção em série na fábrica coreana. Cada peça passa pelo controle de qualidade antes de seguir para o Brasil.</p>
+      </div>
+      <div class="wfStep">
+        <p class="wfNum">05</p>
+        <h4>Entrega</h4>
+        <p>Importação e entrega no Brasil. O produto pronto para a campanha, o evento ou o ponto de venda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLABORAÇÕES NA COREIA -->
+<section class="section" id="coreia">
+  <div class="wrap">
+    <p class="kicker reveal"><i></i> Grandes Colaborações na Coreia</p>
+    <div class="sHead">
+      <h2 class="reveal">Centenas de projetos.<br>Marcas que <span class="red">viraram blocos.</span></h2>
+      <p class="sCopy reveal">Empresas, governos, museus, franquias e estúdios de entretenimento. O arquivo da Oxford é a prova de que qualquer identidade pode virar coleção.</p>
+    </div>
+
+    <div class="collabIntro reveal">
+      <p>Da aviação à indústria pesada, do K-pop ao patrimônio histórico: cada projeto abaixo é <span class="hl">uma marca que aceitou o desafio</span> de existir em três dimensões. Este é o portfólio que queremos repetir no Brasil.</p>
+    </div>
+
+    <div class="collabFilters reveal" id="collabFilters">
+      <button class="filterBtn active" data-filter="all">Todas</button>
+      <button class="filterBtn" data-filter="corp">Corporativo & Indústria</button>
+      <button class="filterBtn" data-filter="food">Alimentação & Varejo</button>
+      <button class="filterBtn" data-filter="ent">K-pop & Entretenimento</button>
+    </div>
+
+    <div class="brandGrid" id="brandGrid"></div>
+
+    <p class="kicker reveal" style="margin-top:64px"><i></i> Patrimônio & Cultura Coreana</p>
+    <div class="heritageRow" id="heritageRow"></div>
+
+    <div class="collabCoda reveal">
+      <p>Cada marca acima aceitou existir em bloco. <span class="red">A sua é a próxima?</span></p>
+    </div>
+
+    <p class="evidenceNote"><i></i> Lista de colaborações conforme portfólio oficial da Oxford e referência do proprietário do projeto. Cada parceria será individualmente verificada junto ao arquivo oficial antes do uso em material executivo final.</p>
+  </div>
+</section>
+
+<!-- VISÃO BRASIL — SEGMENTOS & GANCHOS -->
+<section class="section section--alt" id="brasil">
+  <div class="wrap">
+    <p class="kicker reveal"><i></i> Segmentos no Brasil</p>
+    <div class="sHead">
+      <h2 class="reveal">Cada segmento.<br>Um <span class="red">gancho</span> específico.</h2>
+      <p class="sCopy reveal">O mercado brasileiro tem marcas potentes que ainda não exploram o universo dos blocos de montar premium. Para cada segmento, um argumento concreto, não genérico.</p>
+    </div>
+
+    <div class="segTable reveal">
+      <div class="segRow">
+        <div class="segName"><span class="segIco">⚽</span> Clubes de futebol</div>
+        <div class="segHook">Estádio + jogadores em figura. <span class="hl">Precedente Seongnam FC.</span> Receita de loja oficial e sócio-torcedor.</div>
+      </div>
+      <div class="segRow">
+        <div class="segName"><span class="segIco">🏭</span> Indústria pesada e agro</div>
+        <div class="segHook">A máquina que a empresa fabrica, em blocos. <span class="hl">Brinde de feira</span> que o cliente leva para casa.</div>
+      </div>
+      <div class="segRow">
+        <div class="segName"><span class="segIco">🏦</span> Bancos e seguradoras</div>
+        <div class="segHook">Agência ou sede em blocos. Comunicação interna e <span class="hl">campanha de rede</span>.</div>
+      </div>
+      <div class="segRow">
+        <div class="segName"><span class="segIco">🍔</span> Franquias e redes de alimentação</div>
+        <div class="segHook">Miniatura da própria loja. <span class="hl">Mecânica de compra</span> em milhares de unidades.</div>
+      </div>
+      <div class="segRow">
+        <div class="segName"><span class="segIco">🛍️</span> Shoppings e parques</div>
+        <div class="segHook">Souvenir exclusivo, acúmulo por valor gasto, <span class="hl">item de aniversário</span> do centro.</div>
+      </div>
+      <div class="segRow">
+        <div class="segName"><span class="segIco">🏛️</span> Museus e turismo</div>
+        <div class="segHook"><span class="hl">Patrimônio brasileiro</span> em edição colecionável, vendido na bilheteria.</div>
+      </div>
+      <div class="segRow">
+        <div class="segName"><span class="segIco">🍺</span> Cervejarias e bebidas</div>
+        <div class="segHook">Caminhão, fábrica, ponto de venda. <span class="hl">Colecionável adulto</span> de alto giro.</div>
+      </div>
+    </div>
+
+    <div class="visionCoda reveal" style="margin-top:48px">
+      <p>O Brasil tem marcas que <span class="red">ainda não sabem que podem virar bloco.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- LINHA COMERCIAL -->
+<section class="section" id="comercial">
+  <div class="wrap">
+    <p class="kicker reveal"><i></i> Linha Regular Oxford</p>
+    <div class="sHead">
+      <h2 class="reveal">Além das collabs,<br>uma <span class="red">linha permanente</span> para o varejo.</h2>
+      <p class="sCopy reveal">Para quem busca produto pronto, sem customização. O catálogo permanente Oxford abrange oito categorias e atende do hobby shop à rede nacional.</p>
+    </div>
+
+    <div class="commSplit">
+      <div class="commBlock reveal">
+        <h3>Categorias de produto</h3>
+        <div class="catList" id="catList"></div>
+      </div>
+      <div class="commBlock reveal">
+        <h3>Canais de venda</h3>
+        <ul class="channelList" id="channelList"></ul>
+        <div class="commNote">
+          <b>Catálogo disponível.</b> Solicite o catálogo completo da linha regular Oxford com SKUs, embalagens e condições comerciais para revenda no Brasil.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE OXFORD -->
+<section class="section section--alt" id="porque">
+  <div class="wrap">
+    <p class="kicker reveal"><i></i> Por que Oxford?</p>
+    <div class="sHead">
+      <h2 class="reveal">Fabricação coreana.<br>Padrão <span class="red">mundial.</span></h2>
+      <p class="sCopy reveal">O que diferencia a Oxford no mercado brasileiro de blocos de montar: da origem da fabricação ao acabamento e à exclusividade dos produtos.</p>
+    </div>
+
+    <div class="whyGrid" id="whyGrid"></div>
+
+    <p class="evidenceNote"><i></i> Atributos de qualidade (precisão de encaixe, material premium, certificações de segurança) são posicionamento de marca e estão em processo de verificação documental junto à Oxford Coreia.</p>
+  </div>
+</section>
+
+<!-- FAQ / OBJEÇÕES -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <p class="kicker reveal"><i></i> Dúvidas Frequentes</p>
+    <div class="sHead">
+      <h2 class="reveal">As perguntas<br>que <span class="red">sempre voltam.</span></h2>
+      <p class="sCopy reveal">As objeções mais comuns em reuniões, e as respostas que funcionam. Se a sua pergunta não está aqui, agende uma conversa.</p>
+    </div>
+
+    <div class="faqList reveal">
+      <details class="faqItem">
+        <summary aria-expanded="false">"Isso é brinquedo, nossa marca não é infantil." <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">O colecionador de blocos é <span class="hl">adulto</span>. Os casos coreanos são uma fábrica de semicondutores, um banco, uma companhia aérea e defesa: nenhum é campanha infantil. O objeto montado fica em cima da mesa de escritório, por anos, à vista de todo mundo que entra na sala.</div>
+      </details>
+      <details class="faqItem">
+        <summary aria-expanded="false">"Já damos brinde." <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">O brinde é descartado. Este é <span class="hl">montado pela pessoa</span>, e o que a pessoa monta com as próprias mãos ela não joga fora. É o único brinde que ocupa mesa de escritório por anos. Camisa desbota, chaveiro some, post desaparece em 24 horas. Um bloco montado permanece.</div>
+      </details>
+      <details class="faqItem">
+        <summary aria-expanded="false">"Quanto custa?" <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">Depende de quantidade e complexidade, porque envolve molde e projeto. Por isso a conversa começa por <span class="hl">volume-alvo</span>, não por preço. Cada projeto é único: briefing, projeto 3D, protótipo e produção são personalizados para a sua marca.</div>
+      </details>
+      <details class="faqItem">
+        <summary aria-expanded="false">"Não é cópia de LEGO?" <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">A Oxford é <span class="hl">fabricante coreana independente</span>, com fábrica própria e décadas de operação, além de compatibilidade de encaixe com o padrão mundial. Compatibilidade é vantagem para o consumidor, não é cópia. A Oxford tem sua própria história, seus próprios personagens e seus próprios projetos.</div>
+      </details>
+      <details class="faqItem">
+        <summary aria-expanded="false">"Quanto tempo leva?" <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">Do primeiro briefing à entrega no Brasil, o ciclo inclui projeto, protótipo físico, fabricação na Coreia e importação. O prazo exato depende da complexidade do molde e do volume. Confirmamos na primeira conversa, com data no calendário.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- SEJA UM PARCEIRO -->
+<section class="section partner" id="parceiro">
+  <div class="partnerGrid"></div>
+  <div class="partnerInner">
+    <p class="kicker reveal" style="justify-content:center"><i></i> Seja um Parceiro</p>
+    <h2 class="reveal">Vamos construir<br>uma ideia <span class="red">juntos.</span></h2>
+    <span class="pTag reveal">O próximo capítulo começa com uma conversa.</span>
+    <p class="pSub reveal">Escolha o caminho que faz sentido para o seu negócio. Estamos prontos para conversar, e sempre levamos uma peça montada na mão.</p>
+    <div class="partnerActions">
+      <a class="paBtn reveal" href="parceiro.html?t=institucional">
+        <span class="paIco">🏭</span>
+        <span class="paLabel">Projeto institucional</span>
+        <span class="paSub">Comece por aqui</span>
+        <p class="paDesc">Fábrica, máquina, sede ou produto da sua empresa em blocos. Brinde de feira, presente corporativo, recrutamento.</p>
+        <span class="paArr">Iniciar projeto <span class="arr">→</span></span>
+      </a>
+      <a class="paBtn reveal" href="parceiro.html?t=collab">
+        <span class="paIco">🤝</span>
+        <span class="paLabel">Collab de marca</span>
+        <span class="paSub">Coleção exclusiva</span>
+        <p class="paDesc">Sua marca como série colecionável: campanha sazonal, loja oficial, ativação de trade ou sócio-torcedor.</p>
+        <span class="paArr">Propor collab <span class="arr">→</span></span>
+      </a>
+      <a class="paBtn reveal" href="parceiro.html?t=revenda">
+        <span class="paIco">🏪</span>
+        <span class="paLabel">Revender Oxford</span>
+        <span class="paSub">Linha comercial</span>
+        <p class="paDesc">Catálogo permanente Oxford para o seu varejo. SKUs, embalagens e condições comerciais sob consulta.</p>
+        <span class="paArr">Solicitar condições <span class="arr">→</span></span>
+      </a>
+      <a class="paBtn reveal" href="parceiro.html?t=reuniao">
+        <span class="paIco">📅</span>
+        <span class="paLabel">Agendar reunião</span>
+        <span class="paSub">Fale conosco</span>
+        <p class="paDesc">Ainda não sabe qual caminho? Agende uma conversa. Levamos uma peça montada e saímos com uma ideia.</p>
+        <span class="paArr">Marcar data <span class="arr">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="fBrand"><img src="assets/oxford-logo-footer.png" alt="Oxford Blocks" width="89" height="120"> <span>Brasil</span></div>
+  <div class="fLinks">
+    <a href="#prova">A Prova</a>
+    <a href="#negocios">Negócios</a>
+    <a href="#coreia">Colaborações</a>
+    <a href="#brasil">Brasil</a>
+    <a href="#faq">Dúvidas</a>
+    <a href="parceiro.html">Seja um Parceiro</a>
+  </div>
+  <span>© 2026 Oxford Blocks Brasil. Grandes ideias. Construídas bloco a bloco.</span>
+</footer>
+
+<script>
+/* ===== HERO STUDS ===== */
+(function(){
+  var c=document.getElementById('heroStuds');
+  if(!c) return;
+  var n=7;
+  for(var i=0;i<n;i++){
+    var s=document.createElement('i');
+    s.className='stud';
+    s.style.left=(8+i*12)+'%';
+    s.style.top=(18+Math.sin(i)*10)+'%';
+    s.style.animation='floatStud '+(4+i*0.4)+'s ease-in-out '+(i*0.3)+'s infinite';
+    s.style.opacity=.4;
+    c.appendChild(s);
+  }
+})();
+
+/* ===== COLLAB BRANDS ===== */
+var BRANDS=[
+  {n:'Korean Air',c:'corp'},{n:'Asiana Airlines',c:'corp'},{n:'Jeju Air',c:'corp'},
+  {n:'KIA',c:'corp'},{n:'Hyundai',c:'corp'},{n:'HD Hyundai',c:'corp'},
+  {n:'LG Display',c:'corp'},{n:'LG Electronics',c:'corp'},
+  {n:'SK Hynix',c:'corp'},{n:'SK Innovation',c:'corp'},
+  {n:'AWS',c:'corp'},{n:'Bobcat',c:'corp'},{n:'LIG Nex1',c:'corp'},
+  {n:'Hanwha',c:'corp'},{n:'KT',c:'corp'},{n:'Hana Bank',c:'corp'},
+  {n:'Subway',c:'food'},{n:'Outback Steakhouse',c:'food'},
+  {n:'Baskin Robbins',c:'food'},{n:'Coffee Bean',c:'food'},
+  {n:'Innisfree',c:'food'},{n:'CU',c:'food'},{n:'Daiso',c:'food'},
+  {n:'E-Mart',c:'food'},{n:'Lotte World',c:'food'},{n:'Shinsegae',c:'food'},
+  {n:'Seven Eleven',c:'food'},{n:'Nongshim',c:'food'},{n:"Kellogg's",c:'food'},
+  {n:'Five Guys',c:'food'},{n:'Terarosa Coffee',c:'food'},{n:'Osulloc Tea Museum',c:'food'},
+  {n:'BTS',c:'ent'},{n:'EXO',c:'ent'},{n:'BTOB',c:'ent'},
+  {n:'MBC Radio',c:'ent'},{n:'tvN',c:'ent'},{n:'Blue Archive',c:'ent'},
+  {n:'Mabinogi',c:'ent'},{n:'Kakao Friends',c:'ent'},{n:'Penguin Pengsoo',c:'ent'}
+];
+var CAT_LABEL={corp:'Corporativo',food:'Varejo',ent:'Entretenimento'};
+var bg=document.getElementById('brandGrid');
+function renderBrands(filter){
+  if(!bg) return;
+  bg.innerHTML='';
+  BRANDS.filter(function(b){return filter==='all'||b.c===filter}).forEach(function(b){
+    var d=document.createElement('div');
+    d.className='brandChip reveal in';
+    d.innerHTML='<span class="bStud"></span><span class="bName">'+b.n+'</span><span class="bCat">'+CAT_LABEL[b.c]+'</span>';
+    bg.appendChild(d);
+  });
+}
+renderBrands('all');
+document.querySelectorAll('#collabFilters .filterBtn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('#collabFilters .filterBtn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    renderBrands(btn.dataset.filter);
+  });
+});
+
+/* ===== HERITAGE ===== */
+var HERITAGE=[
+  {i:'🏯',t:'Gyeongbokgung',d:'Palácio real: Geunjeongjeon (Salão do Trono)'},
+  {i:'⛩️',t:'Sungnyemun',d:'Namdaemun, portão histórico nacional de Seul'},
+  {i:'🚉',t:'Estação de Seul',d:'Marco arquitetônico e histórico da capital'},
+  {i:'🌉',t:'Ponte Gwangan',d:'Ponte icônica de Busan'},
+  {i:'🏛️',t:'Museu de Gyeonggi',d:'Instituição cultural e museológica'},
+  {i:'⚓',t:'Almirante Yi Sun-sin',d:'Monumento ao herói naval coreano'},
+  {i:'🏰',t:'Museus & memoriais',d:'Diversos museus e memoriais nacionais'},
+  {i:'🏞️',t:'Instituições públicas',d:'Projetos para órgãos governamentais e turismo'}
+];
+var hr=document.getElementById('heritageRow');
+if(hr) HERITAGE.forEach(function(h){
+  var d=document.createElement('div');
+  d.className='heritageCard reveal in';
+  d.innerHTML='<span class="hIco">'+h.i+'</span><h4>'+h.t+'</h4><p>'+h.d+'</p>';
+  hr.appendChild(d);
+});
+
+/* ===== COMMERCIAL CATEGORIES ===== */
+var CATS=[
+  {i:'🚗',t:'Veículos',d:'Carros, motos e máquinas'},
+  {i:'🏙️',t:'Arquitetura',d:'Edifícios e marcos urbanos'},
+  {i:'🪖',t:'Militar',d:'Veículos e aeronaves militares'},
+  {i:'🐾',t:'Animais',d:'Fauna e criaturas'},
+  {i:'🏗️',t:'Construções',d:'Cenas e estruturas'},
+  {i:'🔬',t:'Mini Blocks',d:'Peças de micro precisão'},
+  {i:'🧸',t:'Infantil',d:'Linhas para menores'},
+  {i:'📚',t:'Educacional',d:'Blocos para aprendizado'}
+];
+var cl=document.getElementById('catList');
+if(cl) CATS.forEach(function(c){
+  var d=document.createElement('div');
+  d.className='catItem';
+  d.innerHTML='<span class="cIco">'+c.i+'</span><h4>'+c.t+'</h4><p>'+c.d+'</p>';
+  cl.appendChild(d);
+});
+
+/* ===== CHANNELS ===== */
+var CHANNELS=[
+  {i:'🧸',t:'Lojas de brinquedos'},{i:'✏️',t:'Papelarias'},
+  {i:'📖',t:'Livrarias'},{i:'🧩',t:'Hobby Shops'},
+  {i:'🎮',t:'Lojas Geek'},{i:'💻',t:'E-commerce'},
+  {i:'🏬',t:'Redes de varejo'}
+];
+var ch=document.getElementById('channelList');
+if(ch) CHANNELS.forEach(function(c){
+  var li=document.createElement('li');
+  li.innerHTML='<span class="chIco">'+c.i+'</span> '+c.t;
+  ch.appendChild(li);
+});
+
+/* ===== WHY OXFORD ===== */
+var WHY=[
+  {i:'🇰🇷',t:'Fabricado na Coreia',d:'Origem sul-coreana em toda a linha, não revenda de terceiros.'},
+  {i:'🎯',t:'Encaixe cirúrgico',d:'Cada peça encaixa na primeira tentativa, sem folga.'},
+  {i:'💎',t:'Material premium',d:'Plástico de alto padrão que não amarelece com o tempo.'},
+  {i:'🛡️',t:'Segurança certificada',d:'Padrões de segurança para todas as idades.'},
+  {i:'✨',t:'Acabamento impecável',d:'Rebarba zero, cor uniforme, superfície lisa ao toque.'},
+  {i:'🎁',t:'Coleções únicas',d:'Produtos que não existem em nenhuma outra prateleira.'},
+  {i:'🌐',t:'Trajetória global',d:'Décadas de exportação e licenciamento internacional.'},
+  {i:'🤝',t:'Ponte direta',d:'Acesso sem intermediário à fábrica coreana.'}
+];
+var wg=document.getElementById('whyGrid');
+if(wg) WHY.forEach(function(w){
+  var d=document.createElement('div');
+  d.className='whyPillar reveal in';
+  d.innerHTML='<span class="whyIco">'+w.i+'</span><span class="whyBar"></span><h4>'+w.t+'</h4><p>'+w.d+'</p>';
+  wg.appendChild(d);
+});
+
+/* ===== FAQ ARIA ===== */
+document.querySelectorAll('.faqItem').forEach(function(d){
+  var s=d.querySelector('summary');
+  d.addEventListener('toggle',function(){
+    s.setAttribute('aria-expanded',d.open?'true':'false');
+  });
+});
+
+/* ===== REVEAL ON SCROLL ===== */
+(function(){
+  if(!('IntersectionObserver' in window)){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(e){io.observe(e)});
+})();
+
+/* ===== MOBILE MENU ===== */
+(function(){
+  var btn=document.getElementById('menuBtn');
+  if(!btn) return;
+  var nav=document.querySelector('.nav');
+  var isOpen=false;
+  function open(){
+    isOpen=true;
+    nav.classList.add('nav--open');
+    btn.setAttribute('aria-expanded','true');
+    btn.setAttribute('aria-label','Fechar menu');
+    document.body.style.overflow='hidden';
+  }
+  function close(){
+    isOpen=false;
+    nav.classList.remove('nav--open');
+    btn.setAttribute('aria-expanded','false');
+    btn.setAttribute('aria-label','Abrir menu');
+    document.body.style.overflow='';
+  }
+  btn.addEventListener('click',function(){
+    if(isOpen) close(); else open();
+  });
+  nav.addEventListener('click',function(e){
+    if(e.target.tagName==='A') close();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&isOpen) close();
+  });
+})();
+</script>
+</body>
+</html>

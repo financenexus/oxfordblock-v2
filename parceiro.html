@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050607">
+<meta name="description" content="Seja um parceiro Oxford Blocks Brasil — crie uma colaboração exclusiva, revenda a linha Oxford, solicite o catálogo ou agende uma reunião.">
+<title>Seja um Parceiro — Oxford Blocks Brasil</title>
+<link rel="icon" type="image/png" href="assets/oxford-logo-nav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/oxford-logo-nav.png">
+<style>
+:root{
+  --red:#D42B24; --red2:#9B1A14; --red-soft:rgba(212,43,36,.12);
+  --yellow:#F5A623; --ink:#050607; --ink2:#0a0c0d; --ink3:#101314;
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.05);
+  --text:#e9e8e3; --muted:#94999e; --muted2:#6b7075; --white:#f5f4f0;
+  --ok:#3ecf8e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;background:var(--ink);color:var(--text);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.skipLink{position:absolute;left:-9999px;top:0;z-index:200;padding:12px 20px;background:var(--red);color:#fff;font-size:13px;font-weight:800;border-radius:0 0 4px 0;transition:left .2s}
+.skipLink:focus{left:0}
+
+.gridBg{position:absolute;inset:0;pointer-events:none;background-image:
+  linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:46px 46px;mask-image:radial-gradient(circle at 50% 30%,#000,transparent 75%)}
+
+/* NAV */
+.topbar{position:fixed;z-index:100;top:0;left:0;width:100%;height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4.5vw,64px);border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(4,5,6,.92),rgba(4,5,6,.55));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.brand{display:flex;align-items:center;gap:11px}
+.brand img{height:64px;width:auto;max-width:240px;object-fit:contain}
+.brand small{font-size:9px;font-weight:800;letter-spacing:.14em;color:var(--red);border:1px solid var(--red);padding:2px 6px;border-radius:3px}
+.btn{display:inline-flex;align-items:center;gap:9px;height:40px;padding:0 20px;border-radius:3px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;transition:.22s;border:1px solid transparent;white-space:nowrap}
+.btn--ghost{border-color:var(--line);background:rgba(8,9,10,.6);color:var(--text)}
+.btn--ghost:hover{border-color:rgba(255,255,255,.3);background:var(--ink3)}
+.btn--red{background:var(--red);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.btn--red:hover{background:#e8342b;transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.5)}
+.btn .arr{transition:transform .22s}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* HERO */
+.pageHero{position:relative;padding:160px clamp(20px,5vw,64px) 60px;overflow:hidden;background:linear-gradient(180deg,#150f0f 0,var(--ink) 60%);border-bottom:1px solid var(--line)}
+.pageHero .phSun{position:absolute;width:50vw;height:50vw;max-width:620px;max-height:620px;border-radius:50%;left:50%;top:-30vw;transform:translateX(-50%);background:radial-gradient(circle,var(--red) 0,#be2018 20%,rgba(195,28,18,.14) 50%,transparent 68%);opacity:.4}
+.phInner{position:relative;z-index:2;max-width:780px;margin:0 auto;text-align:center}
+.kicker{display:inline-flex;align-items:center;gap:12px;font-size:11px;font-weight:800;letter-spacing:.22em;color:var(--red);text-transform:uppercase;margin:0 0 22px;justify-content:center}
+.kicker i{display:block;width:30px;height:1px;background:var(--red)}
+.phInner h1{margin:0;font-size:clamp(36px,5.4vw,72px);font-weight:900;line-height:.92;letter-spacing:-.035em;text-transform:uppercase;font-family:"Archivo Expanded","Archivo",system-ui,sans-serif}
+.phInner h1 .red{color:var(--red)}
+.phInner p{margin:18px 0 0;font-size:clamp(15px,1.6vw,19px);line-height:1.65;color:var(--muted);max-width:560px;margin-inline:auto}
+
+/* FORM SECTION */
+.formSection{padding:70px clamp(20px,5vw,64px) 100px;position:relative}
+.formWrap{max-width:920px;margin:0 auto;display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+.formAside{position:sticky;top:100px}
+.formAside h3{font-size:13px;font-weight:800;letter-spacing:.16em;color:var(--red);text-transform:uppercase;margin:0 0 20px}
+.asidePaths{display:grid;gap:12px;margin:0 0 30px}
+.asidePath{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;border:1px solid var(--line);border-radius:5px;background:var(--ink2);transition:.2s;cursor:pointer}
+.asidePath:hover{border-color:var(--red);background:linear-gradient(150deg,rgba(212,43,36,.07),var(--ink2))}
+.asidePath.active{border-color:var(--red);background:linear-gradient(150deg,rgba(212,43,36,.1),var(--ink2))}
+.asidePath .apIco{font-size:22px;flex-shrink:0}
+.asidePath h4{margin:0 0 3px;font-size:15px;font-weight:800}
+.asidePath p{margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+.asideContact{padding:22px 24px;border:1px solid var(--line);border-radius:5px;background:linear-gradient(160deg,rgba(245,166,35,.06),var(--ink2))}
+.asideContact b{font-size:11px;letter-spacing:.16em;color:var(--yellow);text-transform:uppercase;display:block;margin-bottom:10px}
+.asideContact a,.asideContact p{display:block;font-size:14px;color:var(--text);margin:0 0 6px;line-height:1.5}
+.asideContact a:hover{color:var(--red)}
+.asideContact .acMuted{color:var(--muted);font-size:12px;margin-top:10px}
+
+/* FORM CARD */
+.formCard{border:1px solid var(--line);border-radius:8px;background:var(--ink2);padding:44px clamp(24px,4vw,48px);position:relative;overflow:hidden}
+.formCard:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--red2))}
+.formCard h2{margin:0 0 8px;font-size:24px;font-weight:900;letter-spacing:-.02em}
+.formCard .fcSub{margin:0 0 32px;font-size:14px;color:var(--muted);line-height:1.6}
+.field{margin-bottom:22px}
+.field label{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.field label .req{color:var(--red)}
+.field input,.field select,.field textarea{width:100%;background:var(--ink3);border:1px solid var(--line);border-radius:4px;color:var(--text);font:inherit;font-size:15px;padding:14px 16px;transition:.2s;font-family:inherit}
+.field input::placeholder,.field textarea::placeholder{color:#5a5f64}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--red);background:#0d1011;box-shadow:0 0 0 3px rgba(212,43,36,.12)}
+.field textarea{min-height:120px;resize:vertical}
+.field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2394999e' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.fieldRow{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.typePicker{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.typeOpt{padding:16px 18px;border:1px solid var(--line);border-radius:5px;background:var(--ink3);cursor:pointer;transition:.2s;display:flex;align-items:center;gap:12px;text-align:left}
+.typeOpt:hover{border-color:rgba(212,43,36,.5)}
+.typeOpt.active{border-color:var(--red);background:linear-gradient(150deg,rgba(212,43,36,.1),var(--ink3))}
+.typeOpt .toIco{font-size:20px}
+.typeOpt .toTxt{font-size:13px;font-weight:700;line-height:1.3}
+.typeOpt .toTxt small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:2px}
+.typeOpt.active .toTxt small{color:var(--red)}
+.formActions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:8px}
+.formActions .btn--red{height:50px;padding:0 30px;font-size:13px;position:relative;min-width:200px;justify-content:center}
+.formActions .btn--red:disabled{opacity:.75;cursor:wait;transform:none}
+.formActions .btn--red.loading{pointer-events:none}
+.formActions .btn--red.loading:after{content:"";width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;position:absolute;right:18px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.formActions .note{font-size:11px;color:var(--muted2);line-height:1.5;max-width:280px}
+.formSection2{margin-top:32px;padding-top:28px;border-top:1px solid var(--line2)}
+.fsLabel{font-size:11px;font-weight:800;letter-spacing:.16em;color:var(--red);text-transform:uppercase;margin:0 0 18px}
+.checkField{margin-top:24px}
+.checkLabel{display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-size:13px;color:var(--muted);line-height:1.6}
+.checkLabel input{position:absolute;opacity:0;pointer-events:none}
+.checkBox{width:20px;height:20px;border:2px solid var(--line);border-radius:4px;flex-shrink:0;margin-top:1px;transition:.2s;position:relative}
+.checkLabel input:checked + .checkBox{background:var(--red);border-color:var(--red)}
+.checkLabel input:checked + .checkBox:after{content:"✓";position:absolute;top:-2px;left:3px;color:#fff;font-size:13px;font-weight:800}
+.checkLabel:hover .checkBox{border-color:var(--red)}
+.formMsg{margin-top:24px;padding:20px 22px;border-radius:5px;font-size:14px;line-height:1.6;display:none}
+.formMsg.show{display:block}
+.formMsg b{display:block;font-size:15px;margin-bottom:4px}
+.formMsg--ok{border:1px solid var(--ok);background:rgba(62,207,142,.08);color:var(--ok)}
+.formMsg--ok p{margin:4px 0 0;color:var(--muted)}
+.formMsg--ok p b{color:var(--ok);display:inline;margin:0}
+.formMsg--err{border:1px solid var(--red);background:rgba(212,43,36,.08);color:var(--red)}
+.formMsg--err p{margin:4px 0 0;color:var(--muted)}
+.formMsg--err a{color:var(--red);text-decoration:underline}
+.errText{display:none;margin-top:8px;font-size:12px;color:var(--red)}
+.field.err input,.field.err select,.field.err textarea{border-color:var(--red)}
+.field.err .errText{display:block}
+
+/* FOOTER */
+.footer{padding:40px clamp(20px,5vw,64px);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;font-size:12px;color:var(--muted2)}
+.footer .fBrand{display:flex;align-items:center;gap:10px}
+.footer .fBrand img{height:48px;width:auto}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,.8,.16,1),transform .7s cubic-bezier(.16,.8,.16,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+@media(max-width:880px){
+  .formWrap{grid-template-columns:1fr;gap:32px}
+  .formAside{position:static}
+}
+@media(max-width:560px){
+  .topbar{height:74px}
+  .brand img{height:48px}
+  .fieldRow{grid-template-columns:1fr}
+  .typePicker{grid-template-columns:1fr}
+  .formCard{padding:28px 22px}
+  .footer{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skipLink">Pular para o conteúdo</a>
+
+<!-- NAV -->
+<nav class="topbar">
+  <a class="brand" href="index.html"><img src="assets/oxford-logo-nav.png" srcset="assets/oxford-logo-nav.png 1x, assets/oxford-logo-nav@2x.png 2x" alt="Oxford Blocks" width="148" height="200"><small>BRASIL</small></a>
+  <a class="btn btn--ghost" href="index.html">← Voltar ao site</a>
+</nav>
+
+<!-- HERO -->
+<section class="pageHero">
+  <div class="phSun"></div>
+  <div class="gridBg"></div>
+  <div class="phInner">
+    <p class="kicker reveal"><i></i> Seja um Parceiro</p>
+    <h1 class="reveal">Vamos construir<br>uma ideia <span class="red">juntos.</span></h1>
+    <p class="reveal">Preencha o formulário e escolha o tipo de parceria. Respondemos com o próximo passo ideal para a sua marca ou loja.</p>
+  </div>
+</section>
+
+<!-- FORM -->
+<main id="main">
+<section class="formSection">
+  <div class="formWrap">
+    <aside class="formAside reveal">
+      <h3>Tipos de parceria</h3>
+      <div class="asidePaths" id="asidePaths">
+        <div class="asidePath" data-type="institucional">
+          <span class="apIco">🏭</span>
+          <div><h4>Projeto institucional</h4><p>Sua empresa, máquina ou sede em blocos</p></div>
+        </div>
+        <div class="asidePath" data-type="collab">
+          <span class="apIco">🤝</span>
+          <div><h4>Criar uma collab</h4><p>Coleção exclusiva com a sua marca</p></div>
+        </div>
+        <div class="asidePath" data-type="revenda">
+          <span class="apIco">🏪</span>
+          <div><h4>Revender Oxford</h4><p>Linha comercial para o seu varejo</p></div>
+        </div>
+        <div class="asidePath" data-type="catalogo">
+          <span class="apIco">📋</span>
+          <div><h4>Solicitar catálogo</h4><p>Catálogo completo em PDF</p></div>
+        </div>
+        <div class="asidePath" data-type="reuniao">
+          <span class="apIco">📅</span>
+          <div><h4>Agendar reunião</h4><p>Conversa com a equipe Oxford Brasil</p></div>
+        </div>
+      </div>
+      <div class="asideContact">
+        <b>Contato direto</b>
+        <a href="mailto:parceria@oxfordblocks.com.br">parceria@oxfordblocks.com.br</a>
+        <p>São Paulo · Brasil</p>
+        <p class="acMuted">Resposta em até 2 dias úteis.</p>
+      </div>
+    </aside>
+
+    <div class="formCard reveal">
+      <h2 id="formTitle">Cadastro de parceiro</h2>
+      <p class="fcSub" id="formSub">Conte-nos sobre você e sobre o projeto. Quanto mais contexto, melhor podemos responder.</p>
+
+      <form id="partnerForm" novalidate>
+        <div style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden" aria-hidden="true">
+          <label for="fWebsite">Website (deixe em branco)</label>
+          <input type="text" id="fWebsite" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="field">
+          <label id="typeLabel">Tipo de parceria <span class="req">*</span></label>
+          <div class="typePicker" id="typePicker" role="radiogroup" aria-labelledby="typeLabel">
+            <button type="button" class="typeOpt" role="radio" aria-checked="false" data-val="institucional"><span class="toIco">🏭</span><span class="toTxt">Projeto institucional<small>Sua empresa em blocos</small></span></button>
+            <button type="button" class="typeOpt" role="radio" aria-checked="false" data-val="collab"><span class="toIco">🤝</span><span class="toTxt">Criar collab<small>Coleção de marca</small></span></button>
+            <button type="button" class="typeOpt" role="radio" aria-checked="false" data-val="revenda"><span class="toIco">🏪</span><span class="toTxt">Revender Oxford<small>Linha comercial</small></span></button>
+            <button type="button" class="typeOpt" role="radio" aria-checked="false" data-val="catalogo"><span class="toIco">📋</span><span class="toTxt">Solicitar catálogo<small>PDF completo</small></span></button>
+            <button type="button" class="typeOpt" role="radio" aria-checked="false" data-val="reuniao"><span class="toIco">📅</span><span class="toTxt">Agendar reunião<small>Fale conosco</small></span></button>
+          </div>
+          <input type="hidden" id="fType" name="tipo" required>
+          <span class="errText">Selecione um tipo de parceria.</span>
+        </div>
+
+        <!-- Section: Quem é você -->
+        <div class="formSection2">
+          <p class="fsLabel">1. Quem é você</p>
+          <div class="fieldRow">
+            <div class="field">
+              <label for="fName">Nome completo <span class="req">*</span></label>
+              <input type="text" id="fName" name="nome" placeholder="Seu nome" required>
+              <span class="errText">Informe seu nome.</span>
+            </div>
+            <div class="field">
+              <label for="fRole">Cargo / Função <span class="req">*</span></label>
+              <input type="text" id="fRole" name="cargo" placeholder="Ex.: Diretor de Marketing, Gerente de Compras" required>
+              <span class="errText">Informe seu cargo.</span>
+            </div>
+          </div>
+          <div class="fieldRow">
+            <div class="field">
+              <label for="fCompany">Empresa / Marca <span class="req">*</span></label>
+              <input type="text" id="fCompany" name="empresa" placeholder="Empresa ou marca" required>
+              <span class="errText">Informe a empresa ou marca.</span>
+            </div>
+            <div class="field">
+              <label for="fSite">Site / Instagram</label>
+              <input type="text" id="fSite" name="site" placeholder="www.suaempresa.com.br">
+            </div>
+          </div>
+          <div class="fieldRow">
+            <div class="field">
+              <label for="fEmail">E-mail corporativo <span class="req">*</span></label>
+              <input type="email" id="fEmail" name="email" placeholder="voce@empresa.com.br" required>
+              <span class="errText">Informe um e-mail válido.</span>
+            </div>
+            <div class="field">
+              <label for="fPhone">Telefone / WhatsApp <span class="req">*</span></label>
+              <input type="tel" id="fPhone" name="telefone" placeholder="(11) 90000-0000" required>
+              <span class="errText">Informe um telefone para contato.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Sobre o negócio -->
+        <div class="formSection2">
+          <p class="fsLabel">2. Sobre o negócio</p>
+          <div class="fieldRow">
+            <div class="field">
+              <label for="fSegment">Segmento <span class="req">*</span></label>
+              <select id="fSegment" name="segmento" required>
+                <option value="">Selecione…</option>
+                <option>Clube de futebol / Esporte</option>
+                <option>Franquia / Rede de alimentação</option>
+                <option>Shopping / Varejo</option>
+                <option>Museu / Instituição cultural</option>
+                <option>Empresa / Indústria</option>
+                <option>Banco / Seguradora</option>
+                <option>Parque temático / Turismo</option>
+                <option>Entretenimento / Personagem / K-pop</option>
+                <option>Influenciador / Criador de conteúdo</option>
+                <option>Cervejaria / Bebidas</option>
+                <option>Loja de brinquedos / Papelaria</option>
+                <option>Hobby shop / Loja geek</option>
+                <option>E-commerce / Marketplace</option>
+                <option>Distribuidora / Atacado</option>
+                <option>Agência / Consultoria</option>
+                <option>Outro</option>
+              </select>
+              <span class="errText">Selecione um segmento.</span>
+            </div>
+            <div class="field">
+              <label for="fScale">Porte / Alcance</label>
+              <select id="fScale" name="porte">
+                <option value="">Selecione…</option>
+                <option>Local / Cidade</option>
+                <option>Regional / Estado</option>
+                <option>Nacional</option>
+                <option>Internacional</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Sobre o projeto (conditional) -->
+        <div class="formSection2" id="projectSection">
+          <p class="fsLabel">3. Sobre o projeto</p>
+          <div class="fieldRow">
+            <div class="field">
+              <label for="fBudget">Faixa de orçamento estimada</label>
+              <select id="fBudget" name="orcamento">
+                <option value="">Selecione…</option>
+                <option>Abaixo de R$ 50 mil</option>
+                <option>R$ 50 mil — R$ 150 mil</option>
+                <option>R$ 150 mil — R$ 500 mil</option>
+                <option>R$ 500 mil — R$ 1 milhão</option>
+                <option>Acima de R$ 1 milhão</option>
+                <option>Ainda não sei / Em definição</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fDeadline">Prazo desejado</label>
+              <select id="fDeadline" name="prazo">
+                <option value="">Selecione…</option>
+                <option>O mais rápido possível</option>
+                <option>1 — 3 meses</option>
+                <option>3 — 6 meses</option>
+                <option>6 — 12 meses</option>
+                <option>Eventual / Sem data definida</option>
+              </select>
+            </div>
+          </div>
+          <div class="fieldRow">
+            <div class="field">
+              <label for="fQty">Quantidade estimada de unidades</label>
+              <select id="fQty" name="quantidade">
+                <option value="">Selecione…</option>
+                <option>Até 500 unidades</option>
+                <option>500 — 2.000 unidades</option>
+                <option>2.000 — 10.000 unidades</option>
+                <option>10.000 — 50.000 unidades</option>
+                <option>Acima de 50.000 unidades</option>
+                <option>Ainda não sei</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fSource">Como conheceu a Oxford?</label>
+              <select id="fSource" name="como_conheceu">
+                <option value="">Selecione…</option>
+                <option>Indicação de parceiro</option>
+                <option>LinkedIn</option>
+                <option>Instagram / Redes sociais</option>
+                <option>Feira / Evento</option>
+                <option>Pesquisa no Google</option>
+                <option>Press release / Mídia</option>
+                <option>Outro</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="fMsg">Conte sobre o projeto ou necessidade <span class="req">*</span></label>
+            <textarea id="fMsg" name="mensagem" rows="5" placeholder="Ex.: Queremos desenvolver uma coleção de blocos com o mascote do clube para a nova temporada. A ideia é vender na loja oficial e como brinde do sócio-torcedor. Inicialmente pensamos em 3.000 unidades…" required></textarea>
+            <span class="errText">Conte um pouco sobre o projeto.</span>
+          </div>
+        </div>
+
+        <!-- Newsletter opt-in -->
+        <div class="field checkField">
+          <label class="checkLabel">
+            <input type="checkbox" id="fNews" name="newsletter">
+            <span class="checkBox"></span>
+            Quero receber novidades, cases e atualizações da Oxford Blocks Brasil.
+          </label>
+        </div>
+
+        <div class="formActions">
+          <button type="submit" class="btn btn--red" id="submitBtn">Enviar cadastro <span class="arr">→</span></button>
+          <span class="note">Ao enviar, você concorda em ser contatado pela equipe Oxford Blocks Brasil. Seus dados não são compartilhados com terceiros.</span>
+        </div>
+
+        <div class="formMsg formMsg--ok" id="formMsgOk">
+          <b>✓ Cadastro recebido!</b>
+          <p>Obrigado, <span id="okName">—</span>. Sua solicitação foi registrada (protocolo <span id="okId">—</span>). Nossa equipe entra em contato em até <b>2 dias úteis</b> no e-mail informado.</p>
+        </div>
+        <div class="formMsg formMsg--err" id="formMsgErr">
+          <b>✕ Não foi possível enviar.</b>
+          <p id="errMsg">Ocorreu um erro. Tente novamente em alguns segundos ou nos escreva direto em <a href="mailto:parceria@oxfordblocks.com.br">parceria@oxfordblocks.com.br</a>.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="fBrand"><img src="assets/oxford-logo-footer.png" alt="Oxford Blocks" width="89" height="120"> <span>Brasil</span></div>
+  <a class="btn btn--ghost" href="index.html">← Voltar ao site</a>
+  <span>© 2026 Oxford Blocks Brasil. Grandes ideias. Construídas bloco a bloco.</span>
+</footer>
+
+<script>
+/* preselect type from query string */
+(function(){
+  var p=new URLSearchParams(location.search).get('t');
+  if(p) selectType(p);
+})();
+
+var TITLES={
+  institucional:{t:'Projeto institucional',s:'Conte-nos sobre a sua empresa e o que gostaria de ver em blocos: fábrica, máquina, sede ou produto. O ciclo é curto e o orçamento de marketing já existe.'},
+  collab:{t:'Criar uma colaboração',s:'Conte-nos sobre a sua marca e a coleção que você imagina. Quanto mais contexto, mais precisos podemos ser na proposta.'},
+  revenda:{t:'Revender Oxford',s:'Conte-nos sobre a sua loja ou canal. Vamos enviar as condições comerciais e o catálogo da linha regular.'},
+  catalogo:{t:'Solicitar catálogo',s:'Deixe seus dados e receba o catálogo completo da linha regular Oxford em PDF.'},
+  reuniao:{t:'Agendar uma reunião',s:'Conte-nos sobre o seu interesse e os melhores horários. Agendamos uma conversa com a equipe.'}
+};
+
+function selectType(val){
+  document.querySelectorAll('#typePicker .typeOpt').forEach(function(b){
+    var isActive=b.dataset.val===val;
+    b.classList.toggle('active',isActive);
+    b.setAttribute('aria-checked',isActive?'true':'false');
+  });
+  document.querySelectorAll('#asidePaths .asidePath').forEach(function(b){b.classList.toggle('active',b.dataset.type===val)});
+  var h=document.getElementById('fType'); h.value=val; h.closest('.field').classList.remove('err');
+  var info=TITLES[val];
+  if(info){document.getElementById('formTitle').textContent=info.t;document.getElementById('formSub').textContent=info.s}
+}
+
+document.querySelectorAll('#typePicker .typeOpt').forEach(function(b){
+  b.addEventListener('click',function(){selectType(b.dataset.val)});
+});
+document.querySelectorAll('#asidePaths .asidePath').forEach(function(b){
+  b.addEventListener('click',function(){selectType(b.dataset.type);window.scrollTo({top:document.querySelector('.formCard').offsetTop-90,behavior:'smooth'})});
+});
+
+/* validation + submit to backend */
+document.getElementById('partnerForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var ok=true;
+  function check(id){
+    var el=document.getElementById(id); var f=el.closest('.field');
+    if(!el.value || !el.value.trim()){f.classList.add('err');ok=false}else{f.classList.remove('err')}
+  }
+  check('fName');check('fRole');check('fCompany');check('fEmail');check('fPhone');check('fSegment');check('fMsg');
+  var email=document.getElementById('fEmail');
+  if(email.value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value)){email.closest('.field').classList.add('err');ok=false}
+  var type=document.getElementById('fType');
+  if(!type.value){type.closest('.field').classList.add('err');ok=false}
+  if(!ok){var firstErr=document.querySelector('.field.err');if(firstErr)firstErr.scrollIntoView({behavior:'smooth',block:'center'});return}
+
+  // Collect form data
+  var data={
+    website:document.getElementById('fWebsite').value,
+    tipo:document.getElementById('fType').value,
+    nome:document.getElementById('fName').value.trim(),
+    cargo:document.getElementById('fRole').value.trim(),
+    empresa:document.getElementById('fCompany').value.trim(),
+    site:document.getElementById('fSite').value.trim(),
+    email:document.getElementById('fEmail').value.trim(),
+    telefone:document.getElementById('fPhone').value.trim(),
+    segmento:document.getElementById('fSegment').value,
+    porte:document.getElementById('fScale').value,
+    orcamento:document.getElementById('fBudget').value,
+    prazo:document.getElementById('fDeadline').value,
+    quantidade:document.getElementById('fQty').value,
+    como_conheceu:document.getElementById('fSource').value,
+    mensagem:document.getElementById('fMsg').value.trim(),
+    newsletter:document.getElementById('fNews').checked?'on':'off'
+  };
+
+  // Submit to backend
+  var btn=document.getElementById('submitBtn');
+  var okMsg=document.getElementById('formMsgOk');
+  var errMsg=document.getElementById('formMsgErr');
+  okMsg.classList.remove('show');
+  errMsg.classList.remove('show');
+  btn.disabled=true;
+  btn.classList.add('loading');
+  btn.innerHTML='Enviando…';
+
+  try{
+    var resp=await fetch('/api/partner',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(data)
+    });
+    var result=await resp.json();
+    if(result.ok){
+      document.getElementById('okName').textContent=data.nome.split(' ')[0];
+      document.getElementById('okId').textContent=result.id?result.id.substring(0,8).toUpperCase():'—';
+      okMsg.classList.add('show');
+      btn.classList.remove('loading');
+      btn.innerHTML='Enviado ✓';
+      okMsg.scrollIntoView({behavior:'smooth',block:'center'});
+      // Reset form
+      this.reset();
+      document.querySelectorAll('#typePicker .typeOpt').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-checked','false')});
+      document.getElementById('fType').value='';
+    }else{
+      throw new Error(result.error||'Erro desconhecido');
+    }
+  }catch(err){
+    document.getElementById('errMsg').textContent=err.message||'Ocorreu um erro de conexão. Tente novamente em alguns segundos ou nos escreva direto em parceria@oxfordblocks.com.br.';
+    errMsg.classList.add('show');
+    btn.classList.remove('loading');
+    btn.disabled=false;
+    btn.innerHTML='Tentar novamente <span class="arr">→</span>';
+    errMsg.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+});
+
+/* clear error on input */
+document.querySelectorAll('input,select,textarea').forEach(function(el){
+  el.addEventListener('input',function(){this.closest('.field').classList.remove('err')});
+});
+
+/* reveal */
+(function(){
+  if(!('IntersectionObserver' in window)){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>

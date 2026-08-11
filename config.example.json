@@ -1,0 +1,8 @@
+{
+  "_comment": "Local development only. In production (Deno Deploy) set RESEND_API_KEY, MAIL_TO and MAIL_FROM as environment variables instead. Copy this file to config.json, which is gitignored.",
+  "email": {
+    "resend_api_key": "re_your_api_key_here",
+    "from": "Oxford Brasil <onboarding@resend.dev>",
+    "to": "your-real-email@domain.com"
+  }
+}
