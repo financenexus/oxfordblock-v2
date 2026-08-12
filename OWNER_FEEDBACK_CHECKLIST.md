@@ -45,4 +45,4 @@ Este arquivo consolida todos os feedbacks visuais e textuais enviados pelo propr
 - [x] Validar desktop e celular sem rolagem horizontal.
 - [x] Validar logo correto, imagens, console e interação do FAQ.
 - [x] Validar ausência dos textos e seções rejeitados.
-- [ ] Publicar no GitHub e confirmar cada mudança em `https://oxfordblocosbrasil.com.br/`.
+- [x] Publicar no GitHub e confirmar cada mudança em `https://oxfordblocosbrasil.com.br/`.
