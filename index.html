@@ -290,6 +290,23 @@ img{max-width:100%;display:block}
 .segRow .segHook .hl{color:var(--yellow);font-weight:700}
 
 /* ===== FAQ ===== */
+.faqIntro{max-width:760px;margin:0 0 38px;font-size:clamp(16px,1.8vw,21px);line-height:1.65;color:var(--muted)}
+.faqIntro p{margin:0 0 8px}
+.faqIntro p:last-child{margin-bottom:0;color:var(--text)}
+.faqIntro .red{color:var(--red);font-weight:700}
+.faqAudience{margin:0 0 40px;padding:28px 30px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(145deg,rgba(212,43,36,.055),var(--ink2));position:relative;overflow:hidden}
+.faqAudience:before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,var(--red),transparent 75%)}
+.faqAudienceTop{display:grid;grid-template-columns:1fr 1fr}
+.faqAudienceItem{display:grid;grid-template-columns:58px 1fr;gap:18px;align-items:start;padding:8px 32px}
+.faqAudienceItem:first-child{padding-left:0;border-right:1px solid var(--line)}
+.faqAudienceItem:last-child{padding-right:0}
+.faqAudienceMark{width:52px;height:52px;border:1px solid var(--red);border-radius:50%;display:grid;place-items:center;color:var(--red);font-size:12px;font-weight:900;letter-spacing:.08em;background:rgba(212,43,36,.06)}
+.faqAudienceItem h3{margin:0 0 7px;font-size:14px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+.faqAudienceItem p{margin:0;font-size:15px;line-height:1.55;color:var(--text)}
+.faqGeneration{display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:center;margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
+.faqGeneration .faqAudienceMark{width:40px;height:40px;font-size:18px}
+.faqGeneration h3{margin:0 0 5px;font-size:15px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.faqGeneration p{margin:0;font-size:14px;color:var(--muted);line-height:1.55}
 .faqList{display:grid;gap:12px}
 .faqItem{border:1px solid var(--line);border-radius:5px;background:var(--ink2);overflow:hidden}
 .faqItem summary{list-style:none;cursor:pointer;padding:24px 28px;font-size:16px;font-weight:700;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:16px;transition:.2s;outline-offset:-2px}
@@ -345,6 +362,15 @@ img{max-width:100%;display:block}
   .footer>span{width:100%;line-height:1.5}
   .proofPromises{grid-template-columns:1fr}
   .proofPromise{min-height:0}
+  .faqAudience{padding:20px}
+  .faqAudienceTop{grid-template-columns:1fr}
+  .faqAudienceItem{padding:20px 0;grid-template-columns:48px 1fr;gap:14px}
+  .faqAudienceItem:first-child{padding-top:4px;border-right:0;border-bottom:1px solid var(--line)}
+  .faqAudienceItem:last-child{padding-bottom:4px}
+  .faqAudienceMark{width:44px;height:44px}
+  .faqGeneration{grid-template-columns:44px 1fr;gap:14px}
+  .faqItem summary{padding:20px;font-size:15px}
+  .faqItem .faqAns{padding:0 20px 22px}
   .timeline{grid-template-columns:1fr}
   .tlItem{border-right:0}
   .catHead{align-items:flex-start;flex-direction:column;gap:10px}
@@ -753,16 +779,45 @@ img{max-width:100%;display:block}
 <!-- FAQ / OBJEÇÕES -->
 <section class="section" id="faq">
   <div class="wrap">
-    <p class="kicker reveal"><i></i> Dúvidas Frequentes</p>
+    <p class="kicker reveal"><i></i> Perguntas e Respostas</p>
     <div class="sHead">
-      <h2 class="reveal">As perguntas<br>que <span class="red">sempre voltam.</span></h2>
-      <p class="sCopy reveal">As objeções mais comuns em reuniões, e as respostas que funcionam. Se a sua pergunta não está aqui, agende uma conversa.</p>
+      <h2 class="reveal">Dúvidas <span class="red">comuns.</span></h2>
+      <div class="faqIntro reveal">
+        <p>Reunimos as dúvidas mais comuns sobre os produtos Oxford e como as <span class="red">parcerias</span> funcionam.</p>
+        <p>Não encontrou sua pergunta? Vamos conversar!</p>
+      </div>
+    </div>
+
+    <div class="faqAudience reveal">
+      <div class="faqAudienceTop">
+        <article class="faqAudienceItem">
+          <span class="faqAudienceMark" aria-hidden="true">01</span>
+          <div>
+            <h3>Para crianças</h3>
+            <p>Diversão que desenvolve criatividade, coordenação e raciocínio lógico.</p>
+          </div>
+        </article>
+        <article class="faqAudienceItem">
+          <span class="faqAudienceMark" aria-hidden="true">02</span>
+          <div>
+            <h3>Para adultos</h3>
+            <p>Desafio, relaxamento e peças de coleção que viram verdadeiras obras.</p>
+          </div>
+        </article>
+      </div>
+      <div class="faqGeneration">
+        <span class="faqAudienceMark" aria-hidden="true">★</span>
+        <div>
+          <h3>Um produto que une gerações.</h3>
+          <p>Do primeiro bloco à peça de coleção, a Oxford acompanha todas as idades.</p>
+        </div>
+      </div>
     </div>
 
     <div class="faqList reveal">
-      <details class="faqItem">
-        <summary aria-expanded="false">"Isso é brinquedo, nossa marca não é infantil." <span class="faqIcon" aria-hidden="true">+</span></summary>
-        <div class="faqAns">O colecionador de blocos é <span class="hl">adulto</span>. Os casos coreanos são uma fábrica de semicondutores, um banco, uma companhia aérea e defesa: nenhum é campanha infantil. O objeto montado fica em cima da mesa de escritório, por anos, à vista de todo mundo que entra na sala.</div>
+      <details class="faqItem" open>
+        <summary aria-expanded="true">"Isso é brinquedo, nossa marca não é infantil." <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">A Oxford atinge <span class="hl">crianças e adultos.</span> Enquanto as crianças se divertem e aprendem, os adultos colecionam, constroem e exibem. Nossos cases incluem empresas de tecnologia, bancos, montadoras, companhias aéreas e órgãos públicos. Nossos conjuntos são <span class="hl">itens de design e coleção</span>, que permanecem em mesas e vitrines por anos.</div>
       </details>
       <details class="faqItem">
         <summary aria-expanded="false">"Já damos brinde." <span class="faqIcon" aria-hidden="true">+</span></summary>
