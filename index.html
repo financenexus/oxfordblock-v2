@@ -303,24 +303,26 @@ img{max-width:100%;display:block}
 .segRow .segHook .hl{color:var(--yellow);font-weight:700}
 
 /* ===== FAQ ===== */
+#faq .sHead{margin-bottom:28px}
 #faq .sHead h2{text-transform:none}
-.faqIntro{max-width:760px;margin:0 0 38px;font-size:clamp(16px,1.8vw,21px);line-height:1.65;color:var(--muted)}
+.faqIntro{max-width:820px;margin:0 0 28px;font-size:clamp(17px,1.8vw,21px);line-height:1.55;color:var(--muted)}
 .faqIntro p{margin:0 0 8px}
 .faqIntro p:last-child{margin-bottom:0;color:var(--text)}
 .faqIntro .red{color:var(--red);font-weight:700}
-.faqAudience{margin:0 0 40px;padding:28px 30px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(145deg,rgba(212,43,36,.055),var(--ink2));position:relative;overflow:hidden}
-.faqAudience:before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,var(--red),transparent 75%)}
+.faqAudience{margin:0 0 18px;padding:28px 34px 24px;border:1px solid rgba(174,122,76,.42);border-radius:10px;background:#0c0d0f;position:relative;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.018)}
+.faqAudience:before{display:none}
 .faqAudienceTop{display:grid;grid-template-columns:1fr 1fr}
-.faqAudienceItem{display:grid;grid-template-columns:58px 1fr;gap:18px;align-items:start;padding:8px 32px}
+.faqAudienceItem{display:grid;grid-template-columns:72px 1fr;gap:18px;align-items:center;padding:4px 38px}
 .faqAudienceItem:first-child{padding-left:0;border-right:1px solid var(--line)}
 .faqAudienceItem:last-child{padding-right:0}
-.faqAudienceMark{width:52px;height:52px;border:1px solid var(--red);border-radius:50%;display:grid;place-items:center;color:var(--red);font-size:12px;font-weight:900;letter-spacing:.08em;background:rgba(212,43,36,.06)}
-.faqAudienceItem h3{margin:0 0 7px;font-size:14px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
-.faqAudienceItem p{margin:0;font-size:15px;line-height:1.55;color:var(--text)}
-.faqGeneration{display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:center;margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
-.faqGeneration .faqAudienceMark{width:40px;height:40px;font-size:18px}
-.faqGeneration h3{margin:0 0 5px;font-size:15px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
-.faqGeneration p{margin:0;font-size:14px;color:var(--muted);line-height:1.55}
+.faqAudienceMark{width:64px;height:64px;display:grid;place-items:center;color:var(--red);background:transparent}
+.faqAudienceMark svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2.15;stroke-linecap:round;stroke-linejoin:round}
+.faqAudienceItem h3{margin:0 0 6px;font-size:18px;font-weight:900;letter-spacing:.045em;text-transform:uppercase;color:var(--red)}
+.faqAudienceItem p{margin:0;font-size:17px;line-height:1.45;color:var(--text)}
+.faqGeneration{display:grid;grid-template-columns:48px 1fr;gap:18px;align-items:center;margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+.faqGeneration .faqAudienceMark{width:42px;height:42px}
+.faqGeneration h3{margin:0 0 4px;font-size:17px;font-weight:900;letter-spacing:.055em;text-transform:uppercase}
+.faqGeneration p{margin:0;font-size:15px;color:var(--muted);line-height:1.5}
 .faqList{display:grid;gap:12px}
 .faqItem{border:1px solid var(--line);border-radius:5px;background:var(--ink2);overflow:hidden}
 .faqItem summary{list-style:none;cursor:pointer;padding:24px 28px;font-size:16px;font-weight:700;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:16px;transition:.2s;outline-offset:-2px}
@@ -328,9 +330,17 @@ img{max-width:100%;display:block}
 .faqItem summary:hover{color:var(--red)}
 .faqItem summary:focus-visible{outline:2px solid var(--red);outline-offset:-2px;background:rgba(212,43,36,.04)}
 .faqItem summary .faqIcon{font-size:20px;color:var(--red);flex-shrink:0;transition:transform .25s;font-weight:400}
-.faqItem[open] summary .faqIcon{transform:rotate(45deg)}
+.faqItem[open] summary .faqIcon{transform:none}
 .faqItem .faqAns{padding:0 28px 24px;font-size:14px;color:var(--muted);line-height:1.7}
 .faqItem .faqAns .hl{color:var(--text);font-weight:700}
+.faqItem:first-child{border-color:rgba(174,122,76,.42);border-radius:10px;background:#0c0d0f;box-shadow:inset 0 0 0 1px rgba(255,255,255,.018);margin-bottom:6px}
+.faqItem:first-child summary{display:grid;grid-template-columns:64px 1fr 24px;gap:24px;padding:30px 34px 14px;font-size:clamp(19px,2vw,23px);line-height:1.25}
+.faqItem:first-child summary:hover{color:var(--text)}
+.featuredFaqMark{width:58px;height:58px;border:2px solid var(--red);border-radius:50%;display:grid;place-items:center;color:var(--red);grid-row:1 / span 2}
+.featuredFaqMark svg{width:31px;height:31px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.faqItem:first-child .faqIcon{align-self:start;font-size:28px;line-height:1;color:var(--red)}
+.faqItem:first-child[open] summary .faqIcon{transform:none}
+.faqItem:first-child .faqAns{padding:0 70px 30px 122px;font-size:17px;line-height:1.65;color:var(--muted)}
 
 /* ===== ANIMATION ===== */
 @keyframes pulse{50%{opacity:.25;transform:translateY(6px)}}
@@ -387,15 +397,23 @@ img{max-width:100%;display:block}
   .proofStrategyVisual{min-height:230px}
   .proofStrategyVisual:before{background:linear-gradient(0deg,var(--ink2),transparent 22%)}
   .proofCta{grid-template-columns:1fr;gap:20px;padding:24px}
-  .faqAudience{padding:20px}
+  .faqIntro{margin-bottom:22px;font-size:16px}
+  .faqAudience{padding:22px 20px 20px}
   .faqAudienceTop{grid-template-columns:1fr}
-  .faqAudienceItem{padding:20px 0;grid-template-columns:48px 1fr;gap:14px}
+  .faqAudienceItem{padding:22px 0;grid-template-columns:54px 1fr;gap:14px}
   .faqAudienceItem:first-child{padding-top:4px;border-right:0;border-bottom:1px solid var(--line)}
   .faqAudienceItem:last-child{padding-bottom:4px}
-  .faqAudienceMark{width:44px;height:44px}
+  .faqAudienceMark{width:50px;height:50px}
+  .faqAudienceItem h3{font-size:15px}
+  .faqAudienceItem p{font-size:15px}
   .faqGeneration{grid-template-columns:44px 1fr;gap:14px}
+  .faqGeneration h3{font-size:14px}
   .faqItem summary{padding:20px;font-size:15px}
   .faqItem .faqAns{padding:0 20px 22px}
+  .faqItem:first-child summary{grid-template-columns:46px 1fr 18px;gap:14px;padding:24px 20px 12px;font-size:17px}
+  .featuredFaqMark{width:44px;height:44px}
+  .featuredFaqMark svg{width:24px;height:24px}
+  .faqItem:first-child .faqAns{padding:0 20px 24px 80px;font-size:15px;line-height:1.6}
   .timeline{grid-template-columns:1fr}
   .tlItem{border-right:0}
   .catHead{align-items:flex-start;flex-direction:column;gap:10px}
@@ -811,14 +829,14 @@ img{max-width:100%;display:block}
     <div class="faqAudience reveal">
       <div class="faqAudienceTop">
         <article class="faqAudienceItem">
-          <span class="faqAudienceMark" aria-hidden="true">01</span>
+          <span class="faqAudienceMark" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="31" r="22"/><path d="M18 25c3-8 9-13 14-13s11 5 14 13M21 23c-4-2-9 1-9 7 0 5 4 8 9 8M43 23c4-2 9 1 9 7 0 5-4 8-9 8M24 31h.1M40 31h.1M25 41c4 4 10 4 14 0M32 9V5M27 7l2 4M37 7l-2 4"/></svg></span>
           <div>
             <h3>Para crianças</h3>
             <p>Diversão que desenvolve criatividade, coordenação e raciocínio lógico.</p>
           </div>
         </article>
         <article class="faqAudienceItem">
-          <span class="faqAudienceMark" aria-hidden="true">02</span>
+          <span class="faqAudienceMark" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="30" r="21"/><path d="M18 26c1-10 7-16 14-16s13 6 14 16M16 27c-3 5-3 15 1 23M48 27c3 5 3 15-1 23M22 29h9v7h-9zM33 29h9v7h-9zM31 32h2M25 43c4 3 10 3 14 0M14 52c8-5 28-5 36 0"/></svg></span>
           <div>
             <h3>Para adultos</h3>
             <p>Desafio, relaxamento e peças de coleção que viram verdadeiras obras.</p>
@@ -826,7 +844,7 @@ img{max-width:100%;display:block}
         </article>
       </div>
       <div class="faqGeneration">
-        <span class="faqAudienceMark" aria-hidden="true">★</span>
+        <span class="faqAudienceMark" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="m24 4 5.8 11.8 13 1.9-9.4 9.1 2.2 12.9L24 33.6l-11.6 6.1 2.2-12.9-9.4-9.1 13-1.9z"/></svg></span>
         <div>
           <h3>Um produto que une gerações.</h3>
           <p>Do primeiro bloco à peça de coleção, a Oxford acompanha todas as idades.</p>
@@ -836,7 +854,7 @@ img{max-width:100%;display:block}
 
     <div class="faqList reveal">
       <details class="faqItem" open>
-        <summary aria-expanded="true">"Isso é brinquedo, nossa marca não é infantil." <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <summary aria-expanded="true"><span class="featuredFaqMark" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="m18 5 12 7-12 7L6 12zM6 12v12l12 7 12-7V12M18 19v12M12 9l12 7"/></svg></span><span>"Isso é brinquedo, nossa marca não é infantil."</span> <span class="faqIcon" aria-hidden="true">−</span></summary>
         <div class="faqAns">A Oxford atinge <span class="hl">crianças e adultos.</span> Enquanto as crianças se divertem e aprendem, os adultos colecionam, constroem e exibem. Nossos cases incluem empresas de tecnologia, bancos, montadoras, companhias aéreas e órgãos públicos. Nossos conjuntos são <span class="hl">itens de design e coleção</span>, que permanecem em mesas e vitrines por anos.</div>
       </details>
       <details class="faqItem">
@@ -1079,8 +1097,11 @@ if(wg) WHY.forEach(function(w){
 /* ===== FAQ ARIA ===== */
 document.querySelectorAll('.faqItem').forEach(function(d){
   var s=d.querySelector('summary');
+  var icon=s.querySelector('.faqIcon');
+  if(icon) icon.textContent=d.open?'−':'+';
   d.addEventListener('toggle',function(){
     s.setAttribute('aria-expanded',d.open?'true':'false');
+    if(icon) icon.textContent=d.open?'−':'+';
   });
 });
 

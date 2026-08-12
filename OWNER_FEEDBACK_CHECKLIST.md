@@ -34,6 +34,7 @@ Este arquivo consolida todos os feedbacks visuais e textuais enviados pelo propr
 - [x] Manter a introdução sobre produtos Oxford e parcerias.
 - [x] Manter o painel “Para crianças / Para adultos / Um produto que une gerações”.
 - [x] Manter a resposta completa da primeira dúvida e o primeiro item aberto por padrão.
+- [x] Recriar o painel e a primeira dúvida no layout premium da referência visual do proprietário, com ícones lineares vermelhos e cartão de destaque responsivo.
 
 ## 4. Licenciamento
 
