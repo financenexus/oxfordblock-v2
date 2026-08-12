@@ -26,6 +26,10 @@ body.intro-pending>:not(#siteIntro){visibility:hidden}
 #siteIntro{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:#050607;opacity:1;visibility:visible;transition:opacity .7s ease,visibility .7s ease}
 #siteIntro.is-finished{opacity:0;visibility:hidden;pointer-events:none}
 #siteIntro video{width:100%;height:100%;display:block;object-fit:cover;background:#050607}
+#introStart{position:absolute;z-index:2;display:grid;place-items:center;width:88px;height:88px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(5,6,7,.58);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 12px 44px rgba(0,0,0,.5);transition:transform .22s ease,background .22s ease,opacity .25s ease}
+#introStart:hover{transform:scale(1.06);background:rgba(212,43,36,.72)}
+#introStart.is-playing{opacity:0;pointer-events:none}
+#introStart svg{width:34px;height:34px;fill:#fff;transform:translateX(2px)}
 @media (prefers-reduced-motion:reduce){#siteIntro{display:none}body.intro-pending{overflow-x:hidden;overflow-y:auto}body.intro-pending>:not(#siteIntro){visibility:visible}}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
@@ -353,10 +357,13 @@ img{max-width:100%;display:block}
 </style>
 </head>
 <body class="intro-pending">
-<div id="siteIntro" aria-hidden="true">
-  <video id="introVideo" autoplay muted playsinline preload="auto" disablepictureinpicture>
+<div id="siteIntro">
+  <video id="introVideo" playsinline preload="auto" disablepictureinpicture>
     <source src="assets/oxford-intro.mp4" type="video/mp4">
   </video>
+  <button id="introStart" type="button" aria-label="Reproduzir vídeo com som">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+  </button>
 </div>
 <a href="#main" class="skipLink">Pular para o conteúdo</a>
 
@@ -841,9 +848,22 @@ img{max-width:100%;display:block}
 (function(){
   var intro=document.getElementById('siteIntro');
   var video=document.getElementById('introVideo');
-  if(!intro||!video){document.body.classList.remove('intro-pending');return}
+  var startButton=document.getElementById('introStart');
+  if(!intro||!video||!startButton){document.body.classList.remove('intro-pending');return}
+  var started=false;
   var finished=false;
-  var fallback=window.setTimeout(finish,15000);
+  var fallback=window.setTimeout(finish,30000);
+  function start(){
+    if(started||finished)return;
+    started=true;
+    window.clearTimeout(fallback);
+    fallback=window.setTimeout(finish,15000);
+    startButton.classList.add('is-playing');
+    video.currentTime=0;
+    video.muted=false;
+    video.volume=1;
+    video.play().catch(finish);
+  }
   function finish(){
     if(finished)return;
     finished=true;
@@ -854,7 +874,7 @@ img{max-width:100%;display:block}
   }
   video.addEventListener('ended',finish,{once:true});
   video.addEventListener('error',finish,{once:true});
-  video.play().catch(finish);
+  intro.addEventListener('click',start);
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)finish();
 })();
 
