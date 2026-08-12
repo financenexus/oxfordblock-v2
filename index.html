@@ -6,11 +6,11 @@
 <meta name="theme-color" content="#050607">
 <meta name="description" content="Oxford Blocks Brasil — Criatividade sem limites. Conectamos grandes marcas brasileiras a uma das maiores fabricantes de blocos de montar premium da Coreia do Sul. Colaborações exclusivas e linha comercial para varejo.">
 <title>Oxford Blocks Brasil — Criatividade sem limites</title>
-<link rel="icon" type="image/png" href="assets/oxford-logo-nav.png">
+<link rel="icon" type="image/png" href="assets/oxford-logo-official-nav.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/oxford-logo-nav.png">
+<link rel="preload" as="image" href="assets/oxford-logo-official-nav.png">
 <style>
 :root{
   --red:#D42B24; --red2:#9B1A14; --red-soft:rgba(212,43,36,.12);
@@ -87,7 +87,6 @@ img{max-width:100%;display:block}
 .hero h1{margin:0;font-size:clamp(48px,8.2vw,124px);font-weight:900;line-height:.86;letter-spacing:-.04em;text-transform:uppercase;text-shadow:0 14px 50px rgba(0,0,0,.55);font-family:"Archivo Expanded","Archivo",system-ui,sans-serif}
 .hero h1 .red{color:var(--red)}
 .heroTagline{margin:24px 0 0;font-size:clamp(18px,2.4vw,30px);font-weight:600;font-style:italic;color:var(--yellow);letter-spacing:.005em}
-.heroLead{margin:18px 0 0;max-width:560px;font-size:clamp(15px,1.5vw,18px);line-height:1.7;color:var(--muted)}
 .heroPaths{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:860px;margin:40px 0 0}
 .pathCard .pBadge{position:absolute;top:16px;right:16px;font-size:8px;font-weight:800;letter-spacing:.12em;color:var(--yellow);text-transform:uppercase;opacity:.8}
 .pathCard .pBadge.first{color:var(--red)}
@@ -236,23 +235,37 @@ img{max-width:100%;display:block}
 
 /* ===== PROOF SECTION ===== */
 .proof{background:linear-gradient(180deg,var(--ink),#0c0a0a 40%,var(--ink))}
-.proofLead{font-size:clamp(18px,2vw,24px);line-height:1.55;color:var(--text);max-width:720px;margin:0 0 48px;font-weight:500}
-.proofLead .red{color:var(--red);font-weight:800}
-.proofPromises{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 48px}
-.proofPromise{min-height:190px;padding:28px 24px;border:1px solid var(--line);border-radius:6px;background:linear-gradient(155deg,rgba(212,43,36,.07),var(--ink2));position:relative;overflow:hidden}
-.proofPromise:before{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:var(--red)}
-.proofPromise .ppNumber{display:block;margin:0 0 24px;font-size:10px;font-weight:900;letter-spacing:.16em;color:var(--red)}
-.proofPromise h3{margin:0 0 9px;font-size:17px;font-weight:900;letter-spacing:-.01em}
-.proofPromise p{margin:0;font-size:13px;color:var(--muted);line-height:1.6}
-.proofCases{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin:0 0 40px}
-.proofCase{padding:36px 34px;border:1px solid var(--line);border-radius:6px;background:var(--ink2);position:relative;overflow:hidden}
-.proofCase--hero{background:linear-gradient(155deg,rgba(212,43,36,.1),var(--ink2))}
-.proofCase .pcTag{font-size:10px;font-weight:800;letter-spacing:.18em;color:var(--red);text-transform:uppercase;margin:0 0 14px}
-.proofCase h3{margin:0 0 12px;font-size:clamp(20px,2.2vw,28px);font-weight:900;letter-spacing:-.02em}
-.proofCase p{margin:0;font-size:14px;color:var(--muted);line-height:1.7}
-.proofCase p .hl{color:var(--yellow);font-weight:700}
-.proofCase .pcDetail{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
-.proofCase .pcChip{font-size:11px;font-weight:700;padding:6px 12px;border:1px solid var(--line);border-radius:20px;color:var(--text);background:var(--ink3)}
+.proof .sCopy .red{color:var(--red);font-weight:800}
+.proofPromises{display:grid;grid-template-columns:repeat(4,1fr);margin:0 0 56px;padding:10px 0}
+.proofPromise{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;min-width:0;padding:10px 28px;border-right:1px solid var(--line)}
+.proofPromise:first-child{padding-left:0}
+.proofPromise:last-child{padding-right:0;border-right:0}
+.proofGlyph{width:52px;height:52px;color:var(--red);display:grid;place-items:center}
+.proofGlyph svg{width:100%;height:100%;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.proofPromise h3{margin:1px 0 8px;font-size:17px;font-weight:900;letter-spacing:-.01em}
+.proofPromise p{margin:0;font-size:13px;color:var(--muted);line-height:1.55}
+.proofNarrative{max-width:760px;margin:0 0 46px;padding:4px 0 4px 24px;border-left:3px solid var(--red)}
+.proofNarrative .proofNarrativeLead{margin:0 0 10px;font-size:clamp(20px,2.4vw,30px);font-weight:700;line-height:1.35;color:var(--text)}
+.proofNarrative .proofNarrativeLead .red{color:var(--red);font-weight:900}
+.proofNarrative>p:last-child{margin:0;font-size:clamp(15px,1.6vw,18px);line-height:1.65;color:var(--muted)}
+.proofStrategy{display:grid;grid-template-columns:.9fr 1.1fr;min-height:360px;margin:0 0 24px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(145deg,rgba(212,43,36,.055),var(--ink2));overflow:hidden}
+.proofStrategyCopy{padding:42px 38px;display:flex;flex-direction:column;justify-content:center}
+.proofStrategyCopy h3{margin:0 0 24px;padding-bottom:18px;border-bottom:1px solid var(--line);font-size:clamp(26px,3vw,42px);font-weight:900;line-height:1.02;letter-spacing:-.025em;text-transform:uppercase}
+.proofStrategyCopy h3 .red{color:var(--red)}
+.proofBenefits{list-style:none;margin:0;padding:0;display:grid;gap:13px}
+.proofBenefits li{position:relative;padding-left:34px;font-size:clamp(15px,1.6vw,19px);font-weight:600;color:var(--text)}
+.proofBenefits li:before{content:"✓";position:absolute;left:0;top:-1px;width:21px;height:21px;border:1px solid var(--red);border-radius:50%;display:grid;place-items:center;color:var(--red);font-size:12px;font-weight:900}
+.proofStrategyVisual{position:relative;min-height:320px;background:#080808;overflow:hidden}
+.proofStrategyVisual:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--ink2),transparent 25%),linear-gradient(0deg,rgba(0,0,0,.12),transparent 45%);pointer-events:none}
+.proofStrategyVisual img{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.94) contrast(1.03)}
+.proofCta{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;padding:26px 30px;border:1px solid var(--line);border-radius:8px;background:var(--ink2);transition:.22s}
+.proofCta:hover{border-color:rgba(212,43,36,.55);background:linear-gradient(150deg,rgba(212,43,36,.075),var(--ink2))}
+.proofCtaTitle{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:center}
+.proofCtaIcon{width:46px;height:46px;border:1px solid var(--red);border-radius:5px;display:grid;place-items:center;color:var(--red);font-size:23px}
+.proofCtaIcon svg{width:25px;height:25px;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.proofCta h3{margin:0;font-size:clamp(20px,2.2vw,30px);font-weight:900;line-height:1.08;text-transform:uppercase}
+.proofCta h3 .red,.proofCta p .red{color:var(--red)}
+.proofCta p{margin:0;font-size:clamp(15px,1.5vw,18px);line-height:1.5;color:var(--text)}
 
 /* ===== THREE BUSINESS ===== */
 .bizGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -290,6 +303,7 @@ img{max-width:100%;display:block}
 .segRow .segHook .hl{color:var(--yellow);font-weight:700}
 
 /* ===== FAQ ===== */
+#faq .sHead h2{text-transform:none}
 .faqIntro{max-width:760px;margin:0 0 38px;font-size:clamp(16px,1.8vw,21px);line-height:1.65;color:var(--muted)}
 .faqIntro p{margin:0 0 8px}
 .faqIntro p:last-child{margin-bottom:0;color:var(--text)}
@@ -345,7 +359,10 @@ img{max-width:100%;display:block}
   .whyPillar:nth-child(3),.whyPillar:nth-child(4){border-bottom:0}
   .partnerActions{grid-template-columns:1fr 1fr}
   .proofPromises{grid-template-columns:1fr 1fr}
-  .proofCases{grid-template-columns:1fr}
+  .proofPromise:nth-child(2){border-right:0}
+  .proofPromise:nth-child(-n+2){padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .proofPromise:nth-child(n+3){padding-top:24px}
+  .proofPromise:nth-child(3){padding-left:0}
   .bizGrid{grid-template-columns:1fr}
   .workflow{grid-template-columns:1fr 1fr}
   .wfStep{border-bottom:1px solid var(--line)}
@@ -361,7 +378,15 @@ img{max-width:100%;display:block}
   .footer .fLinks{width:100%;flex-wrap:wrap;gap:14px 20px}
   .footer>span{width:100%;line-height:1.5}
   .proofPromises{grid-template-columns:1fr}
-  .proofPromise{min-height:0}
+  .proofPromise,.proofPromise:first-child,.proofPromise:last-child,.proofPromise:nth-child(n+3){padding:18px 0;border-right:0;border-bottom:1px solid var(--line)}
+  .proofPromise:first-child{padding-top:0}
+  .proofPromise:last-child{padding-bottom:0;border-bottom:0}
+  .proofNarrative{padding-left:18px}
+  .proofStrategy{grid-template-columns:1fr}
+  .proofStrategyCopy{padding:30px 24px}
+  .proofStrategyVisual{min-height:230px}
+  .proofStrategyVisual:before{background:linear-gradient(0deg,var(--ink2),transparent 22%)}
+  .proofCta{grid-template-columns:1fr;gap:20px;padding:24px}
   .faqAudience{padding:20px}
   .faqAudienceTop{grid-template-columns:1fr}
   .faqAudienceItem{padding:20px 0;grid-template-columns:48px 1fr;gap:14px}
@@ -400,7 +425,7 @@ img{max-width:100%;display:block}
 
 <!-- NAV -->
 <nav class="topbar">
-  <a class="brand" href="#top"><img src="assets/oxford-logo-nav.png" srcset="assets/oxford-logo-nav.png 1x, assets/oxford-logo-nav@2x.png 2x" alt="Oxford Blocks" width="148" height="200"><small>BRASIL</small></a>
+  <a class="brand" href="#top"><img src="assets/oxford-logo-official-nav.png" srcset="assets/oxford-logo-official-nav.png 1x, assets/oxford-logo-official-nav@2x.png 2x" alt="Oxford Blocks" width="148" height="200"><small>BRASIL</small></a>
 
   <div class="nav" id="mainNav">
     <a href="#prova">A Prova</a>
@@ -426,8 +451,7 @@ img{max-width:100%;display:block}
   <div class="heroInner">
     <p class="heroEyebrow"><i></i> Coreia do Sul × Brasil <i></i></p>
     <h1>Oxford <span class="red">Blocks</span><br>Brasil</h1>
-    <p class="heroTagline">Grandes ideias. Construídas bloco a bloco.</p>
-    <p class="heroLead">A Oxford transforma marcas e ideias que ganham vida.</p>
+    <p class="heroTagline">A Oxford transforma marcas e ideias que ganham vida.</p>
     <div class="heroPaths">
       <a class="pathCard" href="#negocios">
         <span class="pBadge first">Comece por aqui</span>
@@ -459,59 +483,55 @@ img{max-width:100%;display:block}
     <p class="kicker reveal"><i></i> A Prova que Convence</p>
     <div class="sHead">
       <h2 class="reveal">Você sonha.<br>A gente constrói.<br><span class="red">O mundo lembra.</span></h2>
-      <p class="sCopy reveal">A Oxford Blocks transforma marcas em experiências inesquecíveis — bloco a bloco.</p>
+      <p class="sCopy reveal">A Oxford Blocks transforma marcas em experiências inesquecíveis — <span class="red">bloco a bloco.</span></p>
     </div>
 
     <div class="proofPromises">
       <article class="proofPromise reveal">
-        <span class="ppNumber">01 / EXCLUSIVIDADE</span>
-        <h3>Projetos exclusivos</h3>
-        <p>Soluções criadas para traduzir a identidade de cada marca.</p>
+        <span class="proofGlyph" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M32 5 56 18v28L32 59 8 46V18Z"/><path d="m8 18 24 14 24-14M32 32v27M20 12l24 14"/></svg></span>
+        <div><h3>Projetos exclusivos</h3><p>Do conceito ao último detalhe.</p></div>
       </article>
       <article class="proofPromise reveal">
-        <span class="ppNumber">02 / QUALIDADE</span>
-        <h3>Qualidade premium</h3>
-        <p>Construção pensada para entregar presença, detalhe e valor.</p>
+        <span class="proofGlyph" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="26" r="17"/><path d="m20 40-4 19 16-8 16 8-4-19M25 26l5 5 10-11"/></svg></span>
+        <div><h3>Qualidade que impressiona</h3><p>Padrão internacional e acabamento premium.</p></div>
       </article>
       <article class="proofPromise reveal">
-        <span class="ppNumber">03 / PARCERIA</span>
-        <h3>Parcerias de verdade</h3>
-        <p>Projetos desenvolvidos em conjunto, do conceito ao produto.</p>
+        <span class="proofGlyph" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M23 19 12 30a9 9 0 0 0 0 13l3 3a6 6 0 0 0 9 0l8-8"/><path d="m41 19 11 11a9 9 0 0 1 0 13l-3 3a6 6 0 0 1-9 0l-8-8M24 30l8-8 8 8M20 42l7 7M44 42l-7 7"/></svg></span>
+        <div><h3>Parcerias de verdade</h3><p>Confiança, suporte e resultado.</p></div>
       </article>
       <article class="proofPromise reveal">
-        <span class="ppNumber">04 / MEMÓRIA</span>
-        <h3>Histórias que ficam</h3>
-        <p>Experiências físicas que aproximam pessoas, marcas e comunidades.</p>
+        <span class="proofGlyph" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="m32 5 8 17 19 3-14 13 4 19-17-9-17 9 4-19L5 25l19-3Z"/></svg></span>
+        <div><h3>Histórias que ficam</h3><p>Colecionáveis que geram conexão.</p></div>
       </article>
     </div>
 
-    <p class="proofLead reveal">Ao falar com Flamengo, Corinthians ou Palmeiras, o argumento deixa de ser uma hipótese. <span class="red">Vira precedente:</span> a Oxford já fez isso com clubes na Coreia. Estádio, ônibus e jogadores em figura. Vendeu na loja oficial do clube.</p>
+    <div class="proofNarrative reveal">
+      <p class="proofNarrativeLead">Do clube do coração ao <span class="red">ícone global.</span><br>A Oxford já <span class="red">fez — e vendeu.</span></p>
+      <p>Na Coreia, criamos estádios, ônibus e jogadores em miniatura que viraram febre entre os fãs e geraram vendas reais nas lojas oficiais dos clubes.</p>
+    </div>
 
-    <div class="proofCases">
-      <div class="proofCase proofCase--hero reveal">
-        <p class="pcTag">Futebol Coreano</p>
-        <h3>Seongnam FC</h3>
-        <p>O estádio do clube em blocos, <span class="hl">mais sete jogadores em figura individual</span>, cada um com nome e número. Gwangju FC e Suwon Bluewings receberam o ônibus oficial do clube.</p>
-        <div class="pcDetail">
-          <span class="pcChip">🏟️ Estádio em blocos</span>
-          <span class="pcChip">⚽ Jogadores em figura</span>
-          <span class="pcChip">🚌 Ônibus do clube</span>
-          <span class="pcChip">🛍️ Loja oficial</span>
-        </div>
+    <div class="proofStrategy reveal">
+      <div class="proofStrategyCopy">
+        <h3>Não é apenas brinquedo.<br><span class="red">É estratégia.</span></h3>
+        <ul class="proofBenefits">
+          <li>Fortalece sua marca</li>
+          <li>Engaja fãs e colecionadores</li>
+          <li>Gera receita e visibilidade</li>
+          <li>Deixa um legado que se constrói</li>
+        </ul>
       </div>
-      <div class="proofCase reveal">
-        <p class="pcTag">Liga Inteira</p>
-        <h3>KBO: Beisebol Coreano</h3>
-        <p>Figuras de jogadores, vestiários e ônibus para <span class="hl">dez clubes</span>. Não um piloto: um programa de liga inteira.</p>
-        <div class="pcDetail">
-          <span class="pcChip">⚾ 10 clubes</span>
-          <span class="pcChip">🏟️ Vestiários</span>
-          <span class="pcChip">🚌 Ônibus</span>
-        </div>
+      <div class="proofStrategyVisual">
+        <img src="assets/proof-stadium-owner.jpg" alt="Estádio em blocos com miniaturas de jogadores" width="490" height="315" loading="lazy" decoding="async">
       </div>
     </div>
 
-    <p class="evidenceNote"><i></i> Casos (Seongnam FC, KBO, Gwangju FC, Suwon Bluewings) conforme portfólio da Oxford e referência do projeto. Fotos oficiais em alta resolução serão obtidas da Oxford Coreia antes do uso em material executivo final.</p>
+    <a class="proofCta reveal" href="#parceiro">
+      <div class="proofCtaTitle">
+        <span class="proofCtaIcon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="4" y="7" width="24" height="21" rx="2"/><path d="M10 4v6M22 4v6M4 13h24M9 18h4M19 18h4M9 23h4"/></svg></span>
+        <h3>Vamos construir<br><span class="red">algo incrível juntos?</span></h3>
+      </div>
+      <p>Marcas fortes não apenas aparecem.<br>Elas <span class="red">constroem lembranças.</span></p>
+    </a>
   </div>
 </section>
 
@@ -883,7 +903,7 @@ img{max-width:100%;display:block}
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="fBrand"><img src="assets/oxford-logo-footer.png" alt="Oxford Blocks" width="89" height="120"> <span>Brasil</span></div>
+  <div class="fBrand"><img src="assets/oxford-logo-official-footer.png" alt="Oxford Blocks" width="89" height="120"> <span>Brasil</span></div>
   <div class="fLinks">
     <a href="#prova">A Prova</a>
     <a href="#negocios">Negócios</a>
@@ -892,7 +912,7 @@ img{max-width:100%;display:block}
     <a href="#faq">Dúvidas</a>
     <a href="parceiro.html">Seja um Parceiro</a>
   </div>
-  <span>© 2026 Oxford Blocks Brasil. Grandes ideias. Construídas bloco a bloco.</span>
+  <span>© 2026 Oxford Blocks Brasil.</span>
 </footer>
 
 <script>

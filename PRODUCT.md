@@ -19,9 +19,7 @@ Oxford Blocks Brasil is the Brazilian arm of Oxford (Korea), connecting Brazilia
 
 ## Positioning
 
-> A Oxford transforma marca em objeto. Não vendemos brinquedo. Fabricamos a versão física da sua marca.
-> Grandes ideias. Construídas bloco a bloco.
-> A sua marca já tem fãs. O que falta é algo que eles possam colocar na estante.
+> A Oxford transforma marcas e ideias que ganham vida.
 
 Not a toy distributor — a bridge between Brazilian brands/IP and Oxford Korea's proven custom-block capability. The mechanism no neighbor can copy: direct access to Oxford Korea's manufacturing and its decades of corporate/brand/cultural collaboration experience. The buyer is the **marketing director**, not the toy buyer — bigger budget, faster decision cycle, no shelf space needed.
 
@@ -30,7 +28,7 @@ Not a toy distributor — a bridge between Brazilian brands/IP and Oxford Korea'
 - Single-language PT-BR presentation site.
 - Landing page (single scroll) + dedicated partner registration form page.
 - Visual world inherited from the existing Oxford Brasil prototype: dark canvas, Oxford red (#D42B24), yellow accent (#F5A623), Korean-tech grid/brick aesthetic, cinematic feel.
-- Real asset on hand: Oxford logo (assets/oxford-logo.png). Product/collab photos are placeholders to be swapped.
+- Real assets on hand: official Oxford logo (`assets/oxford-logo-official-master.png`), owner-provided stadium proof visual, opening video and product-category photography.
 
 ## Capabilities and Constraints
 
@@ -51,13 +49,13 @@ Not a toy distributor — a bridge between Brazilian brands/IP and Oxford Korea'
 ## Brand Commitments
 
 - Name: Oxford Blocks Brasil (Brazilian arm of Oxford, Korea).
-- Tagline: "Criatividade sem limites."
+- Opening message: "A Oxford transforma marcas e ideias que ganham vida."
 - Voice: confident, premium, tech-forward, Korean-design-inspired; modern and bold.
-- Logo: assets/oxford-logo-dark-web.png (optimized for dark backgrounds, 400px + 800px retina).
+- Logo: `assets/oxford-logo-official-master.png`, with cache-busted navigation, retina and footer derivatives generated from that exact master.
 - Colors: Oxford red #D42B24 (primary), deep red #9B1A14, yellow accent #F5A623, near-black canvas #050607, off-white #f5f4f0.
 - Aesthetic: "visual moderno, inspirado em tecnologia coreana" — grid patterns, brick motifs, dark cinematic, sharp typography.
 - Standing visual identity from existing prototype is the committed world for this surface.
-- Tagline: "Grandes ideias. Construídas bloco a bloco." (Korean original: 마음을 쌓는 블록 — "blocos que constroem o sentimento").
+- Proof-section construction phrase: "bloco a bloco". Do not use "tijolo por tijolo".
 
 ## Evidence on Hand
 
@@ -67,11 +65,10 @@ Not a toy distributor — a bridge between Brazilian brands/IP and Oxford Korea'
   - Seongnam FC: stadium in blocks + 7 players as individual figures, each with name and number.
   - KBO (Korean Baseball Organization): player figures, clubhouses, buses for 10 clubs — a full league program, not a pilot.
   - Gwangju FC and Suwon Bluewings: official club bus in blocks.
-  - Gwanggaeto (광개토대왕): Oxford's own IP — hero line with armored cavalry, siege troops, Samjogo chariot. Not a third-party license; freely usable by Oxford Brasil.
 - Oxford official sources identified: company history, about page, collaboration archive, licensed-product archive (oxfordtoy.co.kr).
-- Opening motion video (oxford_brazil_opening_motion_v1.mp4) — available for future immersive use, not used in this surface.
+- Opening motion video is used as the site intro.
 - Strategy document (oxford-brasil-estrategia.md) — positioning, sales argument, 20-min meeting structure, objections, 90-day plan.
-- Absences future work must not fabricate: product photography, certification documents, market data, financial figures, verified collaboration details/dates/quantities, MOQ/tooling costs/lead times.
+- Absences future work must not fabricate: certification documents, market data, financial figures, verified collaboration details/dates/quantities, MOQ/tooling costs/lead times.
 
 ## Product Principles
 
