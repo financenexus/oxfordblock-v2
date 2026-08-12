@@ -170,6 +170,7 @@ img{max-width:100%;display:block}
 
 /* ===== COMMERCIAL LINE ===== */
 .commSplit{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.commBlock{min-width:0}
 .commBlock h3{font-size:13px;font-weight:800;letter-spacing:.16em;color:var(--red);text-transform:uppercase;margin:0 0 22px;padding-bottom:14px;border-bottom:1px solid var(--line)}
 .catHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
 .catHead h3{margin:0;padding:0;border:0}
@@ -237,6 +238,12 @@ img{max-width:100%;display:block}
 .proof{background:linear-gradient(180deg,var(--ink),#0c0a0a 40%,var(--ink))}
 .proofLead{font-size:clamp(18px,2vw,24px);line-height:1.55;color:var(--text);max-width:720px;margin:0 0 48px;font-weight:500}
 .proofLead .red{color:var(--red);font-weight:800}
+.proofPromises{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 48px}
+.proofPromise{min-height:190px;padding:28px 24px;border:1px solid var(--line);border-radius:6px;background:linear-gradient(155deg,rgba(212,43,36,.07),var(--ink2));position:relative;overflow:hidden}
+.proofPromise:before{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:var(--red)}
+.proofPromise .ppNumber{display:block;margin:0 0 24px;font-size:10px;font-weight:900;letter-spacing:.16em;color:var(--red)}
+.proofPromise h3{margin:0 0 9px;font-size:17px;font-weight:900;letter-spacing:-.01em}
+.proofPromise p{margin:0;font-size:13px;color:var(--muted);line-height:1.6}
 .proofCases{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin:0 0 40px}
 .proofCase{padding:36px 34px;border:1px solid var(--line);border-radius:6px;background:var(--ink2);position:relative;overflow:hidden}
 .proofCase--hero{background:linear-gradient(155deg,rgba(212,43,36,.1),var(--ink2))}
@@ -246,9 +253,6 @@ img{max-width:100%;display:block}
 .proofCase p .hl{color:var(--yellow);font-weight:700}
 .proofCase .pcDetail{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
 .proofCase .pcChip{font-size:11px;font-weight:700;padding:6px 12px;border:1px solid var(--line);border-radius:20px;color:var(--text);background:var(--ink3)}
-.proofPrecedent{padding:32px 34px;border:1px solid var(--red);border-radius:6px;background:linear-gradient(100deg,rgba(212,43,36,.08),var(--ink2))}
-.proofPrecedent p{margin:0;font-size:clamp(16px,1.8vw,22px);line-height:1.5;font-weight:600;color:var(--text)}
-.proofPrecedent p .red{color:var(--red)}
 
 /* ===== THREE BUSINESS ===== */
 .bizGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -297,22 +301,6 @@ img{max-width:100%;display:block}
 .faqItem .faqAns{padding:0 28px 24px;font-size:14px;color:var(--muted);line-height:1.7}
 .faqItem .faqAns .hl{color:var(--text);font-weight:700}
 
-/* ===== GWANGGAETO ===== */
-.gwanggaeto{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:48px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(155deg,rgba(212,43,36,.08),var(--ink2));position:relative;overflow:hidden}
-.gwanggaeto:before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--red),transparent 60%)}
-.gwanggaeto .ggText h3{margin:0 0 8px;font-size:clamp(24px,2.8vw,36px);font-weight:900;letter-spacing:-.02em}
-.gwanggaeto .ggText h3 .ko{color:var(--red);font-size:.7em;display:block;font-weight:700;letter-spacing:.02em;margin-bottom:4px}
-.gwanggaeto .ggText p{margin:0 0 16px;font-size:15px;color:var(--text);line-height:1.7}
-.gwanggaeto .ggText p .hl{color:var(--yellow);font-weight:700}
-.gwanggaeto .ggPoints{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-.gwanggaeto .ggPoints li{font-size:13px;color:var(--muted);line-height:1.6;padding-left:22px;position:relative}
-.gwanggaeto .ggPoints li:before{content:"→";position:absolute;left:0;color:var(--red);font-weight:800}
-.gwanggaeto .ggVisual{display:grid;place-items:center;min-height:280px;border:1px solid var(--line);border-radius:6px;background:radial-gradient(circle at 50% 50%,rgba(212,43,36,.1),transparent 60%),var(--ink3);position:relative}
-.gwanggaeto .ggVisual .ggPlaceholder{text-align:center}
-.gwanggaeto .ggVisual .ggPlaceholder .ggCrown{font-size:64px;display:block;margin-bottom:14px}
-.gwanggaeto .ggVisual .ggPlaceholder span{font-size:11px;letter-spacing:.16em;color:var(--muted2);text-transform:uppercase;display:block}
-.gwanggaeto .ggVisual .ggPlaceholder b{font-size:18px;font-weight:900;color:var(--text);display:block;margin-top:6px}
-
 /* ===== ANIMATION ===== */
 @keyframes pulse{50%{opacity:.25;transform:translateY(6px)}}
 @keyframes floatStud{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
@@ -339,6 +327,7 @@ img{max-width:100%;display:block}
   .whyPillar:nth-child(2){border-right:0}
   .whyPillar:nth-child(3),.whyPillar:nth-child(4){border-bottom:0}
   .partnerActions{grid-template-columns:1fr 1fr}
+  .proofPromises{grid-template-columns:1fr 1fr}
   .proofCases{grid-template-columns:1fr}
   .bizGrid{grid-template-columns:1fr}
   .workflow{grid-template-columns:1fr 1fr}
@@ -348,11 +337,14 @@ img{max-width:100%;display:block}
   .wfStep:nth-child(5){grid-column:1/-1;border-right:0}
   .segRow{grid-template-columns:1fr}
   .segRow .segName{border-right:0;border-bottom:1px solid var(--line2)}
-  .gwanggaeto{grid-template-columns:1fr;gap:32px;padding:32px}
 }
 @media(max-width:640px){
   .topbar{height:74px}
   .brand img{height:48px}
+  .footer .fLinks{width:100%;flex-wrap:wrap;gap:14px 20px}
+  .footer>span{width:100%;line-height:1.5}
+  .proofPromises{grid-template-columns:1fr}
+  .proofPromise{min-height:0}
   .timeline{grid-template-columns:1fr}
   .tlItem{border-right:0}
   .catHead{align-items:flex-start;flex-direction:column;gap:10px}
@@ -409,7 +401,7 @@ img{max-width:100%;display:block}
     <p class="heroEyebrow"><i></i> Coreia do Sul × Brasil <i></i></p>
     <h1>Oxford <span class="red">Blocks</span><br>Brasil</h1>
     <p class="heroTagline">Grandes ideias. Construídas bloco a bloco.</p>
-    <p class="heroLead">A Oxford transforma marca em objeto. Não vendemos brinquedo: fabricamos a versão física da sua marca. A sua marca já tem fãs. O que falta é algo que eles possam colocar na estante.</p>
+    <p class="heroLead">A Oxford transforma marcas e ideias que ganham vida.</p>
     <div class="heroPaths">
       <a class="pathCard" href="#negocios">
         <span class="pBadge first">Comece por aqui</span>
@@ -440,8 +432,31 @@ img{max-width:100%;display:block}
   <div class="wrap">
     <p class="kicker reveal"><i></i> A Prova que Convence</p>
     <div class="sHead">
-      <h2 class="reveal">Não é ideia.<br>É produto que <span class="red">já rodou.</span></h2>
-      <p class="sCopy reveal">A Oxford não precisa prometer; ela já executou. Centenas de projetos para empresas, governos, museus e marcas. Estes são os casos que transformam hipótese em precedente.</p>
+      <h2 class="reveal">Você sonha.<br>A gente constrói.<br><span class="red">O mundo lembra.</span></h2>
+      <p class="sCopy reveal">A Oxford Blocks transforma marcas em experiências inesquecíveis — bloco a bloco.</p>
+    </div>
+
+    <div class="proofPromises">
+      <article class="proofPromise reveal">
+        <span class="ppNumber">01 / EXCLUSIVIDADE</span>
+        <h3>Projetos exclusivos</h3>
+        <p>Soluções criadas para traduzir a identidade de cada marca.</p>
+      </article>
+      <article class="proofPromise reveal">
+        <span class="ppNumber">02 / QUALIDADE</span>
+        <h3>Qualidade premium</h3>
+        <p>Construção pensada para entregar presença, detalhe e valor.</p>
+      </article>
+      <article class="proofPromise reveal">
+        <span class="ppNumber">03 / PARCERIA</span>
+        <h3>Parcerias de verdade</h3>
+        <p>Projetos desenvolvidos em conjunto, do conceito ao produto.</p>
+      </article>
+      <article class="proofPromise reveal">
+        <span class="ppNumber">04 / MEMÓRIA</span>
+        <h3>Histórias que ficam</h3>
+        <p>Experiências físicas que aproximam pessoas, marcas e comunidades.</p>
+      </article>
     </div>
 
     <p class="proofLead reveal">Ao falar com Flamengo, Corinthians ou Palmeiras, o argumento deixa de ser uma hipótese. <span class="red">Vira precedente:</span> a Oxford já fez isso com clubes na Coreia. Estádio, ônibus e jogadores em figura. Vendeu na loja oficial do clube.</p>
@@ -468,10 +483,6 @@ img{max-width:100%;display:block}
           <span class="pcChip">🚌 Ônibus</span>
         </div>
       </div>
-    </div>
-
-    <div class="proofPrecedent reveal">
-      <p>E vale ainda mais para uma conversa com a <span class="red">CBF ou uma liga brasileira</span>: já existe um caso de rollout em liga inteira (dez clubes, não um piloto isolado). A Oxford já provou que marca vira objeto colecionável. No Brasil, falta só o primeiro.</p>
     </div>
 
     <p class="evidenceNote"><i></i> Casos (Seongnam FC, KBO, Gwangju FC, Suwon Bluewings) conforme portfólio da Oxford e referência do projeto. Fotos oficiais em alta resolução serão obtidas da Oxford Coreia antes do uso em material executivo final.</p>
@@ -534,36 +545,6 @@ img{max-width:100%;display:block}
     </div>
 
     <p class="evidenceNote"><i></i> Datas corporativas conforme histórico oficial da Oxford. Atributos técnicos (certificações, especificações de material e precisão) estão em processo de verificação documental e serão confirmados antes do uso em material executivo final.</p>
-  </div>
-</section>
-
-<!-- GWANGGAETO — IP PRÓPRIO -->
-<section class="section" id="gwanggaeto">
-  <div class="wrap">
-    <p class="kicker reveal"><i></i> Personagem Próprio da Oxford</p>
-    <div class="sHead">
-      <h2 class="reveal">IP da própria Oxford.<br>Não <span class="red">licença</span> de terceiros.</h2>
-      <p class="sCopy reveal">A Oxford tem uma linha de heróis criada por ela mesma. Por isso, é o único personagem que a Oxford Brasil pode usar livremente, em comunicação, mascote, redes sociais e material de apresentação.</p>
-    </div>
-
-    <div class="gwanggaeto reveal">
-      <div class="ggText">
-        <h3><span class="ko">광개토대왕</span>Grande Rei Gwanggaeto</h3>
-        <p>Uma linha de heróis com <span class="hl">cavalaria blindada, tropa de cerco e carro Samjogo</span>, criada, desenvolvida e fabricada pela própria Oxford.</p>
-        <ul class="ggPoints">
-          <li>Base correta para qualquer avatar 3D da marca no Brasil.</li>
-          <li>Prova a capacidade de criar um personagem original, não apenas um prédio ou uma máquina.</li>
-          <li>Argumento direto para uma marca brasileira que queira o próprio personagem em blocos.</li>
-        </ul>
-      </div>
-      <div class="ggVisual">
-        <div class="ggPlaceholder">
-          <span class="ggCrown">👑⚔️</span>
-          <span>Foto do produto</span>
-          <b>Gwanggaeto</b>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
