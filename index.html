@@ -21,6 +21,12 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:100px}
 body{margin:0;background:var(--ink);color:var(--text);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.intro-pending{overflow:hidden}
+body.intro-pending>:not(#siteIntro){visibility:hidden}
+#siteIntro{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:#050607;opacity:1;visibility:visible;transition:opacity .7s ease,visibility .7s ease}
+#siteIntro.is-finished{opacity:0;visibility:hidden;pointer-events:none}
+#siteIntro video{width:100%;height:100%;display:block;object-fit:cover;background:#050607}
+@media (prefers-reduced-motion:reduce){#siteIntro{display:none}body.intro-pending{overflow-x:hidden;overflow-y:auto}body.intro-pending>:not(#siteIntro){visibility:visible}}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 img{max-width:100%;display:block}
@@ -346,7 +352,12 @@ img{max-width:100%;display:block}
 }
 </style>
 </head>
-<body>
+<body class="intro-pending">
+<div id="siteIntro" aria-hidden="true">
+  <video id="introVideo" autoplay muted playsinline preload="auto" disablepictureinpicture>
+    <source src="assets/oxford-intro.mp4" type="video/mp4">
+  </video>
+</div>
 <a href="#main" class="skipLink">Pular para o conteúdo</a>
 
 <!-- NAV -->
@@ -826,6 +837,27 @@ img{max-width:100%;display:block}
 </footer>
 
 <script>
+/* ===== SITE INTRO ===== */
+(function(){
+  var intro=document.getElementById('siteIntro');
+  var video=document.getElementById('introVideo');
+  if(!intro||!video){document.body.classList.remove('intro-pending');return}
+  var finished=false;
+  var fallback=window.setTimeout(finish,15000);
+  function finish(){
+    if(finished)return;
+    finished=true;
+    window.clearTimeout(fallback);
+    document.body.classList.remove('intro-pending');
+    intro.classList.add('is-finished');
+    window.setTimeout(function(){intro.remove()},750);
+  }
+  video.addEventListener('ended',finish,{once:true});
+  video.addEventListener('error',finish,{once:true});
+  video.play().catch(finish);
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)finish();
+})();
+
 /* ===== HERO STUDS ===== */
 (function(){
   var c=document.getElementById('heroStuds');
