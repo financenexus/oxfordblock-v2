@@ -21,16 +21,36 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:100px}
 body{margin:0;background:var(--ink);color:var(--text);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-body.intro-pending{overflow:hidden}
-body.intro-pending>:not(#siteIntro){visibility:hidden}
-#siteIntro{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:#050607;opacity:1;visibility:visible;transition:opacity .7s ease,visibility .7s ease}
-#siteIntro.is-finished{opacity:0;visibility:hidden;pointer-events:none}
-#siteIntro video{width:100%;height:100%;display:block;object-fit:cover;background:#050607}
-#introStart{position:absolute;z-index:2;display:grid;place-items:center;width:88px;height:88px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(5,6,7,.58);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 12px 44px rgba(0,0,0,.5);transition:transform .22s ease,background .22s ease,opacity .25s ease}
-#introStart:hover{transform:scale(1.06);background:rgba(212,43,36,.72)}
-#introStart.is-playing{opacity:0;pointer-events:none}
-#introStart svg{width:34px;height:34px;fill:#fff;transform:translateX(2px)}
-@media (prefers-reduced-motion:reduce){#siteIntro{display:none}body.intro-pending{overflow-x:hidden;overflow-y:auto}body.intro-pending>:not(#siteIntro){visibility:visible}}
+/* ===== HERO VIDEO & SHOWCASE ===== */
+.heroMainGrid{display:grid;grid-template-columns:1.12fr 0.88fr;gap:clamp(24px,3.8vw,48px);align-items:center;margin-bottom:34px}
+.heroText{display:flex;flex-direction:column;justify-content:center}
+.heroVideoWrapper{position:relative;width:100%}
+.heroVideoFrame{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#050607;border:1px solid rgba(255,255,255,.14);box-shadow:0 20px 50px rgba(0,0,0,.75),0 0 35px rgba(212,43,36,.18);isolation:isolate;transition:border-color .25s ease,box-shadow .25s ease}
+.heroVideoFrame:hover{border-color:rgba(212,43,36,.55);box-shadow:0 24px 60px rgba(0,0,0,.85),0 0 45px rgba(212,43,36,.28)}
+.heroVideoFrame video{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer}
+.heroVideoBadge{position:absolute;top:12px;left:14px;z-index:3;font-size:9px;font-weight:800;letter-spacing:.16em;color:rgba(255,255,255,.9);background:rgba(5,6,7,.75);padding:4px 10px;border-radius:16px;border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:inline-flex;align-items:center;gap:6px;pointer-events:none;text-transform:uppercase}
+.heroVideoBadge .vDot{width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 6px var(--red)}
+.heroVideoOverlay{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;background:radial-gradient(circle at center,rgba(0,0,0,.1),rgba(0,0,0,.4));transition:opacity .25s ease;z-index:2}
+.heroVideoOverlay.is-hidden{opacity:0}
+.heroPlayBtn{pointer-events:auto;width:60px;height:60px;border-radius:50%;background:rgba(5,6,7,.75);border:1.5px solid rgba(255,255,255,.4);display:grid;place-items:center;color:#fff;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 8px 24px rgba(0,0,0,.5);transition:transform .2s ease,background .2s ease,border-color .2s ease}
+.heroPlayBtn:hover{transform:scale(1.08);background:rgba(212,43,36,.85);border-color:#fff}
+.heroPlayBtn svg{width:22px;height:22px;fill:#fff}
+.heroPlayBtn .playIcon{transform:translateX(1px)}
+.heroPlayBtn .pauseIcon{display:none}
+.heroVideoFrame.is-playing .heroPlayBtn .playIcon{display:none}
+.heroVideoFrame.is-playing .heroPlayBtn .pauseIcon{display:block}
+.heroVideoControls{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:14px 16px 12px;background:linear-gradient(180deg,transparent,rgba(5,6,7,.9) 75%);display:flex;flex-direction:column;gap:8px;transition:opacity .25s ease}
+.heroVideoBar{width:100%;height:4px;background:rgba(255,255,255,.2);border-radius:2px;cursor:pointer;position:relative;overflow:hidden}
+.heroVideoProgress{height:100%;background:linear-gradient(90deg,var(--yellow),var(--red));border-radius:2px;width:0%;transition:width .08s linear}
+.heroVideoBtns{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.heroCtrlBtn{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(10,12,13,.75);padding:5px 11px;border-radius:3px;border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);transition:.2s;cursor:pointer}
+.heroCtrlBtn:hover{background:var(--red);border-color:var(--red);transform:translateY(-1px)}
+.heroCtrlBtn svg{width:13px;height:13px;fill:currentColor}
+.heroCtrlBtn .unmuteIcon{display:none}
+.heroVideoFrame.is-unmuted .heroCtrlBtn .muteIcon{display:none}
+.heroVideoFrame.is-unmuted .heroCtrlBtn .unmuteIcon{display:inline-block}
+:fullscreen .heroVideoFrame, :-webkit-full-screen .heroVideoFrame{width:100vw;height:100vh;max-width:100vw;max-height:100vh;border-radius:0;border:0;aspect-ratio:auto}
+:fullscreen .heroVideoFrame video, :-webkit-full-screen .heroVideoFrame video{width:100vw;height:100vh;object-fit:contain}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 img{max-width:100%;display:block}
@@ -57,7 +77,6 @@ img{max-width:100%;display:block}
 .navCta{display:flex;gap:10px;align-items:center}
 .btn{display:inline-flex;align-items:center;gap:9px;height:40px;padding:0 20px;border-radius:3px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;transition:.22s;border:1px solid transparent;white-space:nowrap}
 .btn--red{background:var(--red);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.4)}
-.btn--red:hover{background:#e8342b;transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.5)}
 .btn--ghost{border-color:var(--line);background:rgba(8,9,10,.6);color:var(--text)}
 .btn--ghost:hover{border-color:rgba(255,255,255,.3);background:var(--ink3)}
 .btn--lg{height:50px;padding:0 28px;font-size:12px}
@@ -81,13 +100,13 @@ img{max-width:100%;display:block}
 .heroSun{position:absolute;width:62vw;height:62vw;max-width:820px;max-height:820px;border-radius:50%;left:50%;bottom:-34vw;transform:translateX(-50%);background:radial-gradient(circle,var(--red) 0,#be2018 20%,rgba(195,28,18,.16) 50%,transparent 68%);opacity:.5;z-index:1}
 .heroGrid{position:absolute;width:160%;height:48%;bottom:-14%;left:-30%;transform:perspective(620px) rotateX(66deg);transform-origin:center;background-image:linear-gradient(rgba(212,43,36,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(212,43,36,.14) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(180deg,transparent,#000 45%);z-index:2}
 .heroStuds{position:absolute;inset:0;z-index:3;pointer-events:none}
-.heroInner{position:relative;z-index:7;max-width:1180px;margin:0 auto;padding:120px clamp(20px,5vw,64px) 90px;width:100%}
-.heroEyebrow{display:inline-flex;align-items:center;gap:14px;font-size:11px;font-weight:700;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;margin:0 0 26px}
+.heroInner{position:relative;z-index:7;max-width:1240px;margin:0 auto;padding:120px clamp(20px,4.5vw,60px) 70px;width:100%}
+.heroEyebrow{display:inline-flex;align-items:center;gap:14px;font-size:11px;font-weight:700;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;margin:0 0 20px}
 .heroEyebrow i{display:block;width:38px;height:1px;background:var(--red)}
-.hero h1{margin:0;font-size:clamp(48px,8.2vw,124px);font-weight:900;line-height:.86;letter-spacing:-.04em;text-transform:uppercase;text-shadow:0 14px 50px rgba(0,0,0,.55);font-family:"Archivo Expanded","Archivo",system-ui,sans-serif}
+.hero h1{margin:0;font-size:clamp(38px,5.4vw,76px);font-weight:900;line-height:.88;letter-spacing:-.04em;text-transform:uppercase;text-shadow:0 14px 50px rgba(0,0,0,.55);font-family:"Archivo Expanded","Archivo",system-ui,sans-serif}
 .hero h1 .red{color:var(--red)}
-.heroTagline{margin:24px 0 0;font-size:clamp(18px,2.4vw,30px);font-weight:600;font-style:italic;color:var(--yellow);letter-spacing:.005em}
-.heroPaths{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:860px;margin:40px 0 0}
+.heroTagline{margin:18px 0 0;font-size:clamp(15px,1.8vw,22px);font-weight:600;font-style:italic;color:var(--yellow);letter-spacing:.005em}
+.heroPaths{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;margin:40px 0 0}
 .pathCard .pBadge{position:absolute;top:16px;right:16px;font-size:8px;font-weight:800;letter-spacing:.12em;color:var(--yellow);text-transform:uppercase;opacity:.8}
 .pathCard .pBadge.first{color:var(--red)}
 .pathCard{display:block;padding:24px 26px;border:1px solid var(--line);background:linear-gradient(150deg,rgba(212,43,36,.07),rgba(8,9,10,.4));border-radius:5px;transition:.25s;position:relative;overflow:hidden}
@@ -353,6 +372,7 @@ img{max-width:100%;display:block}
 @media(max-width:980px){
   .nav{display:none}
   .menuBtn{display:flex}
+  .heroMainGrid{grid-template-columns:1fr;gap:28px;margin-bottom:28px}
   .sHead{grid-template-columns:1fr;gap:24px}
   .heroPaths{grid-template-columns:1fr}
   .timeline{grid-template-columns:1fr 1fr}
@@ -430,15 +450,7 @@ img{max-width:100%;display:block}
 }
 </style>
 </head>
-<body class="intro-pending">
-<div id="siteIntro">
-  <video id="introVideo" playsinline preload="auto" disablepictureinpicture>
-    <source src="assets/oxford-intro.mp4" type="video/mp4">
-  </video>
-  <button id="introStart" type="button" aria-label="Reproduzir vídeo com som">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-  </button>
-</div>
+<body>
 <a href="#main" class="skipLink">Pular para o conteúdo</a>
 
 <!-- NAV -->
@@ -467,9 +479,47 @@ img{max-width:100%;display:block}
   <div class="heroStuds" id="heroStuds"></div>
   <div class="gridBg"></div>
   <div class="heroInner">
-    <p class="heroEyebrow"><i></i> Coreia do Sul × Brasil <i></i></p>
-    <h1>Oxford <span class="red">Blocks</span><br>Brasil</h1>
-    <p class="heroTagline">A Oxford transforma marcas e ideias que ganham vida.</p>
+    <div class="heroMainGrid">
+      <div class="heroText">
+        <p class="heroEyebrow"><i></i> Coreia do Sul × Brasil <i></i></p>
+        <h1>Oxford <span class="red">Blocks</span><br>Brasil</h1>
+        <p class="heroTagline">A Oxford transforma marcas e ideias que ganham vida.</p>
+      </div>
+
+      <div class="heroVideoWrapper">
+        <div class="heroVideoFrame" id="heroVideoFrame">
+          <video id="heroVideo" playsinline preload="metadata" loop muted autoplay>
+            <source src="assets/oxford-intro.mp4" type="video/mp4">
+          </video>
+          <div class="heroVideoBadge">
+            <span class="vDot"></span> Oxford Reel
+          </div>
+          <div class="heroVideoOverlay" id="heroVideoOverlay">
+            <button type="button" class="heroPlayBtn" id="heroPlayBtn" aria-label="Reproduzir ou pausar vídeo">
+              <svg class="playIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="pauseIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </button>
+          </div>
+          <div class="heroVideoControls" id="heroVideoControls">
+            <div class="heroVideoBar" id="heroVideoBar" role="slider" aria-label="Progresso do vídeo" tabindex="0">
+              <div class="heroVideoProgress" id="heroVideoProgress"></div>
+            </div>
+            <div class="heroVideoBtns">
+              <button type="button" class="heroCtrlBtn" id="heroSoundBtn" aria-label="Alternar som">
+                <svg class="muteIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                <svg class="unmuteIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                <span id="heroSoundLabel">Ativar Som</span>
+              </button>
+              <button type="button" class="heroCtrlBtn" id="heroFsBtn" aria-label="Tela cheia">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                <span>Tela cheia</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="heroPaths">
       <a class="pathCard" href="#negocios">
         <span class="pBadge first">Comece por aqui</span>
@@ -934,38 +984,116 @@ img{max-width:100%;display:block}
 </footer>
 
 <script>
-/* ===== SITE INTRO ===== */
+/* ===== HERO VIDEO PLAYER ===== */
 (function(){
-  var intro=document.getElementById('siteIntro');
-  var video=document.getElementById('introVideo');
-  var startButton=document.getElementById('introStart');
-  if(!intro||!video||!startButton){document.body.classList.remove('intro-pending');return}
-  var started=false;
-  var finished=false;
-  var fallback=window.setTimeout(finish,30000);
-  function start(){
-    if(started||finished)return;
-    started=true;
-    window.clearTimeout(fallback);
-    fallback=window.setTimeout(finish,15000);
-    startButton.classList.add('is-playing');
-    video.currentTime=0;
-    video.muted=false;
-    video.volume=1;
-    video.play().catch(finish);
+  var frame = document.getElementById('heroVideoFrame');
+  var video = document.getElementById('heroVideo');
+  var playBtn = document.getElementById('heroPlayBtn');
+  var soundBtn = document.getElementById('heroSoundBtn');
+  var soundLabel = document.getElementById('heroSoundLabel');
+  var fsBtn = document.getElementById('heroFsBtn');
+  var prog = document.getElementById('heroVideoProgress');
+  var bar = document.getElementById('heroVideoBar');
+  var overlay = document.getElementById('heroVideoOverlay');
+  if(!video || !frame) return;
+
+  function updatePlayState(){
+    if(video.paused){
+      frame.classList.remove('is-playing');
+      overlay.classList.remove('is-hidden');
+    } else {
+      frame.classList.add('is-playing');
+      overlay.classList.add('is-hidden');
+    }
   }
-  function finish(){
-    if(finished)return;
-    finished=true;
-    window.clearTimeout(fallback);
-    document.body.classList.remove('intro-pending');
-    intro.classList.add('is-finished');
-    window.setTimeout(function(){intro.remove()},750);
+
+  function togglePlay(){
+    if(video.paused){
+      video.play().then(updatePlayState).catch(function(){});
+    } else {
+      video.pause();
+      updatePlayState();
+    }
   }
-  video.addEventListener('ended',finish,{once:true});
-  video.addEventListener('error',finish,{once:true});
-  intro.addEventListener('click',start);
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)finish();
+
+  if(playBtn) playBtn.addEventListener('click', togglePlay);
+  video.addEventListener('click', togglePlay);
+
+  video.addEventListener('timeupdate', function(){
+    if(video.duration && prog){
+      var pct = (video.currentTime / video.duration) * 100;
+      prog.style.width = pct + '%';
+    }
+  });
+
+  if(bar){
+    bar.addEventListener('click', function(e){
+      var rect = bar.getBoundingClientRect();
+      var pos = (e.clientX - rect.left) / rect.width;
+      if(video.duration){
+        video.currentTime = pos * video.duration;
+      }
+    });
+  }
+
+  if(soundBtn){
+    soundBtn.addEventListener('click', function(){
+      video.muted = !video.muted;
+      if(!video.muted){
+        frame.classList.add('is-unmuted');
+        if(soundLabel) soundLabel.textContent = 'Som Ativo';
+        if(video.paused) video.play();
+      } else {
+        frame.classList.remove('is-unmuted');
+        if(soundLabel) soundLabel.textContent = 'Ativar Som';
+      }
+    });
+  }
+
+  function toggleFullscreen(){
+    var target = frame;
+    var isFull = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+    if(!isFull){
+      if(target.requestFullscreen){
+        target.requestFullscreen();
+      } else if(target.webkitRequestFullscreen){
+        target.webkitRequestFullscreen();
+      } else if(target.mozRequestFullScreen){
+        target.mozRequestFullScreen();
+      } else if(target.msRequestFullscreen){
+        target.msRequestFullscreen();
+      } else if(video.webkitEnterFullscreen){
+        video.webkitEnterFullscreen();
+      }
+    } else {
+      if(document.exitFullscreen){
+        document.exitFullscreen();
+      } else if(document.webkitExitFullscreen){
+        document.webkitExitFullscreen();
+      } else if(document.mozCancelFullScreen){
+        document.mozCancelFullScreen();
+      } else if(document.msExitFullscreen){
+        document.msExitFullscreen();
+      }
+    }
+  }
+
+  if(fsBtn) fsBtn.addEventListener('click', toggleFullscreen);
+
+  frame.addEventListener('mouseenter', function(){
+    overlay.classList.remove('is-hidden');
+  });
+  frame.addEventListener('mouseleave', function(){
+    if(!video.paused){
+      overlay.classList.add('is-hidden');
+    }
+  });
+
+  video.play().then(function(){
+    updatePlayState();
+  }).catch(function(){
+    updatePlayState();
+  });
 })();
 
 /* ===== HERO STUDS ===== */
