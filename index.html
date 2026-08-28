@@ -150,20 +150,22 @@ img{max-width:100%;display:block}
 .evidenceNote i{width:7px;height:7px;background:var(--yellow);border-radius:50%;flex-shrink:0;margin-top:4px}
 
 /* ===== COLLABS ===== */
-.collabIntro{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin:0 0 56px}
-.collabIntro p{font-size:17px;line-height:1.75;color:var(--text);margin:0;max-width:520px}
+.collabIntro{margin:0 0 40px}
+.collabIntro p{font-size:16px;line-height:1.7;color:var(--muted);margin:0;max-width:780px}
 .collabIntro p .hl{color:var(--yellow);font-weight:700}
-.collabFilters{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 36px}
+.collabFilters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
 .filterBtn{padding:11px 20px;border:1px solid var(--line);border-radius:40px;font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--muted);transition:.2s;text-transform:uppercase}
 .filterBtn:hover{color:var(--text);border-color:rgba(255,255,255,.25)}
 .filterBtn.active{background:var(--red);border-color:var(--red);color:#fff}
-.brandGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
-.brandChip{padding:22px 20px;border:1px solid var(--line);border-radius:5px;background:var(--ink2);display:flex;flex-direction:column;justify-content:space-between;min-height:96px;transition:.22s;position:relative;overflow:hidden}
-.brandChip:hover{border-color:var(--red);transform:translateY(-2px);background:linear-gradient(150deg,rgba(212,43,36,.08),var(--ink2))}
-.brandChip .bName{font-size:15px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
-.brandChip .bCat{font-size:9px;font-weight:700;letter-spacing:.16em;color:var(--red);text-transform:uppercase;margin-top:10px}
-.brandChip .bStud{position:absolute;top:14px;right:14px;width:9px;height:9px;border-radius:50% 50% 45% 45%;background:var(--red);opacity:0;transition:.22s}
-.brandChip:hover .bStud{opacity:1}
+.brandGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.portCard{position:relative;border-radius:8px;overflow:hidden;background:#ffffff;border:1px solid rgba(255,255,255,.1);aspect-ratio:3/2;transition:transform .28s ease,border-color .2s,box-shadow .28s;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.portCard:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 18px 44px rgba(0,0,0,.65)}
+.portCard .portImgWrapper{flex:1;position:relative;background:#ffffff;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:10px 10px 4px}
+.portCard img{max-width:100%;max-height:100%;object-fit:contain;display:block;transition:transform .45s ease;mix-blend-mode:multiply}
+.portCard:hover img{transform:scale(1.04)}
+.portCard .portInfo{padding:10px 14px 12px;background:#f8f9fa;border-top:1px solid rgba(0,0,0,.05);display:flex;flex-direction:column;justify-content:center}
+.portCard .portBrand{font-size:13px;font-weight:800;color:#050607;letter-spacing:-.01em;line-height:1.2;margin-bottom:2px}
+.portCard .portCat{font-size:9px;font-weight:800;letter-spacing:.14em;color:var(--red);text-transform:uppercase}
 .heritageRow{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:14px}
 .heritageCard{padding:26px 24px;border:1px solid var(--line);border-radius:5px;background:linear-gradient(160deg,rgba(212,43,36,.06),var(--ink2));position:relative;overflow:hidden}
 .heritageCard .hIco{font-size:26px;margin-bottom:12px;display:block}
@@ -385,20 +387,19 @@ img{max-width:100%;display:block}
   .commSplit{grid-template-columns:1fr}
   .whyGrid{grid-template-columns:1fr 1fr}
   .whyPillar{border-bottom:1px solid var(--line)}
-  .whyPillar:nth-child(2){border-right:0}
-  .whyPillar:nth-child(3),.whyPillar:nth-child(4){border-bottom:0}
+  .whyPillar:focus-within, .whyPillar:nth-child(2n){border-right:0}
+  .whyPillar:nth-child(7),.whyPillar:nth-child(8){border-bottom:0}
   .partnerActions{grid-template-columns:1fr 1fr}
   .proofPromises{grid-template-columns:1fr 1fr}
-  .proofPromise:nth-child(2){border-right:0}
+  .proofPromise:nth-child(2n){border-right:0}
   .proofPromise:nth-child(-n+2){padding-bottom:24px;border-bottom:1px solid var(--line)}
   .proofPromise:nth-child(n+3){padding-top:24px}
   .proofPromise:nth-child(3){padding-left:0}
   .bizGrid{grid-template-columns:1fr}
   .workflow{grid-template-columns:1fr 1fr}
   .wfStep{border-bottom:1px solid var(--line)}
-  .wfStep:nth-child(2){border-right:0}
-  .wfStep:nth-child(3),.wfStep:nth-child(4){border-bottom:1px solid var(--line)}
-  .wfStep:nth-child(5){grid-column:1/-1;border-right:0}
+  .wfStep:nth-child(2n){border-right:0}
+  .wfStep:nth-child(5){grid-column:1/-1;border-right:0;border-bottom:0}
   .segRow{grid-template-columns:1fr}
   .segRow .segName{border-right:0;border-bottom:1px solid var(--line2)}
 }
@@ -435,7 +436,8 @@ img{max-width:100%;display:block}
   .featuredFaqMark svg{width:24px;height:24px}
   .faqItem:first-child .faqAns{padding:0 20px 24px 80px;font-size:15px;line-height:1.6}
   .timeline{grid-template-columns:1fr}
-  .tlItem{border-right:0}
+  .tlItem{border-right:0;border-bottom:1px solid var(--line)}
+  .tlItem:last-child{border-bottom:0}
   .catHead{align-items:flex-start;flex-direction:column;gap:10px}
   .catList{display:flex;overflow-x:auto;gap:12px;margin-inline:-20px;padding:0 20px 16px;scroll-snap-type:x mandatory;scrollbar-width:none}
   .catList::-webkit-scrollbar{display:none}
@@ -445,7 +447,8 @@ img{max-width:100%;display:block}
   .whyPillar:last-child{border-bottom:0}
   .partnerActions{grid-template-columns:1fr}
   .workflow{grid-template-columns:1fr}
-  .wfStep{border-right:0}
+  .wfStep{border-right:0;border-bottom:1px solid var(--line)}
+  .wfStep:last-child{border-bottom:0}
   .footer{flex-direction:column;align-items:flex-start}
 }
 </style>
@@ -757,9 +760,13 @@ img{max-width:100%;display:block}
 
     <div class="collabFilters reveal" id="collabFilters">
       <button class="filterBtn active" data-filter="all">Todas</button>
-      <button class="filterBtn" data-filter="corp">Corporativo & Indústria</button>
-      <button class="filterBtn" data-filter="food">Alimentação & Varejo</button>
-      <button class="filterBtn" data-filter="ent">K-pop & Entretenimento</button>
+      <button class="filterBtn" data-filter="aviacao">Aviação &amp; Transporte</button>
+      <button class="filterBtn" data-filter="alimentos">Alimentos &amp; Varejo</button>
+      <button class="filterBtn" data-filter="automotivo">Automotivo</button>
+      <button class="filterBtn" data-filter="industria">Indústria &amp; Tecnologia</button>
+      <button class="filterBtn" data-filter="militar">Militar &amp; Defesa</button>
+      <button class="filterBtn" data-filter="esportes">Esportes</button>
+      <button class="filterBtn" data-filter="publico">Público &amp; Cultura</button>
     </div>
 
     <div class="brandGrid" id="brandGrid"></div>
@@ -1052,7 +1059,7 @@ img{max-width:100%;display:block}
 
   function toggleFullscreen(){
     var target = frame;
-    var isFull = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+    var isFull = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullScreenElement;
     if(!isFull){
       if(target.requestFullscreen){
         target.requestFullscreen();
@@ -1066,7 +1073,7 @@ img{max-width:100%;display:block}
         video.webkitEnterFullscreen();
       }
     } else {
-      if(document.exitFullscreen){
+if(document.exitFullscreen){
         document.exitFullscreen();
       } else if(document.webkitExitFullscreen){
         document.webkitExitFullscreen();
@@ -1112,33 +1119,78 @@ img{max-width:100%;display:block}
   }
 })();
 
-/* ===== COLLAB BRANDS ===== */
-var BRANDS=[
-  {n:'Korean Air',c:'corp'},{n:'Asiana Airlines',c:'corp'},{n:'Jeju Air',c:'corp'},
-  {n:'KIA',c:'corp'},{n:'Hyundai',c:'corp'},{n:'HD Hyundai',c:'corp'},
-  {n:'LG Display',c:'corp'},{n:'LG Electronics',c:'corp'},
-  {n:'SK Hynix',c:'corp'},{n:'SK Innovation',c:'corp'},
-  {n:'AWS',c:'corp'},{n:'Bobcat',c:'corp'},{n:'LIG Nex1',c:'corp'},
-  {n:'Hanwha',c:'corp'},{n:'KT',c:'corp'},{n:'Hana Bank',c:'corp'},
-  {n:'Subway',c:'food'},{n:'Outback Steakhouse',c:'food'},
-  {n:'Baskin Robbins',c:'food'},{n:'Coffee Bean',c:'food'},
-  {n:'Innisfree',c:'food'},{n:'CU',c:'food'},{n:'Daiso',c:'food'},
-  {n:'E-Mart',c:'food'},{n:'Lotte World',c:'food'},{n:'Shinsegae',c:'food'},
-  {n:'Seven Eleven',c:'food'},{n:'Nongshim',c:'food'},{n:"Kellogg's",c:'food'},
-  {n:'Five Guys',c:'food'},{n:'Terarosa Coffee',c:'food'},{n:'Osulloc Tea Museum',c:'food'},
-  {n:'BTS',c:'ent'},{n:'EXO',c:'ent'},{n:'BTOB',c:'ent'},
-  {n:'MBC Radio',c:'ent'},{n:'tvN',c:'ent'},{n:'Blue Archive',c:'ent'},
-  {n:'Mabinogi',c:'ent'},{n:'Kakao Friends',c:'ent'},{n:'Penguin Pengsoo',c:'ent'}
+/* ===== COLLAB BRANDS — PORTFOLIO PHOTOS ===== */
+var PORT_PHOTOS=[
+  {n:'Korean Air',c:'aviacao',img:'assets/portfolio-korea/portfolio-by-theme/02-aviacao-ferrovia-e-transporte/008__227__대한항공.jpg'},
+  {n:'Korean Air',c:'aviacao',img:'assets/portfolio-korea/portfolio-by-theme/02-aviacao-ferrovia-e-transporte/009__226__대한항공.jpg'},
+  {n:'Asiana Airlines',c:'aviacao',img:'assets/portfolio-korea/portfolio-by-theme/02-aviacao-ferrovia-e-transporte/022__157__아시아나 항공.jpg'},
+  {n:'Asiana Airlines',c:'aviacao',img:'assets/portfolio-korea/portfolio-by-theme/02-aviacao-ferrovia-e-transporte/024__155__아시아나 항공.jpg'},
+  {n:'Jeju Air',c:'aviacao',img:'assets/portfolio-korea/portfolio-by-theme/02-aviacao-ferrovia-e-transporte/018__164__제주항공.jpg'},
+  {n:'Jeju Air',c:'aviacao',img:'assets/portfolio-korea/portfolio-by-theme/02-aviacao-ferrovia-e-transporte/019__163__제주항공.jpg'},
+  {n:'T-Way Air',c:'aviacao',img:'assets/portfolio-korea/portfolio-by-theme/02-aviacao-ferrovia-e-transporte/013__188__티웨이 항공.jpg'},
+  {n:'Eastar Jet',c:'aviacao',img:'assets/portfolio-korea/portfolio-by-theme/02-aviacao-ferrovia-e-transporte/012__205__이스타 항공.jpg'},
+  {n:'PARATA AIR',c:'aviacao',img:'assets/portfolio-korea/portfolio-by-theme/02-aviacao-ferrovia-e-transporte/001__1394__PARATA AIR.jpg'},
+  {n:'Korea Airports',c:'aviacao',img:'assets/portfolio-korea/portfolio-by-theme/02-aviacao-ferrovia-e-transporte/001__1423__한국공항공사.jpg'},
+  {n:'Incheon Airport',c:'aviacao',img:'assets/portfolio-korea/portfolio-by-theme/02-aviacao-ferrovia-e-transporte/003__1415__인천.jpg'},
+  {n:'Korail',c:'aviacao',img:'assets/portfolio-korea/portfolio-by-theme/02-aviacao-ferrovia-e-transporte/012__1376__한국철도공사.jpg'},
+  {n:'Five Guys',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/01-alimentos-e-bebidas/001__1339__파이브가이즈.jpg'},
+  {n:'Terarosa Coffee',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/01-alimentos-e-bebidas/002__1338__테라로사.jpg'},
+  {n:'Outback Steakhouse',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/01-alimentos-e-bebidas/003__1335__아웃백.jpg'},
+  {n:'Nongshim',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/01-alimentos-e-bebidas/006__257__농심 안성탕면.jpg'},
+  {n:'Baskin Robbins',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/01-alimentos-e-bebidas/033__27__배스킨라빈스.jpg'},
+  {n:'Baskin Robbins',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/01-alimentos-e-bebidas/036__24__배스킨라빈스.jpg'},
+  {n:'Smoothie King',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/01-alimentos-e-bebidas/021__187__스무디킹.jpg'},
+  {n:'SUBWAY',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/01-alimentos-e-bebidas/025__153__SUBWAY.jpg'},
+  {n:'Ediya Coffee',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/01-alimentos-e-bebidas/026__129__이디야 커피.jpg'},
+  {n:'Ediya Coffee',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/01-alimentos-e-bebidas/027__128__이디야 커피.jpg'},
+  {n:'CJ Foods',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/01-alimentos-e-bebidas/030__124__CJ 제일제당.jpg'},
+  {n:'Maxim Coffee',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/01-alimentos-e-bebidas/024__158__맥심 커피.jpg'},
+  {n:'Shinsegae',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/06-varejo-e-hospitalidade/002__1375__신세계백화점.jpg'},
+  {n:'Daiso',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/06-varejo-e-hospitalidade/003__1334__다이소.jpg'},
+  {n:'E-Mart',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/06-varejo-e-hospitalidade/015__167__이마트.jpg'},
+  {n:'Lotte Mart',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/06-varejo-e-hospitalidade/011__209__롯데마트.jpg'},
+  {n:'Seven Eleven',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/06-varejo-e-hospitalidade/010__222__세븐일레븐.jpg'},
+  {n:'KT Telecom',c:'alimentos',img:'assets/portfolio-korea/portfolio-by-theme/06-varejo-e-hospitalidade/048__181__KT.jpg'},
+  {n:'Hyundai Motor',c:'automotivo',img:'assets/portfolio-korea/portfolio-by-theme/03-automotivo-e-mobilidade/003__1420__현대자동차.jpg'},
+  {n:'KIA',c:'automotivo',img:'assets/portfolio-korea/portfolio-by-theme/03-automotivo-e-mobilidade/005__1409__KIA.jpg'},
+  {n:'KIA',c:'automotivo',img:'assets/portfolio-korea/portfolio-by-theme/03-automotivo-e-mobilidade/006__1408__KIA.jpg'},
+  {n:'SOCAR',c:'automotivo',img:'assets/portfolio-korea/portfolio-by-theme/03-automotivo-e-mobilidade/014__168__쏘카.jpg'},
+  {n:'SK Encrean',c:'automotivo',img:'assets/portfolio-korea/portfolio-by-theme/03-automotivo-e-mobilidade/029__65__SK엔크린.jpg'},
+  {n:'SK Encrean',c:'automotivo',img:'assets/portfolio-korea/portfolio-by-theme/03-automotivo-e-mobilidade/032__62__SK엔크린.jpg'},
+  {n:'LS Mtron',c:'automotivo',img:'assets/portfolio-korea/portfolio-by-theme/03-automotivo-e-mobilidade/030__1321__LS엠트론.jpg'},
+  {n:'HD Hyundai',c:'industria',img:'assets/portfolio-korea/portfolio-by-theme/05-industria-energia-e-tecnologia/032__1312__HD현대.jpg'},
+  {n:'HD Hyundai',c:'industria',img:'assets/portfolio-korea/portfolio-by-theme/05-industria-energia-e-tecnologia/033__1311__HD현대.jpg'},
+  {n:'HD Hyundai XITE',c:'industria',img:'assets/portfolio-korea/portfolio-by-theme/05-industria-energia-e-tecnologia/009__1404__HD현대 XITESOLUTION.jpg'},
+  {n:'SK Hynix',c:'industria',img:'assets/portfolio-korea/portfolio-by-theme/05-industria-energia-e-tecnologia/025__1327__SK하이닉스.jpg'},
+  {n:'SK Innovation',c:'industria',img:'assets/portfolio-korea/portfolio-by-theme/05-industria-energia-e-tecnologia/037__1304__SK이노베이션.jpg'},
+  {n:'LG Display',c:'industria',img:'assets/portfolio-korea/portfolio-by-theme/05-industria-energia-e-tecnologia/018__1385__LG디스플레이.jpg'},
+  {n:'Bobcat',c:'industria',img:'assets/portfolio-korea/portfolio-by-theme/05-industria-energia-e-tecnologia/010__1395__Bobcat.jpg'},
+  {n:'LIG Defense',c:'militar',img:'assets/portfolio-korea/portfolio-by-theme/04-militar-defesa-e-resgate/009__1397__LIG Defense&Aerospace.jpg'},
+  {n:'LIG Defense',c:'militar',img:'assets/portfolio-korea/portfolio-by-theme/04-militar-defesa-e-resgate/010__1396__LIG Defense&Aerospace.jpg'},
+  {n:'LIG Nex1',c:'militar',img:'assets/portfolio-korea/portfolio-by-theme/04-militar-defesa-e-resgate/027__1325__LIG넥스원.jpg'},
+  {n:'Coast Guard',c:'militar',img:'assets/portfolio-korea/portfolio-by-theme/04-militar-defesa-e-resgate/026__1258__해양경찰.jpg'},
+  {n:'Police Agency',c:'militar',img:'assets/portfolio-korea/portfolio-by-theme/04-militar-defesa-e-resgate/004__1414__경찰청.jpg'},
+  {n:'Forest Service',c:'militar',img:'assets/portfolio-korea/portfolio-by-theme/04-militar-defesa-e-resgate/032__207__산림청.jpg'},
+  {n:'KBO Baseball',c:'esportes',img:'assets/portfolio-korea/portfolio-by-theme/08-esportes-e-lazer/056__146__한국야구위원회 KBO.jpg'},
+  {n:'KBO Baseball',c:'esportes',img:'assets/portfolio-korea/portfolio-by-theme/08-esportes-e-lazer/059__143__한국야구위원회 KBO.jpg'},
+  {n:'KBO Baseball',c:'esportes',img:'assets/portfolio-korea/portfolio-by-theme/08-esportes-e-lazer/053__149__한국야구위원회 KBO.jpg'},
+  {n:'Suwon Samsung',c:'esportes',img:'assets/portfolio-korea/portfolio-by-theme/08-esportes-e-lazer/047__185__수원삼성 블루윙즈 축구단.jpg'},
+  {n:'Gwangju FC',c:'esportes',img:'assets/portfolio-korea/portfolio-by-theme/08-esportes-e-lazer/046__186__광주FC.jpg'},
+  {n:'Anseong Memorial',c:'publico',img:'assets/portfolio-korea/portfolio-by-theme/07-publico-cultura-saude-e-educacao/013__1390__안성 3.1운동 기념관.jpg'},
+  {n:'Asia Culture Center',c:'publico',img:'assets/portfolio-korea/portfolio-by-theme/07-publico-cultura-saude-e-educacao/019__1329__국립아시아문화전당재단.jpg'},
+  {n:'Gyeonggi Museum',c:'publico',img:'assets/portfolio-korea/portfolio-by-theme/07-publico-cultura-saude-e-educacao/023__1306__경기도박물관.jpg'},
+  {n:'Yonsei Severance',c:'publico',img:'assets/portfolio-korea/portfolio-by-theme/07-publico-cultura-saude-e-educacao/024__1287__연세세브란스.jpg'},
+  {n:'Red Cross',c:'publico',img:'assets/portfolio-korea/portfolio-by-theme/07-publico-cultura-saude-e-educacao/030__212__대한적십자사.jpg'}
 ];
-var CAT_LABEL={corp:'Corporativo',food:'Varejo',ent:'Entretenimento'};
+var CAT_LABEL={aviacao:'Aviação & Transporte',alimentos:'Alimentos & Varejo',automotivo:'Automotivo',industria:'Indústria & Tecnologia',militar:'Militar & Defesa',esportes:'Esportes',publico:'Público & Cultura'};
 var bg=document.getElementById('brandGrid');
 function renderBrands(filter){
   if(!bg) return;
   bg.innerHTML='';
-  BRANDS.filter(function(b){return filter==='all'||b.c===filter}).forEach(function(b){
+  PORT_PHOTOS.filter(function(b){return filter==='all'||b.c===filter}).forEach(function(b){
     var d=document.createElement('div');
-    d.className='brandChip reveal in';
-    d.innerHTML='<span class="bStud"></span><span class="bName">'+b.n+'</span><span class="bCat">'+CAT_LABEL[b.c]+'</span>';
+    d.className='portCard reveal in';
+    d.innerHTML='<div class="portImgWrapper"><img src="'+b.img+'" alt="Oxford Blocks — '+b.n+'" loading="lazy" width="400" height="300"></div><div class="portInfo"><div class="portBrand">'+b.n+'</div><div class="portCat">'+CAT_LABEL[b.c]+'</div></div>';
     bg.appendChild(d);
   });
 }
