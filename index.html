@@ -1189,8 +1189,8 @@ var PORT_PHOTOS=[
   {n:'Anseong Memorial',c:'publico',img:'assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/013__1390__안성 3.1운동 기념관.png'},
   {n:'Asia Culture Center',c:'publico',img:'assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/019__1329__국립아시아문화전당재단.png'},
   {n:'Gyeonggi Museum',c:'publico',img:'assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/023__1306__경기도박물관.png'},
-  {n:'Yonsei Severance',c:'publico',img:'assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/024__1287__연세세브란스.png'},
-  {n:'Red Cross',c:'publico',img:'assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/030__212__대한적십자사.png'}
+  {n:'Red Cross (Hospital)',c:'publico',img:'assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/031__211__대한적십자사.png'},
+  {n:'Red Cross (Truck)',c:'publico',img:'assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/030__212__대한적십자사.png'}
 ];
 var CAT_LABEL={aviacao:'Aviação & Transporte',alimentos:'Alimentos & Varejo',automotivo:'Automotivo',industria:'Indústria & Tecnologia',militar:'Militar & Defesa',esportes:'Esportes',publico:'Público & Cultura'};
 var bg=document.getElementById('brandGrid');
@@ -1200,7 +1200,7 @@ function renderBrands(filter){
   PORT_PHOTOS.filter(function(b){return filter==='all'||b.c===filter}).forEach(function(b){
     var d=document.createElement('div');
     d.className='portCard reveal in';
-    d.innerHTML='<div class="portImgWrapper"><img src="'+b.img+'" alt="Oxford Blocks — '+b.n+'" loading="lazy" width="400" height="300"></div><div class="portInfo"><div class="portBrand">'+b.n+'</div><div class="portCat">'+CAT_LABEL[b.c]+'</div></div>';
+    d.innerHTML='<div class="portImgWrapper"><img src="'+encodeURI(b.img)+'" alt="Oxford Blocks — '+b.n+'" loading="lazy" width="400" height="300"></div><div class="portInfo"><div class="portBrand">'+b.n+'</div><div class="portCat">'+CAT_LABEL[b.c]+'</div></div>';
     bg.appendChild(d);
   });
 }
