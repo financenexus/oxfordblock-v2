@@ -157,15 +157,16 @@ img{max-width:100%;display:block}
 .filterBtn{padding:11px 20px;border:1px solid var(--line);border-radius:40px;font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--muted);transition:.2s;text-transform:uppercase}
 .filterBtn:hover{color:var(--text);border-color:rgba(255,255,255,.25)}
 .filterBtn.active{background:var(--red);border-color:var(--red);color:#fff}
-.brandGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
-.portCard{position:relative;border-radius:8px;overflow:hidden;background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid var(--line);aspect-ratio:3/2;transition:transform .28s ease,border-color .2s,box-shadow .28s;display:flex;flex-direction:column;isolation:isolate}
-.portCard:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 18px 44px rgba(0,0,0,.65),0 0 25px rgba(212,43,36,.15)}
-.portCard .portImgWrapper{flex:1;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:12px 12px 2px}
-.portCard img{max-width:100%;max-height:100%;object-fit:contain;display:block;transition:transform .45s ease;filter:drop-shadow(0 12px 24px rgba(0,0,0,.8))}
-.portCard:hover img{transform:scale(1.08) translateY(-4px)}
-.portCard .portInfo{padding:12px 16px 14px;background:rgba(10,12,13,.85);border-top:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:2}
-.portCard .portBrand{font-size:14px;font-weight:800;color:#fff;letter-spacing:-.01em;line-height:1.2;margin-bottom:2px}
-.portCard .portCat{font-size:9px;font-weight:700;letter-spacing:.14em;color:var(--red);text-transform:uppercase}
+.brandGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:18px}
+.portCard{position:relative;border-radius:8px;overflow:hidden;background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid var(--line);aspect-ratio:3/2;transition:transform .28s ease,border-color .2s,box-shadow .28s,background .2s;display:flex;flex-direction:column;isolation:isolate}
+.portCard:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 22px 48px rgba(0,0,0,.7),0 0 30px rgba(212,43,36,.18);background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02))}
+.portCard .portImgWrapper{flex:1;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px 8px 0}
+.portCard img{max-width:100%;max-height:100%;object-fit:contain;display:block;transition:transform .45s ease;filter:drop-shadow(0 14px 28px rgba(0,0,0,.85))}
+.portCard:hover img{transform:scale(1.09) translateY(-4px)}
+.portCard .portInfo{padding:14px 18px 16px;background:rgba(10,12,13,.85);border-top:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:2}
+.portCard .portBrand{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.01em;line-height:1.2;margin-bottom:2px}
+.portCard .portCat{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--red);text-transform:uppercase}
+
 
 
 .heritageRow{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:14px}
