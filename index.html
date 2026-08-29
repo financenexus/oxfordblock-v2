@@ -1186,7 +1186,7 @@ img{max-width:100%;display:block}
 /* ===== COLLAB BRANDS — PORTFOLIO MODELS & LIGHTBOX ===== */
 var PORT_MODELS=[
   /* Entretenimento, Mídia & Destaques */
-  {n:'MBC Helicopter',c:'entretenimento',video:'assets/mbc-helicopter.mp4?v=2.1',photos:['assets/portfolio-korea-transparent/09-entretenimento-midia-e-games/017__103__MBC.png','assets/portfolio-korea-transparent/09-entretenimento-midia-e-games/018__102__MBC.png','assets/portfolio-korea-transparent/09-entretenimento-midia-e-games/019__101__MBC.png','assets/portfolio-korea-transparent/09-entretenimento-midia-e-games/020__100__MBC.png']},
+  {n:'MBC Helicopter',c:'entretenimento',video:'assets/mbc-helicopter.mp4',poster:'assets/mbc-helicopter-poster.png',photos:['assets/portfolio-korea-transparent/09-entretenimento-midia-e-games/017__103__MBC.png','assets/portfolio-korea-transparent/09-entretenimento-midia-e-games/018__102__MBC.png','assets/portfolio-korea-transparent/09-entretenimento-midia-e-games/019__101__MBC.png','assets/portfolio-korea-transparent/09-entretenimento-midia-e-games/020__100__MBC.png']},
 
   /* Aviação, Ferrovia e Transporte */
   {n:'Korean Air',c:'aviacao',photos:['assets/portfolio-korea-transparent/02-aviacao-ferrovia-e-transporte/008__227__대한항공.png','assets/portfolio-korea-transparent/02-aviacao-ferrovia-e-transporte/009__226__대한항공.png']},
@@ -1272,7 +1272,8 @@ function renderBrands(filter){
     if(b.video){
       inner += '<div class="portBadgeVideo"><span class="vDot"></span> Vídeo</div>';
       inner += '<div class="videoHint">▶ Passe o mouse para ver</div>';
-      inner += '<video class="portVideo" src="'+encodeURI(b.video)+'" muted playsinline preload="auto" width="400" height="300"></video>';
+      var posterAttr = b.poster ? ' poster="'+encodeURI(b.poster)+'?v=2.1"' : '';
+      inner += '<video class="portVideo" src="'+encodeURI(b.video)+'"'+posterAttr+' muted playsinline preload="auto" width="400" height="300"></video>';
     } else {
       var countBadge = b.photos.length > 1 ? '<div class="portBadge">📷 '+b.photos.length+' fotos</div>' : '';
       inner += countBadge + '<img src="'+encodeURI(b.photos[0])+'?v=2.1" alt="Oxford Blocks — '+b.n+'" loading="lazy" width="400" height="300">';
@@ -1283,30 +1284,15 @@ function renderBrands(filter){
     if(b.video){
       var vid = d.querySelector('video.portVideo');
       if(vid){
-        // Seek to final frame on load so the completed model is shown initially
-        function showFinalFrame(){
-          if(vid.duration && !isNaN(vid.duration)){
-            vid.currentTime = Math.max(0, vid.duration - 0.05);
-          }
-        }
-        vid.addEventListener('loadedmetadata', showFinalFrame);
-        vid.addEventListener('canplay', function(){
-          if(vid.currentTime === 0 && !d.classList.contains('is-playing')){
-            showFinalFrame();
-          }
-        });
-        if(vid.readyState >= 1){
-          showFinalFrame();
-        }
-
-        // On mouse enter, play once from the beginning (not looping)
         d.addEventListener('mouseenter', function(){
           d.classList.add('is-playing');
           vid.currentTime = 0;
-          vid.play().catch(function(){});
+          var p = vid.play();
+          if(p !== undefined){
+            p.catch(function(){});
+          }
         });
 
-        // When video finishes playing, it naturally stays on the final frame
         vid.addEventListener('ended', function(){
           d.classList.remove('is-playing');
         });
@@ -1384,6 +1370,7 @@ function updateModalView(){
     var vid = document.createElement('video');
     vid.className = 'portModalVideo';
     vid.src = encodeURI(activeModel.video);
+    if(activeModel.poster) vid.poster = encodeURI(activeModel.poster);
     vid.autoplay = true;
     vid.muted = false;
     vid.controls = true;
