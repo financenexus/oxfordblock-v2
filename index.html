@@ -1284,13 +1284,23 @@ function renderBrands(filter){
     if(b.video){
       var vid = d.querySelector('video.portVideo');
       if(vid){
+        vid.muted = true;
+        vid.defaultMuted = true;
+        vid.playsInline = true;
+
         d.addEventListener('mouseenter', function(){
           d.classList.add('is-playing');
+          vid.muted = true;
           vid.currentTime = 0;
           var p = vid.play();
-          if(p !== undefined){
+          if(p !== undefined) {
             p.catch(function(){});
           }
+        });
+
+        d.addEventListener('mouseleave', function(){
+          d.classList.remove('is-playing');
+          vid.pause();
         });
 
         vid.addEventListener('ended', function(){
@@ -1371,9 +1381,11 @@ function updateModalView(){
     vid.className = 'portModalVideo';
     vid.src = encodeURI(activeModel.video);
     if(activeModel.poster) vid.poster = encodeURI(activeModel.poster);
-    vid.autoplay = true;
-    vid.muted = false;
     vid.controls = true;
+    vid.autoplay = true;
+    vid.muted = true;
+    vid.defaultMuted = true;
+    vid.playsInline = true;
     vid.setAttribute('playsinline','');
     vid.style.maxWidth = '100%';
     vid.style.maxHeight = '100%';
@@ -1382,6 +1394,8 @@ function updateModalView(){
     vid.style.boxShadow = '0 20px 60px rgba(0,0,0,.9)';
     stage.insertBefore(vid, btnPrev);
     modalCount.textContent = '▶ Vídeo (1 de ' + totalItems + ')';
+    var p = vid.play();
+    if(p !== undefined) p.catch(function(){});
   } else {
     modalImg.style.display = '';
     var realIdx = activeModel.video ? activePhotoIdx - 1 : activePhotoIdx;
