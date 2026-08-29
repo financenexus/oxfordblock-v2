@@ -167,6 +167,11 @@ img{max-width:100%;display:block}
 .portCard .portImgWrapper{flex:1;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:14px 14px 4px;background:radial-gradient(circle at center,#FFFFFF 30%,#FFFDF4 100%)}
 .portCard img{max-width:100%;max-height:100%;object-fit:contain;display:block;transition:transform .5s cubic-bezier(.16,1,.3,1);filter:drop-shadow(0 14px 24px rgba(0,0,0,.15)) drop-shadow(0 2px 6px rgba(0,0,0,.06))}
 .portCard:hover img{transform:scale(1.12) translateY(-4px)}
+.portCard video.portVideo{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.portCard:hover video.portVideo{transform:scale(1.05)}
+.portBadgeVideo{position:absolute;top:14px;left:14px;background:rgba(212,43,36,.92);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:700;color:#fff;display:flex;align-items:center;gap:6px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:3}
+.portBadgeVideo .vDot{width:5px;height:5px;border-radius:50%;background:#fff;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.7)}}
 .portCard .portInfo{padding:16px 22px 18px;background:#FFFFFF;border-top:1px solid rgba(0,0,0,.06);z-index:2}
 .portCard .portBrand{font-size:18px;font-weight:800;color:var(--text);letter-spacing:-.015em;line-height:1.2;margin-bottom:3px}
 .portCard .portCat{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--red);text-transform:uppercase}
@@ -802,6 +807,7 @@ img{max-width:100%;display:block}
       <button class="filterBtn" data-filter="militar">Militar &amp; Defesa</button>
       <button class="filterBtn" data-filter="esportes">Esportes</button>
       <button class="filterBtn" data-filter="publico">Público &amp; Cultura</button>
+      <button class="filterBtn" data-filter="entretenimento">🎬 Entretenimento &amp; Mídia</button>
     </div>
 
 
@@ -1243,10 +1249,13 @@ var PORT_MODELS=[
   {n:'Asia Culture Center',c:'publico',photos:['assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/019__1329__국립아시아문화전당재단.png']},
   {n:'Gyeonggi Museum',c:'publico',photos:['assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/023__1306__경기도박물관.png']},
   {n:'Red Cross',c:'publico',photos:['assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/030__212__대한적십자사.png','assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/031__211__대한적십자사.png']},
-  {n:'Hamsoa Clinic',c:'publico',photos:['assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/044__190__함소아 한의원.png','assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/045__189__함소아 한의원.png']}
+  {n:'Hamsoa Clinic',c:'publico',photos:['assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/044__190__함소아 한의원.png','assets/portfolio-korea-transparent/07-publico-cultura-saude-e-educacao/045__189__함소아 한의원.png']},
+
+  /* Entretenimento & Mídia */
+  {n:'MBC Helicopter',c:'entretenimento',video:'assets/mbc-helicopter.mp4',photos:['assets/portfolio-korea-transparent/09-entretenimento-midia-e-games/017__103__MBC.png','assets/portfolio-korea-transparent/09-entretenimento-midia-e-games/018__102__MBC.png','assets/portfolio-korea-transparent/09-entretenimento-midia-e-games/019__101__MBC.png','assets/portfolio-korea-transparent/09-entretenimento-midia-e-games/020__100__MBC.png']}
 ];
 
-var CAT_LABEL={aviacao:'Aviação & Transporte',alimentos:'Alimentos & Varejo',automotivo:'Automotivo',industria:'Indústria & Tecnologia',militar:'Militar & Defesa',esportes:'Esportes',publico:'Público & Cultura'};
+var CAT_LABEL={aviacao:'Aviação & Transporte',alimentos:'Alimentos & Varejo',automotivo:'Automotivo',industria:'Indústria & Tecnologia',militar:'Militar & Defesa',esportes:'Esportes',publico:'Público & Cultura',entretenimento:'Entretenimento & Mídia'};
 var bg=document.getElementById('brandGrid');
 
 function renderBrands(filter){
@@ -1256,8 +1265,16 @@ function renderBrands(filter){
   filtered.forEach(function(b){
     var d=document.createElement('div');
     d.className='portCard reveal in';
-    var countBadge = b.photos.length > 1 ? '<div class="portBadge">📷 '+b.photos.length+' fotos</div>' : '';
-    d.innerHTML='<div class="portImgWrapper">'+countBadge+'<img src="'+encodeURI(b.photos[0])+'?v=2.1" alt="Oxford Blocks — '+b.n+'" loading="lazy" width="400" height="300"></div><div class="portInfo"><div class="portBrand">'+b.n+'</div><div class="portCat">'+CAT_LABEL[b.c]+'</div></div>';
+    var inner = '<div class="portImgWrapper">';
+    if(b.video){
+      inner += '<div class="portBadgeVideo"><span class="vDot"></span> Vídeo</div>';
+      inner += '<video class="portVideo" src="'+encodeURI(b.video)+'" autoplay muted loop playsinline preload="auto" width="400" height="300"></video>';
+    } else {
+      var countBadge = b.photos.length > 1 ? '<div class="portBadge">📷 '+b.photos.length+' fotos</div>' : '';
+      inner += countBadge + '<img src="'+encodeURI(b.photos[0])+'?v=2.1" alt="Oxford Blocks — '+b.n+'" loading="lazy" width="400" height="300">';
+    }
+    inner += '</div><div class="portInfo"><div class="portBrand">'+b.n+'</div><div class="portCat">'+CAT_LABEL[b.c]+'</div></div>';
+    d.innerHTML = inner;
     d.addEventListener('click', function(){
       openPortModal(b);
     });
@@ -1307,18 +1324,49 @@ function closePortModal(){
 function updateModalView(){
   if(!activeModel) return;
   var total = activeModel.photos.length;
-  modalCount.textContent = 'Foto ' + (activePhotoIdx + 1) + ' de ' + total;
-  
-  modalImg.style.opacity = '0';
-  modalImg.style.transform = 'scale(0.96)';
-  setTimeout(function(){
-    modalImg.src = encodeURI(activeModel.photos[activePhotoIdx]) + '?v=2.1';
-    modalImg.alt = 'Oxford Blocks — ' + activeModel.n + ' (' + (activePhotoIdx + 1) + '/' + total + ')';
-    modalImg.style.opacity = '1';
-    modalImg.style.transform = 'scale(1)';
-  }, 100);
 
-  if(total <= 1){
+  // Clear stage and replace img/video depending on current item
+  var stage = document.querySelector('.portModalStage');
+  var existingVideo = stage.querySelector('.portModalVideo');
+  if(existingVideo) existingVideo.remove();
+
+  // Determine if current item is a video (first item = video if model.video set AND idx === 0)
+  var isVideoItem = activeModel.video && activePhotoIdx === 0;
+
+  if(isVideoItem){
+    modalImg.style.display = 'none';
+    var vid = document.createElement('video');
+    vid.className = 'portModalVideo';
+    vid.src = encodeURI(activeModel.video);
+    vid.autoplay = true;
+    vid.muted = false;
+    vid.loop = true;
+    vid.controls = true;
+    vid.setAttribute('playsinline','');
+    vid.style.maxWidth = '100%';
+    vid.style.maxHeight = '100%';
+    vid.style.borderRadius = '8px';
+    vid.style.objectFit = 'contain';
+    vid.style.boxShadow = '0 20px 60px rgba(0,0,0,.9)';
+    stage.insertBefore(vid, btnPrev);
+    modalCount.textContent = '▶ Vídeo (1 de ' + (total+1) + ')';
+  } else {
+    modalImg.style.display = '';
+    var realIdx = activeModel.video ? activePhotoIdx - 1 : activePhotoIdx;
+    var realTotal = activeModel.video ? total : total;
+    modalCount.textContent = 'Foto ' + (realIdx+1) + ' de ' + realTotal;
+    modalImg.style.opacity = '0';
+    modalImg.style.transform = 'scale(0.96)';
+    setTimeout(function(){
+      modalImg.src = encodeURI(activeModel.photos[realIdx]) + '?v=2.1';
+      modalImg.alt = 'Oxford Blocks — ' + activeModel.n;
+      modalImg.style.opacity = '1';
+      modalImg.style.transform = 'scale(1)';
+    }, 100);
+  }
+
+  var totalItems = total + (activeModel.video ? 1 : 0);
+  if(totalItems <= 1){
     btnPrev.style.display = 'none';
     btnNext.style.display = 'none';
     modalThumbs.style.display = 'none';
@@ -1328,16 +1376,30 @@ function updateModalView(){
     modalThumbs.style.display = 'flex';
   }
 
-  // Render Thumbnails
+  // Render Thumbnails (video thumb first if applicable)
   modalThumbs.innerHTML = '';
-  if(total > 1){
+  if(totalItems > 1){
+    // Video thumb
+    if(activeModel.video){
+      var vt = document.createElement('div');
+      vt.className = 'portModalThumb' + (activePhotoIdx === 0 ? ' active' : '');
+      vt.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(212,43,36,.2);border-radius:4px"><span style="font-size:18px">▶</span></div>';
+      vt.addEventListener('click', function(e){
+        e.stopPropagation();
+        activePhotoIdx = 0;
+        updateModalView();
+      });
+      modalThumbs.appendChild(vt);
+    }
+    // Photo thumbs
     activeModel.photos.forEach(function(photo, pIdx){
+      var thumbIdx = pIdx + (activeModel.video ? 1 : 0);
       var t = document.createElement('div');
-      t.className = 'portModalThumb' + (pIdx === activePhotoIdx ? ' active' : '');
+      t.className = 'portModalThumb' + (thumbIdx === activePhotoIdx ? ' active' : '');
       t.innerHTML = '<img src="' + encodeURI(photo) + '?v=2.1" alt="' + activeModel.n + ' ' + (pIdx + 1) + '">';
       t.addEventListener('click', function(e){
         e.stopPropagation();
-        activePhotoIdx = pIdx;
+        activePhotoIdx = thumbIdx;
         updateModalView();
       });
       modalThumbs.appendChild(t);
@@ -1346,14 +1408,16 @@ function updateModalView(){
 }
 
 function nextPhoto(){
-  if(!activeModel || activeModel.photos.length <= 1) return;
-  activePhotoIdx = (activePhotoIdx + 1) % activeModel.photos.length;
+  var totalItems = activeModel.photos.length + (activeModel.video ? 1 : 0);
+  if(!activeModel || totalItems <= 1) return;
+  activePhotoIdx = (activePhotoIdx + 1) % totalItems;
   updateModalView();
 }
 
 function prevPhoto(){
-  if(!activeModel || activeModel.photos.length <= 1) return;
-  activePhotoIdx = (activePhotoIdx - 1 + activeModel.photos.length) % activeModel.photos.length;
+  var totalItems = activeModel.photos.length + (activeModel.video ? 1 : 0);
+  if(!activeModel || totalItems <= 1) return;
+  activePhotoIdx = (activePhotoIdx - 1 + totalItems) % totalItems;
   updateModalView();
 }
 
