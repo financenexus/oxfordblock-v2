@@ -1258,7 +1258,7 @@ function renderBrands(filter){
     var d=document.createElement('div');
     d.className='portCard reveal in';
     var countBadge = b.photos.length > 1 ? '<div class="portBadge">📷 '+b.photos.length+' fotos</div>' : '';
-    d.innerHTML='<div class="portImgWrapper">'+countBadge+'<img src="'+encodeURI(b.photos[0])+'" alt="Oxford Blocks — '+b.n+'" loading="lazy" width="400" height="300"></div><div class="portInfo"><div class="portBrand">'+b.n+'</div><div class="portCat">'+CAT_LABEL[b.c]+'</div></div>';
+    d.innerHTML='<div class="portImgWrapper">'+countBadge+'<img src="'+encodeURI(b.photos[0])+'?v=2.1" alt="Oxford Blocks — '+b.n+'" loading="lazy" width="400" height="300"></div><div class="portInfo"><div class="portBrand">'+b.n+'</div><div class="portCat">'+CAT_LABEL[b.c]+'</div></div>';
     d.addEventListener('click', function(){
       openPortModal(b);
     });
@@ -1313,7 +1313,7 @@ function updateModalView(){
   modalImg.style.opacity = '0';
   modalImg.style.transform = 'scale(0.96)';
   setTimeout(function(){
-    modalImg.src = encodeURI(activeModel.photos[activePhotoIdx]);
+    modalImg.src = encodeURI(activeModel.photos[activePhotoIdx]) + '?v=2.1';
     modalImg.alt = 'Oxford Blocks — ' + activeModel.n + ' (' + (activePhotoIdx + 1) + '/' + total + ')';
     modalImg.style.opacity = '1';
     modalImg.style.transform = 'scale(1)';
@@ -1335,7 +1335,7 @@ function updateModalView(){
     activeModel.photos.forEach(function(photo, pIdx){
       var t = document.createElement('div');
       t.className = 'portModalThumb' + (pIdx === activePhotoIdx ? ' active' : '');
-      t.innerHTML = '<img src="' + encodeURI(photo) + '" alt="' + activeModel.n + ' ' + (pIdx + 1) + '">';
+      t.innerHTML = '<img src="' + encodeURI(photo) + '?v=2.1" alt="' + activeModel.n + ' ' + (pIdx + 1) + '">';
       t.addEventListener('click', function(e){
         e.stopPropagation();
         activePhotoIdx = pIdx;
