@@ -1307,10 +1307,28 @@ var PORT_MODELS=[
 var CAT_LABEL={aviacao:'Aviação & Transporte',alimentos:'Alimentos & Varejo',automotivo:'Automotivo',industria:'Indústria & Tecnologia',militar:'Militar & Defesa',esportes:'Esportes',publico:'Público & Cultura',entretenimento:'Entretenimento & Mídia'};
 var bg=document.getElementById('brandGrid');
 
+/* Flag to temporarily hide photo cards in the portfolio, keeping only video cards visible */
+var HIDE_PORTFOLIO_PHOTOS = true;
+
 function renderBrands(filter){
   if(!bg) return;
   bg.innerHTML='';
-  var filtered = PORT_MODELS.filter(function(b){return filter==='all'||b.c===filter});
+  var filtered = PORT_MODELS.filter(function(b){
+    if(HIDE_PORTFOLIO_PHOTOS && !b.video) return false;
+    return filter==='all'||b.c===filter;
+  });
+
+  var filtersEl = document.getElementById('collabFilters');
+  if(HIDE_PORTFOLIO_PHOTOS){
+    bg.style.maxWidth = '780px';
+    bg.style.margin = '0 auto';
+    if(filtersEl) filtersEl.style.display = 'none';
+  } else {
+    bg.style.maxWidth = '';
+    bg.style.margin = '';
+    if(filtersEl) filtersEl.style.display = '';
+  }
+
   filtered.forEach(function(b){
     var d=document.createElement('div');
     d.className='portCard reveal in';
