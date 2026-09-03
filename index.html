@@ -494,6 +494,35 @@ img{max-width:100%;display:block}
   .wfStep{border-right:0}
   .footer{flex-direction:column;align-items:flex-start}
 }
+/* ===== NEW SECTIONS & CONTENT HELPERS ===== */
+.heroPills{display:inline-flex;flex-wrap:wrap;align-items:center;gap:12px;margin:22px 0 0;font-size:13px;font-weight:700;color:var(--text);letter-spacing:.02em}
+.heroPills .pillSep{color:var(--red);opacity:.75}
+.solutionList{margin:18px 0 0;padding-top:16px;border-top:1px solid var(--line2)}
+.solutionListTitle{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin:0 0 10px}
+.solutionList ul{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+.solutionList li{font-size:13px;color:var(--muted);position:relative;padding-left:14px;line-height:1.45}
+.solutionList li:before{content:"•";position:absolute;left:0;color:var(--yellow);font-weight:bold}
+.solutionTriad{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px}
+.triadCard{padding:36px 30px;border:1px solid var(--line);border-radius:6px;background:var(--ink2);transition:.24s;position:relative}
+.triadCard:hover{border-color:var(--red);transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.4)}
+.triadCard .triadNum{font-size:12px;font-weight:900;color:var(--red);letter-spacing:.12em;display:block;margin-bottom:14px}
+.triadCard h3{font-size:19px;font-weight:800;margin:0 0 10px;color:var(--white);letter-spacing:-.01em}
+.triadCard p{font-size:13px;line-height:1.6;color:var(--muted);margin:0}
+.triadCard.highlight{background:linear-gradient(155deg,rgba(212,43,36,.12),var(--ink2));border-color:rgba(212,43,36,.35)}
+.footerGrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.1fr;gap:40px;width:100%}
+.fCol h4{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--white);text-transform:uppercase;margin:0 0 16px}
+.fColLinks{display:flex;flex-direction:column;gap:11px}
+.fColLinks a{color:var(--muted);font-size:13px;transition:.2s}
+.fColLinks a:hover{color:var(--white)}
+.fSlogan{color:var(--muted);font-size:13px;font-weight:600;margin:12px 0 14px}
+.fCopy{color:var(--muted2);font-size:11px}
+@media (max-width:860px){
+  .solutionTriad{grid-template-columns:1fr}
+  .footerGrid{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media (max-width:540px){
+  .footerGrid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -504,20 +533,22 @@ img{max-width:100%;display:block}
   <a class="brand" href="#top"><img src="assets/oxford-logo-official-nav.png" srcset="assets/oxford-logo-official-nav.png 1x, assets/oxford-logo-official-nav@2x.png 2x" alt="Oxford Blocks" width="148" height="200"><small>BRASIL</small></a>
 
   <div class="nav" id="mainNav">
-    <a href="#prova">A Prova</a>
+    <a href="#porque">Por que Oxford</a>
     <a href="#historia">História</a>
-    <a href="#negocios">Negócios</a>
-    <a href="#coreia">Colaborações</a>
-    <a href="#brasil">Brasil</a>
-    <a href="#faq">Dúvidas</a>
+    <a href="#solucoes">Soluções</a>
+    <a href="#como">Como Funciona</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#segmentos">Segmentos</a>
+    <a href="#linha-oxford">Linha Oxford</a>
+    <a href="#faq">FAQ</a>
   </div>
   <div class="navCta">
-    <a class="btn btn--red" href="parceiro.html">Seja um Parceiro <span class="arr">→</span></a>
+    <a class="btn btn--red" href="#contato">Fale Conosco <span class="arr">→</span></a>
     <button class="menuBtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav"><span></span></button>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- 1. HOME / BANNER PRINCIPAL -->
 <main id="main">
 <section class="hero" id="top">
   <div class="heroSun"></div>
@@ -527,9 +558,21 @@ img{max-width:100%;display:block}
   <div class="heroInner">
     <div class="heroMainGrid">
       <div class="heroText">
-        <p class="heroEyebrow"><i></i> Coreia do Sul × Brasil <i></i></p>
-        <h1>Oxford <span class="red">Blocks</span><br>Brasil</h1>
-        <p class="heroTagline">A Oxford transforma marcas e ideias que ganham vida.</p>
+        <p class="heroEyebrow"><i></i> OXFORD BLOCKS BRASIL <i></i></p>
+        <h1>Sua marca em <span class="red">blocos.</span></h1>
+        <p class="heroTagline">Transformamos marcas, produtos, espaços e ideias em projetos exclusivos de blocos de montar.</p>
+        
+        <div class="heroPills">
+          <span>Projetos personalizados</span>
+          <span class="pillSep">•</span>
+          <span>Collabs e Licenciamentos</span>
+          <span class="pillSep">•</span>
+          <span>Linha Oxford para Revenda</span>
+        </div>
+
+        <div style="margin-top:32px">
+          <a class="btn btn--red btn--lg" href="#contato">Fale conosco <span class="arr">→</span></a>
+        </div>
       </div>
 
       <div class="heroVideoWrapper">
@@ -565,244 +608,224 @@ img{max-width:100%;display:block}
         </div>
       </div>
     </div>
-
-    <div class="heroPaths">
-      <a class="pathCard" href="#negocios">
-        <span class="pBadge first">Comece por aqui</span>
-        <span class="ptag">Institucional & Corporativo</span>
-        <h3>A sua fábrica, em suas mãos</h3>
-        <p>A máquina-símbolo da sua empresa vira presente que ninguém esquece.</p>
-        <span class="parr">Ver casos <span class="arr">→</span></span>
-      </a>
-      <a class="pathCard" href="#coreia">
-        <span class="ptag">Collab de Marca</span>
-        <h3>Identidade que vira coleção</h3>
-        <p>Sua marca como coleção física: na loja oficial, na campanha, no sócio-torcedor.</p>
-        <span class="parr">Ver colaborações <span class="arr">→</span></span>
-      </a>
-      <a class="pathCard" href="#comercial">
-        <span class="ptag">Linha Regular</span>
-        <h3>Prateleira premium</h3>
-        <p>Catálogo permanente Oxford para o seu varejo. Sem projeto customizado, pronto para revender.</p>
-        <span class="parr">Ver linha comercial <span class="arr">→</span></span>
-      </a>
-    </div>
   </div>
   <div class="scrollHint"><i></i> Role para explorar</div>
 </section>
 
-<!-- A PROVA -->
-<section class="section proof" id="prova">
+<!-- 2. SEÇÃO "POR QUE OXFORD?" -->
+<section class="section section--alt" id="porque">
   <div class="wrap">
-    <p class="kicker reveal"><i></i> A Prova que Convence</p>
+    <p class="kicker reveal"><i></i> Por que Oxford?</p>
     <div class="sHead">
-      <h2 class="reveal">Você sonha.<br>A gente constrói.<br><span class="red">O mundo lembra.</span></h2>
-      <p class="sCopy reveal">A Oxford Blocks transforma marcas em experiências inesquecíveis — <span class="red">bloco a bloco.</span></p>
-    </div>
-
-    <div class="proofPromises">
-      <article class="proofPromise reveal">
-        <span class="proofGlyph" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M32 5 56 18v28L32 59 8 46V18Z"/><path d="m8 18 24 14 24-14M32 32v27M20 12l24 14"/></svg></span>
-        <div><h3>Projetos exclusivos</h3><p>Do conceito ao último detalhe.</p></div>
-      </article>
-      <article class="proofPromise reveal">
-        <span class="proofGlyph" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="26" r="17"/><path d="m20 40-4 19 16-8 16 8-4-19M25 26l5 5 10-11"/></svg></span>
-        <div><h3>Qualidade que impressiona</h3><p>Padrão internacional e acabamento premium.</p></div>
-      </article>
-      <article class="proofPromise reveal">
-        <span class="proofGlyph" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M23 19 12 30a9 9 0 0 0 0 13l3 3a6 6 0 0 0 9 0l8-8"/><path d="m41 19 11 11a9 9 0 0 1 0 13l-3 3a6 6 0 0 1-9 0l-8-8M24 30l8-8 8 8M20 42l7 7M44 42l-7 7"/></svg></span>
-        <div><h3>Parcerias de verdade</h3><p>Confiança, suporte e resultado.</p></div>
-      </article>
-      <article class="proofPromise reveal">
-        <span class="proofGlyph" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="m32 5 8 17 19 3-14 13 4 19-17-9-17 9 4-19L5 25l19-3Z"/></svg></span>
-        <div><h3>Histórias que ficam</h3><p>Colecionáveis que geram conexão.</p></div>
-      </article>
-    </div>
-
-    <div class="proofNarrative reveal">
-      <p class="proofNarrativeLead">Do clube do coração ao <span class="red">ícone global.</span><br>A Oxford já <span class="red">fez — e vendeu.</span></p>
-      <p>Na Coreia, criamos estádios, ônibus e jogadores em miniatura que viraram febre entre os fãs e geraram vendas reais nas lojas oficiais dos clubes.</p>
-    </div>
-
-    <div class="proofStrategy reveal">
-      <div class="proofStrategyCopy">
-        <h3>Não é apenas brinquedo.<br><span class="red">É estratégia.</span></h3>
-        <ul class="proofBenefits">
-          <li>Fortalece sua marca</li>
-          <li>Engaja fãs e colecionadores</li>
-          <li>Gera receita e visibilidade</li>
-          <li>Deixa um legado que se constrói</li>
-        </ul>
-      </div>
-      <div class="proofStrategyVisual">
-        <img src="assets/proof-stadium-owner.jpg" alt="Estádio em blocos com miniaturas de jogadores" width="490" height="315" loading="lazy" decoding="async">
+      <h2 class="reveal">Por que escolher a <span class="red">Oxford?</span></h2>
+      <div>
+        <p class="sCopy reveal" style="font-weight:700;color:var(--text);font-size:17px;margin-bottom:8px">Experiência, qualidade e fabricação própria.</p>
+        <p class="sCopy reveal">A Oxford é uma fabricante sul-coreana de blocos de montar, com décadas de experiência no desenvolvimento e produção de seus produtos. No Brasil, oferecemos projetos personalizados para empresas, marcas, clubes, instituições e varejistas.</p>
       </div>
     </div>
 
-    <a class="proofCta reveal" href="#parceiro">
-      <div class="proofCtaTitle">
-        <span class="proofCtaIcon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="4" y="7" width="24" height="21" rx="2"/><path d="M10 4v6M22 4v6M4 13h24M9 18h4M19 18h4M9 23h4"/></svg></span>
-        <h3>Vamos construir<br><span class="red">algo incrível juntos?</span></h3>
+    <div class="whyGrid reveal">
+      <div class="whyPillar">
+        <span class="whyIco">🏆</span>
+        <span class="whyBar"></span>
+        <h4>Experiência</h4>
+        <p>Décadas de atuação no mercado de blocos de montar.</p>
       </div>
-      <p>Marcas fortes não apenas aparecem.<br>Elas <span class="red">constroem lembranças.</span></p>
-    </a>
+      <div class="whyPillar">
+        <span class="whyIco">🏭</span>
+        <span class="whyBar"></span>
+        <h4>Fabricação própria</h4>
+        <p>Projetos desenvolvidos e produzidos pela Oxford na Coreia do Sul.</p>
+      </div>
+      <div class="whyPillar">
+        <span class="whyIco">✨</span>
+        <span class="whyBar"></span>
+        <h4>Projetos personalizados</h4>
+        <p>Transformamos produtos, marcas, espaços e ideias em projetos exclusivos.</p>
+      </div>
+      <div class="whyPillar">
+        <span class="whyIco">🤝</span>
+        <span class="whyBar"></span>
+        <h4>Soluções para diferentes negócios</h4>
+        <p>Projetos corporativos, licenciamentos, collabs e produtos para revenda.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- HISTÓRIA -->
-<section class="section section--alt" id="historia">
+<!-- 3. HISTÓRIA DA OXFORD -->
+<section class="section" id="historia">
   <div class="wrap">
-    <p class="kicker reveal"><i></i> A História da Oxford</p>
+    <p class="kicker reveal"><i></i> História da Oxford</p>
     <div class="sHead">
-      <h2 class="reveal">Décadas de <span class="red">precisão</span><br>coreana em cada bloco.</h2>
-      <p class="sCopy reveal">Da fundação na Coreia do Sul à fabricação própria e ao desenvolvimento de projetos para marcas e instituições reconhecidas, a Oxford construiu uma trajetória de compatibilidade global.</p>
+      <h2 class="reveal">A história da <span class="red">Oxford</span></h2>
+      <div>
+        <p class="sCopy reveal" style="font-weight:700;color:var(--text);font-size:17px;margin-bottom:8px">Uma empresa sul-coreana com décadas de experiência em blocos de montar.</p>
+        <p class="sCopy reveal">A Oxford nasceu na Coreia do Sul e construiu sua história no desenvolvimento e fabricação de blocos de montar. Ao longo de sua trajetória, a empresa desenvolveu produtos próprios e projetos em parceria com diferentes marcas e instituições. Hoje, a Oxford leva seus produtos e projetos para diferentes mercados, combinando experiência, criatividade e fabricação própria.</p>
+      </div>
     </div>
 
     <div class="timeline reveal">
       <div class="tlItem">
         <p class="tlYear">1961</p>
-        <h3>Raízes corporativas</h3>
-        <p>Origem corporativa da Oxford na Coreia do Sul, ponto de partida de uma trajetória industrial dedicada ao brinquedo.</p>
+        <h3>Início da história</h3>
+        <p>Início da história da empresa.</p>
       </div>
       <div class="tlItem">
         <p class="tlYear">1992</p>
-        <h3>Produção de blocos</h3>
-        <p>Início da fabricação de blocos de montar, dando origem à categoria que se tornaria o coração da marca.</p>
+        <h3>Blocos de montar</h3>
+        <p>Entrada no mercado de blocos de montar.</p>
       </div>
       <div class="tlItem">
         <p class="tlYear">1996</p>
-        <h3>Marco da marca Oxford</h3>
-        <p>Consolidação da Oxford Co., Ltd. e da marca Oxford como referência coreana em blocos de montar.</p>
+        <h3>Expansão da marca</h3>
+        <p>Expansão e desenvolvimento da marca Oxford.</p>
       </div>
       <div class="tlItem">
         <p class="tlYear">Hoje</p>
-        <h3>Três décadas de bloco</h3>
-        <p>Produção ininterrupta na Coreia, exportação para múltiplos países e arquivo de centenas de projetos corporativos e culturais.</p>
+        <h3>Atuação internacional</h3>
+        <p>Uma empresa com atuação internacional e uma ampla linha de produtos e projetos personalizados.</p>
       </div>
     </div>
-
-    <div class="historyExtra">
-      <div class="heCard reveal">
-        <span class="heIco">🏭</span>
-        <h4>Do molde à embalagem</h4>
-        <p>Controle total da cadeia produtiva em uma única fábrica coreana: projeto, molde, injeção e acabamento sob o mesmo teto.</p>
-      </div>
-      <div class="heCard reveal">
-        <span class="heIco">🌍</span>
-        <h4>Encaixe universal</h4>
-        <p>Compatível com o padrão mundial: o consumidor monta junto com o que já tem em casa.</p>
-      </div>
-      <div class="heCard reveal">
-        <span class="heIco">⭐</span>
-        <h4>Marcas que confiam</h4>
-        <p>Projetos com marcas e instituições reconhecidas, desenvolvidos com rigor técnico e legal.</p>
-      </div>
-    </div>
-
-    <div class="licenseStrip reveal">
-      <b>Referências históricas de projetos e colaborações</b>
-      <span>Hello Kitty</span><span>Hasbro</span><span>Baskin-Robbins</span><span>Laser Pegs</span><span>DAPA (Defesa Coreana)</span>
-    </div>
-
-    <p class="evidenceNote"><i></i> Datas corporativas conforme histórico oficial da Oxford. Atributos técnicos (certificações, especificações de material e precisão) estão em processo de verificação documental e serão confirmados antes do uso em material executivo final.</p>
   </div>
 </section>
 
-<!-- TRÊS NEGÓCIOS -->
-<section class="section section--alt" id="negocios">
+<!-- 4. NOSSAS SOLUÇÕES -->
+<section class="section section--alt" id="solucoes">
   <div class="wrap">
-    <p class="kicker reveal"><i></i> Três Negócios, Não Um</p>
+    <p class="kicker reveal"><i></i> Nossas Soluções</p>
     <div class="sHead">
-      <h2 class="reveal">Receitas diferentes.<br>Compradores <span class="red">diferentes.</span></h2>
-      <p class="sCopy reveal">O erro seria vender só "collab". A Oxford Brasil tem três receitas com compradores, ciclos e riscos diferentes, vendidas separadamente.</p>
+      <h2 class="reveal">Como podemos trabalhar com <span class="red">sua empresa?</span></h2>
+      <p class="sCopy reveal">A Oxford oferece diferentes possibilidades para empresas que desejam transformar suas marcas, produtos ou ideias em blocos de montar.</p>
     </div>
 
     <div class="bizGrid">
       <div class="bizCard bizFirst reveal">
-        <span class="bizPriority">Comece por aqui</span>
+        <span class="bizPriority">01</span>
         <span class="bizIco">🏭</span>
-        <p class="bizLabel">A · Institucional / Corporativo</p>
-        <h3>A planta inteira, bloco a bloco</h3>
-        <p>A linha de produção, o produto em catálogo, a sede corporativa ou a máquina que define a empresa: tudo ganha forma física. Presente de fim de ano, brinde de feira, ferramenta de recrutamento, aniversário institucional.</p>
-        <div class="bizCases"><span>SK Hynix</span><span>LG Display</span><span>Hyundai</span><span>Bobcat</span><span>KIA</span><span>Museus</span></div>
-        <p class="bizBuyer"><b>Comprador:</b> marketing corporativo, comunicação interna, RH.<br><b>Por que primeiro:</b> ciclo curto, orçamento já existe, sem risco de estoque, sem ponto de venda. A receita mais rápida de desbloquear no Brasil.</p>
+        <p class="bizLabel">Projetos Corporativos</p>
+        <h3>Sua empresa em blocos.</h3>
+        <p>Transformamos fábricas, máquinas, produtos, prédios e outros elementos da sua empresa em projetos exclusivos de blocos de montar.</p>
+        
+        <div class="solutionList">
+          <p class="solutionListTitle">Ideal para:</p>
+          <ul>
+            <li>Presentes corporativos</li>
+            <li>Feiras e eventos</li>
+            <li>Campanhas promocionais</li>
+            <li>Ações internas</li>
+            <li>Relacionamento com clientes</li>
+            <li>Datas comemorativas</li>
+          </ul>
+        </div>
+        <div style="margin-top:24px">
+          <a class="btn btn--red" href="#projetos">Conheça os projetos <span class="arr">→</span></a>
+        </div>
       </div>
+
       <div class="bizCard reveal">
-        <span class="bizPriority">Ticket maior</span>
+        <span class="bizPriority">02</span>
         <span class="bizIco">🤝</span>
-        <p class="bizLabel">B · Collab de Marca / Licenciamento</p>
-        <h3>A identidade visual, em coleção</h3>
-        <p>A marca vira série colecionável, distribuída em campanha sazonal, mecânica de fidelidade, ativação de trade ou canal exclusivo. O consumidor leva para casa um pedaço da marca que ele ama.</p>
-        <div class="bizCases"><span>Subway</span><span>Outback</span><span>Baskin Robbins</span><span>7-Eleven</span><span>Daiso</span><span>Korean Air</span></div>
-        <p class="bizBuyer"><b>Comprador:</b> marketing de marca, trade, licenciamento.<br><b>Perfil:</b> ticket maior, ciclo mais longo, maior potencial de repetição.</p>
+        <p class="bizLabel">Collabs e Licenciamentos</p>
+        <h3>Sua marca em uma coleção exclusiva.</h3>
+        <p>Desenvolvemos produtos em parceria com marcas, clubes, franquias, personagens e outras propriedades. Uma oportunidade para criar produtos exclusivos para fãs, consumidores e colecionadores.</p>
+        
+        <div class="solutionList">
+          <p class="solutionListTitle">Possibilidades:</p>
+          <ul>
+            <li>Produtos licenciados</li>
+            <li>Coleções especiais</li>
+            <li>Produtos para lojas oficiais</li>
+            <li>Campanhas promocionais</li>
+            <li>Programas de fidelidade</li>
+            <li>Ações com fãs</li>
+          </ul>
+        </div>
+        <div style="margin-top:24px">
+          <a class="btn btn--red" href="parceiro.html?t=collab">Fale conosco <span class="arr">→</span></a>
+        </div>
       </div>
+
       <div class="bizCard reveal">
-        <span class="bizPriority">Mais lento</span>
+        <span class="bizPriority">03</span>
         <span class="bizIco">🏪</span>
-        <p class="bizLabel">C · Linha Regular: Varejo</p>
-        <h3>Prateleira com DNA coreano</h3>
-        <p>Os produtos de catálogo Oxford, sem customização, sem molde novo, prontos para a sua loja. Importação, estoque e logística por conta da Oxford Brasil.</p>
-        <div class="bizCases"><span>Lojas</span><span>Papelarias</span><span>Hobby Shops</span><span>E-commerce</span></div>
-        <p class="bizBuyer"><b>Comprador:</b> comprador de varejo, e-commerce, papelaria.<br><b>Atenção:</b> único dos três que precisa de importação, estoque e logística. Mais lento e capital-intensivo, não é o eixo da primeira fase.</p>
+        <p class="bizLabel">Linha Oxford para Revenda</p>
+        <h3>Produtos Oxford para o varejo.</h3>
+        <p>A Oxford possui uma linha própria de blocos de montar para empresas interessadas em comercializar seus produtos no Brasil.</p>
+        
+        <div class="solutionList">
+          <p class="solutionListTitle">Para:</p>
+          <ul>
+            <li>Lojas de brinquedos</li>
+            <li>Papelarias</li>
+            <li>Hobby shops</li>
+            <li>E-commerce</li>
+            <li>Redes de varejo</li>
+            <li>Distribuidores</li>
+          </ul>
+        </div>
+        <div style="margin-top:24px">
+          <a class="btn btn--red" href="parceiro.html?t=revenda">Solicite o catálogo <span class="arr">→</span></a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COMO FUNCIONA -->
+<!-- 5. COMO FUNCIONA -->
 <section class="section" id="como">
   <div class="wrap">
-    <p class="kicker reveal"><i></i> Como Funciona</p>
+    <p class="kicker reveal"><i></i> Processo</p>
     <div class="sHead">
-      <h2 class="reveal">Da ideia à entrega.<br>Cinco <span class="red">etapas.</span></h2>
-      <p class="sCopy reveal">Do briefing ao produto nas mãos do cliente, cada etapa é mapeada e gerenciada pela Oxford Coreia e Oxford Brasil.</p>
+      <h2 class="reveal">Do conceito ao <span class="red">produto.</span></h2>
+      <p class="sCopy reveal">Transformamos sua ideia em um produto completo, acompanhando todas as etapas do desenvolvimento.</p>
     </div>
 
     <div class="workflow reveal">
       <div class="wfStep">
         <p class="wfNum">01</p>
-        <h4>Briefing</h4>
-        <p>Entendemos a marca, o conceito e o objetivo. O que, da sua marca, as pessoas gostariam de ter em cima da mesa?</p>
+        <h4>Conversa</h4>
+        <p>Entendemos sua empresa, sua ideia e o objetivo do projeto.</p>
       </div>
       <div class="wfStep">
         <p class="wfNum">02</p>
-        <h4>Projeto 3D</h4>
-        <p>Desenvolvimento do design em 3D. A marca vê o produto antes de ele existir: aprova, ajusta, refina.</p>
+        <h4>Desenvolvimento</h4>
+        <p>Nossa equipe transforma a ideia em um projeto de blocos.</p>
       </div>
       <div class="wfStep">
         <p class="wfNum">03</p>
-        <h4>Protótipo físico</h4>
-        <p>A marca toca, aprova e ajusta antes de um único bloco ser produzido em série. Zero surpresa na entrega final.</p>
+        <h4>Protótipo</h4>
+        <p>Desenvolvemos um protótipo para avaliação e aprovação.</p>
       </div>
       <div class="wfStep">
         <p class="wfNum">04</p>
-        <h4>Fabricação</h4>
-        <p>Produção em série na fábrica coreana. Cada peça passa pelo controle de qualidade antes de seguir para o Brasil.</p>
+        <h4>Produção</h4>
+        <p>Após a aprovação, o projeto é produzido na fábrica da Oxford na Coreia do Sul.</p>
       </div>
       <div class="wfStep">
         <p class="wfNum">05</p>
         <h4>Entrega</h4>
-        <p>Importação e entrega no Brasil. O produto pronto para a campanha, o evento ou o ponto de venda.</p>
+        <p>Cuidamos do processo de importação e entrega no Brasil.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COLABORAÇÕES NA COREIA -->
-<section class="section" id="coreia">
+<!-- 6. PROJETOS / COLABORAÇÕES -->
+<section class="section section--alt" id="projetos">
   <div class="wrap">
-    <p class="kicker reveal"><i></i> Grandes Colaborações na Coreia</p>
+    <p class="kicker reveal"><i></i> Projetos e Colaborações</p>
     <div class="sHead">
-      <h2 class="reveal">Centenas de projetos.<br>Marcas que <span class="red">viraram blocos.</span></h2>
-      <p class="sCopy reveal">Empresas, governos, museus, franquias e estúdios de entretenimento. O arquivo da Oxford é a prova de que qualquer identidade pode virar coleção.</p>
-    </div>
-
-    <div class="collabIntro reveal">
-      <p>Da aviação à indústria pesada, do K-pop ao patrimônio histórico: cada projeto abaixo é <span class="hl">uma marca que aceitou o desafio</span> de existir em três dimensões. Este é o portfólio que queremos repetir no Brasil.</p>
+      <h2 class="reveal">Projetos realizados pela <span class="red">Oxford</span></h2>
+      <div>
+        <p class="sCopy reveal" style="font-weight:700;color:var(--text);font-size:17px;margin-bottom:8px">Marcas, produtos e histórias transformados em blocos.</p>
+        <p class="sCopy reveal">Ao longo de sua história, a Oxford desenvolveu projetos para diferentes empresas, marcas, clubes e instituições. Confira alguns exemplos de projetos desenvolvidos pela Oxford.</p>
+      </div>
     </div>
 
     <div class="collabFilters reveal" id="collabFilters">
       <button class="filterBtn active" data-filter="all">Todas</button>
+      <button class="filterBtn" data-filter="entretenimento">🎬 Destaques &amp; Mídia</button>
       <button class="filterBtn" data-filter="aviacao">Aviação &amp; Transporte</button>
       <button class="filterBtn" data-filter="alimentos">Alimentos &amp; Varejo</button>
       <button class="filterBtn" data-filter="automotivo">Automotivo</button>
@@ -810,76 +833,64 @@ img{max-width:100%;display:block}
       <button class="filterBtn" data-filter="militar">Militar &amp; Defesa</button>
       <button class="filterBtn" data-filter="esportes">Esportes</button>
       <button class="filterBtn" data-filter="publico">Público &amp; Cultura</button>
-      <button class="filterBtn" data-filter="entretenimento">🎬 Entretenimento &amp; Mídia</button>
     </div>
-
 
     <div class="brandGrid" id="brandGrid"></div>
 
-    <p class="kicker reveal" style="margin-top:64px"><i></i> Patrimônio & Cultura Coreana</p>
-    <div class="heritageRow" id="heritageRow"></div>
-
-    <div class="collabCoda reveal">
-      <p>Cada marca acima aceitou existir em bloco. <span class="red">A sua é a próxima?</span></p>
+    <div class="collabCoda reveal" style="margin-top:48px">
+      <p>Sua marca pode ser o <span class="red">próximo projeto exclusivo.</span></p>
     </div>
-
-    <p class="evidenceNote"><i></i> Lista de colaborações conforme portfólio oficial da Oxford e referência do proprietário do projeto. Cada parceria será individualmente verificada junto ao arquivo oficial antes do uso em material executivo final.</p>
   </div>
 </section>
 
-<!-- VISÃO BRASIL — SEGMENTOS & GANCHOS -->
-<section class="section section--alt" id="brasil">
+<!-- 7. SEGMENTOS -->
+<section class="section" id="segmentos">
   <div class="wrap">
-    <p class="kicker reveal"><i></i> Segmentos no Brasil</p>
+    <p class="kicker reveal"><i></i> Segmentos</p>
     <div class="sHead">
-      <h2 class="reveal">Cada segmento.<br>Um <span class="red">gancho</span> específico.</h2>
-      <p class="sCopy reveal">O mercado brasileiro tem marcas potentes que ainda não exploram o universo dos blocos de montar premium. Para cada segmento, um argumento concreto, não genérico.</p>
+      <h2 class="reveal">Onde podemos <span class="red">criar juntos?</span></h2>
+      <p class="sCopy reveal">A Oxford pode desenvolver projetos personalizados para diferentes segmentos.</p>
     </div>
 
     <div class="segTable reveal">
       <div class="segRow">
-        <div class="segName"><span class="segIco">⚽</span> Clubes de futebol</div>
-        <div class="segHook">Estádio + jogadores em figura. <span class="hl">Precedente Seongnam FC.</span> Receita de loja oficial e sócio-torcedor.</div>
+        <div class="segName"><span class="segIco">⚽</span> Esportes</div>
+        <div class="segHook">Estádios, jogadores, mascotes e outros produtos para clubes e torcedores.</div>
       </div>
       <div class="segRow">
-        <div class="segName"><span class="segIco">🏭</span> Indústria pesada e agro</div>
-        <div class="segHook">A máquina que a empresa fabrica, em blocos. <span class="hl">Brinde de feira</span> que o cliente leva para casa.</div>
+        <div class="segName"><span class="segIco">🏭</span> Indústria</div>
+        <div class="segHook">Máquinas, equipamentos, fábricas e produtos transformados em modelos exclusivos.</div>
       </div>
       <div class="segRow">
-        <div class="segName"><span class="segIco">🏦</span> Bancos e seguradoras</div>
-        <div class="segHook">Agência ou sede em blocos. Comunicação interna e <span class="hl">campanha de rede</span>.</div>
+        <div class="segName"><span class="segIco">🏢</span> Empresas e instituições</div>
+        <div class="segHook">Presentes corporativos, campanhas e ações de relacionamento.</div>
       </div>
       <div class="segRow">
-        <div class="segName"><span class="segIco">🍔</span> Franquias e redes de alimentação</div>
-        <div class="segHook">Miniatura da própria loja. <span class="hl">Mecânica de compra</span> em milhares de unidades.</div>
+        <div class="segName"><span class="segIco">🎬</span> Franquias e entretenimento</div>
+        <div class="segHook">Lojas, personagens e elementos da marca transformados em produtos colecionáveis.</div>
       </div>
       <div class="segRow">
-        <div class="segName"><span class="segIco">🛍️</span> Shoppings e parques</div>
-        <div class="segHook">Souvenir exclusivo, acúmulo por valor gasto, <span class="hl">item de aniversário</span> do centro.</div>
+        <div class="segName"><span class="segIco">🛍️</span> Varejo</div>
+        <div class="segHook">Produtos exclusivos para lojas, campanhas e experiências com consumidores.</div>
       </div>
       <div class="segRow">
         <div class="segName"><span class="segIco">🏛️</span> Museus e turismo</div>
-        <div class="segHook"><span class="hl">Patrimônio brasileiro</span> em edição colecionável, vendido na bilheteria.</div>
+        <div class="segHook">Monumentos, patrimônios e atrações transformados em produtos colecionáveis.</div>
       </div>
-      <div class="segRow">
-        <div class="segName"><span class="segIco">🍺</span> Cervejarias e bebidas</div>
-        <div class="segHook">Caminhão, fábrica, ponto de venda. <span class="hl">Colecionável adulto</span> de alto giro.</div>
-      </div>
-    </div>
-
-    <div class="visionCoda reveal" style="margin-top:48px">
-      <p>Sua marca pode virar o <span class="red">próximo colecionável.</span></p>
     </div>
   </div>
 </section>
 
-<!-- LINHA COMERCIAL -->
-<section class="section" id="comercial">
+<!-- 8. LINHA OXFORD -->
+<section class="section section--alt" id="linha-oxford">
   <div class="wrap">
-    <p class="kicker reveal"><i></i> Linha Regular Oxford</p>
+    <p class="kicker reveal"><i></i> Linha Oxford</p>
     <div class="sHead">
-      <h2 class="reveal">Além das collabs,<br>uma <span class="red">linha permanente</span> para o varejo.</h2>
-      <p class="sCopy reveal">Para quem busca produto pronto, sem customização. O catálogo permanente Oxford abrange oito categorias e atende do hobby shop à rede nacional.</p>
+      <h2 class="reveal">Conheça a <span class="red">linha Oxford</span></h2>
+      <div>
+        <p class="sCopy reveal" style="font-weight:700;color:var(--text);font-size:17px;margin-bottom:8px">Produtos de uma das principais fabricantes de blocos da Coreia do Sul.</p>
+        <p class="sCopy reveal">Além dos projetos personalizados, a Oxford possui uma linha própria de blocos de montar para diferentes públicos e categorias. Empresas interessadas em comercializar os produtos Oxford no Brasil podem solicitar nosso catálogo e condições comerciais.</p>
+      </div>
     </div>
 
     <div class="commSplit">
@@ -895,144 +906,179 @@ img{max-width:100%;display:block}
         <ul class="channelList" id="channelList"></ul>
         <div class="commNote">
           <b>Catálogo disponível.</b> Solicite o catálogo completo da linha regular Oxford com SKUs, embalagens e condições comerciais para revenda no Brasil.
+          <div style="margin-top:16px">
+            <a class="btn btn--red" href="parceiro.html?t=revenda">Solicitar catálogo <span class="arr">→</span></a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- POR QUE OXFORD -->
-<section class="section section--alt" id="porque">
+<!-- 9. POR QUE TRABALHAR CONOSCO? -->
+<section class="section" id="trabalhar-conosco">
   <div class="wrap">
-    <p class="kicker reveal"><i></i> Por que Oxford?</p>
+    <p class="kicker reveal"><i></i> Por que trabalhar conosco?</p>
     <div class="sHead">
-      <h2 class="reveal">Fabricação coreana.<br>Padrão <span class="red">mundial.</span></h2>
-      <p class="sCopy reveal">O que diferencia a Oxford no mercado brasileiro de blocos de montar: da origem da fabricação ao acabamento e à exclusividade dos produtos.</p>
+      <h2 class="reveal">Uma solução completa para <span class="red">sua ideia.</span></h2>
+      <p class="sCopy reveal">Da primeira conversa à entrega do produto, acompanhamos o desenvolvimento do projeto e trabalhamos em conjunto com o cliente para transformar a ideia em um produto final.</p>
     </div>
 
-    <div class="whyGrid" id="whyGrid"></div>
-
-    <p class="evidenceNote"><i></i> Atributos de qualidade (precisão de encaixe, material premium, certificações de segurança) são posicionamento de marca e estão em processo de verificação documental junto à Oxford Coreia.</p>
+    <div class="solutionTriad reveal">
+      <div class="triadCard">
+        <span class="triadNum">01</span>
+        <h3>Você apresenta a ideia.</h3>
+        <p>Compartilhe o briefing, o produto, o espaço ou a marca que deseja transformar em bloco.</p>
+      </div>
+      <div class="triadCard">
+        <span class="triadNum">02</span>
+        <h3>Nós desenvolvemos o projeto.</h3>
+        <p>Nossa equipe de engenharia e design 3D concebe o modelo com fidelidade, encaixe e acabamento perfeito.</p>
+      </div>
+      <div class="triadCard highlight">
+        <span class="triadNum">03</span>
+        <h3>A Oxford produz.</h3>
+        <p>Produção com precisão industrial na fábrica própria na Coreia do Sul, com entrega garantida no Brasil.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- FAQ / OBJEÇÕES -->
-<section class="section" id="faq">
+<!-- 10. FAQ -->
+<section class="section section--alt" id="faq">
   <div class="wrap">
     <p class="kicker reveal"><i></i> Perguntas e Respostas</p>
     <div class="sHead">
-      <h2 class="reveal">Dúvidas <span class="red">comuns.</span></h2>
-      <div class="faqIntro reveal">
-        <p>Reunimos as dúvidas mais comuns sobre os produtos Oxford e como as <span class="red">parcerias</span> funcionam.</p>
-        <p>Não encontrou sua pergunta? Vamos conversar!</p>
-      </div>
-    </div>
-
-    <div class="faqAudience reveal">
-      <div class="faqAudienceTop">
-        <article class="faqAudienceItem">
-          <span class="faqAudienceMark" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="31" r="22"/><path d="M18 25c3-8 9-13 14-13s11 5 14 13M21 23c-4-2-9 1-9 7 0 5 4 8 9 8M43 23c4-2 9 1 9 7 0 5-4 8-9 8M24 31h.1M40 31h.1M25 41c4 4 10 4 14 0M32 9V5M27 7l2 4M37 7l-2 4"/></svg></span>
-          <div>
-            <h3>Para crianças</h3>
-            <p>Diversão que desenvolve criatividade, coordenação e raciocínio lógico.</p>
-          </div>
-        </article>
-        <article class="faqAudienceItem">
-          <span class="faqAudienceMark" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="30" r="21"/><path d="M18 26c1-10 7-16 14-16s13 6 14 16M16 27c-3 5-3 15 1 23M48 27c3 5 3 15-1 23M22 29h9v7h-9zM33 29h9v7h-9zM31 32h2M25 43c4 3 10 3 14 0M14 52c8-5 28-5 36 0"/></svg></span>
-          <div>
-            <h3>Para adultos</h3>
-            <p>Desafio, relaxamento e peças de coleção que viram verdadeiras obras.</p>
-          </div>
-        </article>
-      </div>
-      <div class="faqGeneration">
-        <span class="faqAudienceMark" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="m24 4 5.8 11.8 13 1.9-9.4 9.1 2.2 12.9L24 33.6l-11.6 6.1 2.2-12.9-9.4-9.1 13-1.9z"/></svg></span>
-        <div>
-          <h3>Um produto que une gerações.</h3>
-          <p>Do primeiro bloco à peça de coleção, a Oxford acompanha todas as idades.</p>
-        </div>
-      </div>
+      <h2 class="reveal">Perguntas <span class="red">frequentes.</span></h2>
+      <p class="sCopy reveal">Tire suas dúvidas sobre os produtos Oxford e como funcionam os projetos personalizados e parcerias.</p>
     </div>
 
     <div class="faqList reveal">
       <details class="faqItem" open>
-        <summary aria-expanded="true"><span class="featuredFaqMark" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="m18 5 12 7-12 7L6 12zM6 12v12l12 7 12-7V12M18 19v12M12 9l12 7"/></svg></span><span>"Isso é brinquedo, nossa marca não é infantil."</span> <span class="faqIcon" aria-hidden="true">−</span></summary>
-        <div class="faqAns">A Oxford atinge <span class="hl">crianças e adultos.</span> Enquanto as crianças se divertem e aprendem, os adultos colecionam, constroem e exibem. Nossos cases incluem empresas de tecnologia, bancos, montadoras, companhias aéreas e órgãos públicos. Nossos conjuntos são <span class="hl">itens de design e coleção</span>, que permanecem em mesas e vitrines por anos.</div>
+        <summary aria-expanded="true"><span>A Oxford é uma fabricante?</span> <span class="faqIcon" aria-hidden="true">−</span></summary>
+        <div class="faqAns">Sim. A Oxford é uma fabricante sul-coreana de blocos de montar, com produção própria.</div>
       </details>
       <details class="faqItem">
-        <summary aria-expanded="false">"Já damos brinde." <span class="faqIcon" aria-hidden="true">+</span></summary>
-        <div class="faqAns">O brinde é descartado. Este é <span class="hl">montado pela pessoa</span>, e o que a pessoa monta com as próprias mãos ela não joga fora. É o único brinde que ocupa mesa de escritório por anos. Camisa desbota, chaveiro some, post desaparece em 24 horas. Um bloco montado permanece.</div>
+        <summary aria-expanded="false"><span>A Oxford trabalha com projetos personalizados?</span> <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">Sim. Podemos desenvolver projetos personalizados para empresas, marcas, clubes, instituições e outros parceiros.</div>
       </details>
       <details class="faqItem">
-        <summary aria-expanded="false">"Quanto custa?" <span class="faqIcon" aria-hidden="true">+</span></summary>
-        <div class="faqAns">Depende de quantidade e complexidade, porque envolve molde e projeto. Por isso a conversa começa por <span class="hl">volume-alvo</span>, não por preço. Cada projeto é único: briefing, projeto 3D, protótipo e produção são personalizados para a sua marca.</div>
+        <summary aria-expanded="false"><span>Posso transformar minha empresa ou produto em um bloco?</span> <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">Sim. Podemos avaliar a possibilidade de transformar produtos, máquinas, prédios, fábricas, personagens ou outros elementos em projetos de blocos.</div>
       </details>
       <details class="faqItem">
-        <summary aria-expanded="false">"Não é cópia de LEGO?" <span class="faqIcon" aria-hidden="true">+</span></summary>
-        <div class="faqAns">A Oxford é <span class="hl">fabricante coreana independente</span>, com fábrica própria e décadas de operação, além de compatibilidade de encaixe com o padrão mundial. Compatibilidade é vantagem para o consumidor, não é cópia. A Oxford tem sua própria história, seus próprios personagens e seus próprios projetos.</div>
+        <summary aria-expanded="false"><span>É possível desenvolver produtos licenciados?</span> <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">Sim. Podemos trabalhar em projetos de licenciamento e collabs com marcas, clubes, franquias, personagens e outras propriedades.</div>
       </details>
       <details class="faqItem">
-        <summary aria-expanded="false">"Quanto tempo leva?" <span class="faqIcon" aria-hidden="true">+</span></summary>
-        <div class="faqAns">Do primeiro briefing à entrega no Brasil, o ciclo inclui projeto, protótipo físico, fabricação na Coreia e importação. O prazo exato depende da complexidade do molde e do volume. Confirmamos na primeira conversa, com data no calendário.</div>
+        <summary aria-expanded="false"><span>Posso revender produtos Oxford no Brasil?</span> <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">Sim. Empresas interessadas em comercializar a linha Oxford podem entrar em contato para receber informações sobre catálogo, condições comerciais e disponibilidade.</div>
+      </details>
+      <details class="faqItem">
+        <summary aria-expanded="false"><span>Quanto custa um projeto personalizado?</span> <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">O valor depende do tamanho, quantidade, nível de personalização e complexidade do projeto. Após entendermos a necessidade, podemos preparar uma proposta específica.</div>
+      </details>
+      <details class="faqItem">
+        <summary aria-expanded="false"><span>Qual é o prazo de desenvolvimento?</span> <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">O prazo depende da complexidade e quantidade do projeto. Após o briefing, apresentamos um cronograma estimado para desenvolvimento, produção e entrega.</div>
+      </details>
+      <details class="faqItem">
+        <summary aria-expanded="false"><span>Onde os produtos são produzidos?</span> <span class="faqIcon" aria-hidden="true">+</span></summary>
+        <div class="faqAns">Os projetos Oxford são desenvolvidos e produzidos na Coreia do Sul.</div>
       </details>
     </div>
   </div>
 </section>
 
-<!-- SEJA UM PARCEIRO -->
-<section class="section partner" id="parceiro">
+<!-- 11. CTA FINAL -->
+<section class="section section--alt" id="cta-final" style="text-align:center;padding:80px 0">
+  <div class="wrap">
+    <div class="sHead" style="margin:0 auto;max-width:760px">
+      <p class="kicker reveal" style="justify-content:center"><i></i> Inicie seu projeto</p>
+      <h2 class="reveal" style="font-size:clamp(28px,4vw,42px);margin-bottom:16px">Vamos transformar sua ideia em <span class="red">blocos?</span></h2>
+      <p class="sCopy reveal" style="font-size:16px;line-height:1.7;margin:0 auto 28px">Conte-nos sobre sua empresa, marca ou projeto. Nossa equipe avaliará sua ideia e apresentará as possibilidades de desenvolvimento.</p>
+      <div class="reveal">
+        <a class="btn btn--red btn--lg" href="#contato">Fale com a Oxford Brasil <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. CONTATO -->
+<section class="section partner" id="contato">
   <div class="partnerGrid"></div>
   <div class="partnerInner">
-    <p class="kicker reveal" style="justify-content:center"><i></i> Seja um Parceiro</p>
-    <h2 class="reveal">Vamos construir<br>uma ideia <span class="red">juntos.</span></h2>
-    <span class="pTag reveal">O próximo capítulo começa com uma conversa.</span>
-    <p class="pSub reveal">Escolha o caminho que faz sentido para o seu negócio. Estamos prontos para conversar, e sempre levamos uma peça montada na mão.</p>
+    <p class="kicker reveal" style="justify-content:center"><i></i> Contato</p>
+    <h2 class="reveal">Vamos <span class="red">conversar?</span></h2>
+    <span class="pTag reveal">Tem uma ideia, quer desenvolver um projeto personalizado ou deseja comercializar os produtos Oxford no Brasil?</span>
+    <p class="pSub reveal">Entre em contato conosco e selecione a área de seu interesse:</p>
+    
     <div class="partnerActions">
       <a class="paBtn reveal" href="parceiro.html?t=institucional">
         <span class="paIco">🏭</span>
-        <span class="paLabel">Projeto institucional</span>
-        <span class="paSub">Comece por aqui</span>
-        <p class="paDesc">Fábrica, máquina, sede ou produto da sua empresa em blocos. Brinde de feira, presente corporativo, recrutamento.</p>
-        <span class="paArr">Iniciar projeto <span class="arr">→</span></span>
+        <span class="paLabel">Projetos Corporativos</span>
+        <span class="paSub">Sua empresa em blocos</span>
+        <p class="paDesc">Transformamos fábricas, máquinas, produtos e sedes em projetos exclusivos de blocos.</p>
+        <span class="paArr">Entrar em contato <span class="arr">→</span></span>
       </a>
       <a class="paBtn reveal" href="parceiro.html?t=collab">
         <span class="paIco">🤝</span>
-        <span class="paLabel">Collab de marca</span>
+        <span class="paLabel">Collabs e Licenciamentos</span>
         <span class="paSub">Coleção exclusiva</span>
-        <p class="paDesc">Sua marca como série colecionável: campanha sazonal, loja oficial, ativação de trade ou sócio-torcedor.</p>
-        <span class="paArr">Propor collab <span class="arr">→</span></span>
+        <p class="paDesc">Produtos especiais em parceria com marcas, clubes, franquias e personagens.</p>
+        <span class="paArr">Entrar em contato <span class="arr">→</span></span>
       </a>
       <a class="paBtn reveal" href="parceiro.html?t=revenda">
         <span class="paIco">🏪</span>
-        <span class="paLabel">Revender Oxford</span>
-        <span class="paSub">Linha comercial</span>
-        <p class="paDesc">Catálogo permanente Oxford para o seu varejo. SKUs, embalagens e condições comerciais sob consulta.</p>
-        <span class="paArr">Solicitar condições <span class="arr">→</span></span>
+        <span class="paLabel">Revenda Oxford</span>
+        <span class="paSub">Linha para varejo</span>
+        <p class="paDesc">Produtos Oxford para lojas de brinquedos, papelarias, hobby shops e e-commerce.</p>
+        <span class="paArr">Entrar em contato <span class="arr">→</span></span>
       </a>
-      <a class="paBtn reveal" href="parceiro.html?t=reuniao">
-        <span class="paIco">📅</span>
-        <span class="paLabel">Agendar reunião</span>
-        <span class="paSub">Fale conosco</span>
-        <p class="paDesc">Ainda não sabe qual caminho? Agende uma conversa. Levamos uma peça montada e saímos com uma ideia.</p>
-        <span class="paArr">Marcar data <span class="arr">→</span></span>
-      </a>
+    </div>
+
+    <div style="margin-top:42px" class="reveal">
+      <a class="btn btn--red btn--lg" href="parceiro.html">Entrar em contato <span class="arr">→</span></a>
     </div>
   </div>
 </section>
 </main>
 
-<!-- FOOTER -->
+<!-- 13. RODAPÉ -->
 <footer class="footer">
-  <div class="fBrand"><img src="assets/oxford-logo-official-footer.png" alt="Oxford Blocks" width="89" height="120"> <span>Brasil</span></div>
-  <div class="fLinks">
-    <a href="#prova">A Prova</a>
-    <a href="#negocios">Negócios</a>
-    <a href="#coreia">Colaborações</a>
-    <a href="#brasil">Brasil</a>
-    <a href="#faq">Dúvidas</a>
-    <a href="parceiro.html">Seja um Parceiro</a>
+  <div class="footerGrid">
+    <div class="fCol fCol--brand">
+      <div class="fBrand"><img src="assets/oxford-logo-official-footer.png" alt="Oxford Blocks" width="89" height="120"> <span>Brasil</span></div>
+      <p class="fSlogan">Sua marca em blocos.</p>
+      <span class="fCopy">© 2026 Oxford Blocks Brasil.</span>
+    </div>
+    <div class="fCol">
+      <h4>Soluções</h4>
+      <div class="fColLinks">
+        <a href="#solucoes">Projetos Corporativos</a>
+        <a href="#solucoes">Collabs e Licenciamentos</a>
+        <a href="#linha-oxford">Linha Oxford</a>
+        <a href="#projetos">Projetos realizados</a>
+      </div>
+    </div>
+    <div class="fCol">
+      <h4>Empresa</h4>
+      <div class="fColLinks">
+        <a href="#historia">Sobre a Oxford</a>
+        <a href="#porque">Por que escolher a Oxford</a>
+        <a href="#como">Como Funciona</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
+    <div class="fCol">
+      <h4>Contato</h4>
+      <div class="fColLinks">
+        <a href="mailto:parceria@oxfordblocks.com.br">parceria@oxfordblocks.com.br</a>
+        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.instagram.com/oxfordblock_official/" target="_blank" rel="noopener">Instagram Oficial ↗</a>
+      </div>
+    </div>
   </div>
-  <span>© 2026 Oxford Blocks Brasil.</span>
 </footer>
 
 <!-- Lightbox Gallery Modal -->
@@ -1529,25 +1575,6 @@ if(ch) CHANNELS.forEach(function(c){
   var li=document.createElement('li');
   li.innerHTML='<span class="chIco">'+c.i+'</span> '+c.t;
   ch.appendChild(li);
-});
-
-/* ===== WHY OXFORD ===== */
-var WHY=[
-  {i:'🇰🇷',t:'Fabricado na Coreia',d:'Origem sul-coreana em toda a linha, não revenda de terceiros.'},
-  {i:'🎯',t:'Encaixe cirúrgico',d:'Cada peça encaixa na primeira tentativa, sem folga.'},
-  {i:'💎',t:'Material premium',d:'Plástico de alto padrão que não amarelece com o tempo.'},
-  {i:'🛡️',t:'Segurança certificada',d:'Padrões de segurança para todas as idades.'},
-  {i:'✨',t:'Acabamento impecável',d:'Rebarba zero, cor uniforme, superfície lisa ao toque.'},
-  {i:'🎁',t:'Coleções únicas',d:'Produtos que não existem em nenhuma outra prateleira.'},
-  {i:'🌐',t:'Trajetória global',d:'Décadas de exportação e projetos internacionais.'},
-  {i:'🤝',t:'Ponte direta',d:'Acesso sem intermediário à fábrica coreana.'}
-];
-var wg=document.getElementById('whyGrid');
-if(wg) WHY.forEach(function(w){
-  var d=document.createElement('div');
-  d.className='whyPillar reveal in';
-  d.innerHTML='<span class="whyIco">'+w.i+'</span><span class="whyBar"></span><h4>'+w.t+'</h4><p>'+w.d+'</p>';
-  wg.appendChild(d);
 });
 
 /* ===== FAQ ARIA ===== */
