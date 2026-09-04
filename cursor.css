@@ -1,9 +1,10 @@
-/* Oxford illuminated cursor — desktop pointer devices only. */
+/* Oxford branded cursor — desktop pointer devices only. */
 @media (hover:hover) and (pointer:fine){
   html.oxford-cursor,html.oxford-cursor body,html.oxford-cursor body *{cursor:none!important}
   html.oxford-cursor input,html.oxford-cursor textarea,html.oxford-cursor [contenteditable="true"]{cursor:text!important}
 
-  .oxfordCursorPointer{position:fixed;left:0;top:0;z-index:2147483000;width:30px;height:30px;pointer-events:none;opacity:0;will-change:transform;contain:layout style paint;background:0 0/contain no-repeat url("assets/oxford-cursor-exact.png");transition:opacity .12s ease}
+  .oxfordCursorPointer{position:fixed;left:0;top:0;z-index:2147483000;width:22px;height:28px;pointer-events:none;opacity:0;will-change:transform;contain:layout style paint;transition:opacity .12s ease}
+  .oxfordCursorPointer svg{width:100%;height:100%;display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
   .oxfordCursorPointer.is-visible{opacity:1}
   .oxfordCursorPointer.is-text{opacity:0}
 }

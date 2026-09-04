@@ -7,6 +7,10 @@
   var pointer=document.createElement('span');
   pointer.className='oxfordCursorPointer';
   pointer.setAttribute('aria-hidden','true');
+  /* Clean SVG arrow cursor — Oxford red with white border, like a real OS cursor */
+  pointer.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 28" fill="none">'
+    +'<path d="M1 1L1 23.5L6.5 18L11.5 27L15 25.5L10 16.5L17 15.5L1 1Z" fill="#D42B24" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>'
+    +'</svg>';
   document.body.appendChild(pointer);
   document.documentElement.classList.add('oxford-cursor');
 
@@ -48,9 +52,9 @@
     if(text){
       setScale(1);
     } else if(pressed){
-      setScale(0.82);
+      setScale(0.85);
     } else if(interactive){
-      setScale(1.12);
+      setScale(1.1);
     } else {
       setScale(1);
     }
@@ -67,13 +71,13 @@
   document.addEventListener('pointerdown',function(event){
     if(event.pointerType==='mouse'||!event.pointerType){
       pressed=true;
-      setScale(0.82);
+      setScale(0.85);
     }
   },{passive:true});
 
   document.addEventListener('pointerup',function(){
     pressed=false;
-    setScale(interactive?1.12:1);
+    setScale(interactive?1.1:1);
   },{passive:true});
 
   document.addEventListener('pointercancel',function(){
