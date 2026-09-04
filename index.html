@@ -334,7 +334,7 @@ img{max-width:100%;display:block}
 
 /* ===== THREE BUSINESS ===== */
 .bizGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.bizCard{padding:36px 32px;border:1px solid var(--line);border-radius:6px;background:var(--ink2);position:relative;transition:.24s}
+.bizCard{display:flex;flex-direction:column;padding:36px 32px;border:1px solid var(--line);border-radius:6px;background:var(--ink2);position:relative;transition:.24s}
 .bizCard:hover{border-color:rgba(212,43,36,.4);transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.4)}
 .bizCard .bizPriority{position:absolute;top:18px;right:18px;font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--yellow);text-transform:uppercase}
 .bizCard.bizFirst{background:linear-gradient(155deg,rgba(212,43,36,.1),var(--ink2));border-color:rgba(212,43,36,.3)}
@@ -347,6 +347,7 @@ img{max-width:100%;display:block}
 .bizCard .bizBuyer b{color:var(--text);font-weight:700}
 .bizCard .bizCases{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
 .bizCard .bizCases span{font-size:10px;font-weight:600;padding:4px 10px;border:1px solid var(--line2);border-radius:16px;color:var(--muted)}
+.bizCard .bizBtnWrap{margin-top:auto;padding-top:24px}
 
 /* ===== WORKFLOW ===== */
 .workflow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--ink2)}
@@ -389,23 +390,16 @@ img{max-width:100%;display:block}
 .faqGeneration h3{margin:0 0 4px;font-size:17px;font-weight:900;letter-spacing:.055em;text-transform:uppercase}
 .faqGeneration p{margin:0;font-size:15px;color:var(--muted);line-height:1.5}
 .faqList{display:grid;gap:12px}
-.faqItem{border:1px solid var(--line);border-radius:5px;background:var(--ink2);overflow:hidden}
-.faqItem summary{list-style:none;cursor:pointer;padding:24px 28px;font-size:16px;font-weight:700;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:16px;transition:.2s;outline-offset:-2px}
+.faqItem{border:1px solid var(--line);border-radius:6px;background:var(--ink2);overflow:hidden;transition:border-color .2s}
+.faqItem:hover{border-color:rgba(212,43,36,.4)}
+.faqItem summary{list-style:none;cursor:pointer;padding:22px 28px;font-size:16px;font-weight:700;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:16px;transition:.2s;outline-offset:-2px}
 .faqItem summary::-webkit-details-marker{display:none}
 .faqItem summary:hover{color:var(--red)}
 .faqItem summary:focus-visible{outline:2px solid var(--red);outline-offset:-2px;background:rgba(212,43,36,.04)}
-.faqItem summary .faqIcon{font-size:20px;color:var(--red);flex-shrink:0;transition:transform .25s;font-weight:400}
-.faqItem[open] summary .faqIcon{transform:none}
-.faqItem .faqAns{padding:0 28px 24px;font-size:14px;color:var(--muted);line-height:1.7}
+.faqItem summary .faqIcon{font-size:22px;color:var(--red);flex-shrink:0;transition:transform .25s;font-weight:600;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+.faqItem[open] summary .faqIcon{color:var(--red)}
+.faqItem .faqAns{padding:0 28px 24px;font-size:15px;color:var(--muted);line-height:1.7}
 .faqItem .faqAns .hl{color:var(--text);font-weight:700}
-.faqItem:first-child{border-color:rgba(174,122,76,.42);border-radius:10px;background:#0c0d0f;box-shadow:inset 0 0 0 1px rgba(255,255,255,.018);margin-bottom:6px}
-.faqItem:first-child summary{display:grid;grid-template-columns:64px 1fr 24px;gap:24px;padding:30px 34px 14px;font-size:clamp(19px,2vw,23px);line-height:1.25}
-.faqItem:first-child summary:hover{color:var(--text)}
-.featuredFaqMark{width:58px;height:58px;border:2px solid var(--red);border-radius:50%;display:grid;place-items:center;color:var(--red);grid-row:1 / span 2}
-.featuredFaqMark svg{width:31px;height:31px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.faqItem:first-child .faqIcon{align-self:start;font-size:28px;line-height:1;color:var(--red)}
-.faqItem:first-child[open] summary .faqIcon{transform:none}
-.faqItem:first-child .faqAns{padding:0 70px 30px 122px;font-size:17px;line-height:1.65;color:var(--muted)}
 
 /* ===== ANIMATION ===== */
 @keyframes pulse{50%{opacity:.25;transform:translateY(6px)}}
@@ -573,12 +567,18 @@ body.is-loading{overflow:hidden}
 .seam::after{content:"";position:absolute;left:50%;top:-5px;transform:translateX(-50%);width:132px;height:10px;
   background:radial-gradient(circle at 50% 50%,var(--red) 0 2.6px,rgba(212,43,36,.35) 3px,transparent 3.6px);background-size:12px 10px;background-repeat:repeat-x;opacity:.9}
 
-/* --- Hero: bricks --- */
+/* --- Hero: falling bricks particle rain --- */
 .heroLayer{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .heroLayer.depth-2{z-index:3}
-.fb{position:absolute;width:var(--s,120px);opacity:0;will-change:transform;filter:drop-shadow(0 26px 30px rgba(0,0,0,.62))}
+.fb{position:absolute;width:var(--s,80px);opacity:var(--o,.35);will-change:top;
+  filter:drop-shadow(0 16px 20px rgba(0,0,0,.5));
+  animation:fbFall var(--dur,14s) var(--delay,0s) linear infinite}
+.fbSpin{width:100%;height:100%;display:block;transform-origin:center center;will-change:transform}
+.fbSway{width:100%;height:100%;display:block;will-change:transform}
 .fb svg{width:100%;height:auto;display:block}
-.fb--dim{filter:drop-shadow(0 26px 30px rgba(0,0,0,.62)) brightness(.8) blur(1.5px)}
+@keyframes fbFall{0%{top:-15%}100%{top:110%}}
+@keyframes fbSway{0%{transform:translateX(0)}100%{transform:translateX(var(--sx,40px))}}
+@keyframes fbSpin{0%{transform:rotate(var(--r0,0deg))}100%{transform:rotate(var(--r1,360deg))}}
 .heroVideoWrapper{isolation:isolate}
 .basePlate{position:absolute;left:-10%;right:-10%;bottom:-38px;height:120px;z-index:-1;pointer-events:none;opacity:.55;
   background-image:radial-gradient(circle at 50% 50%,rgba(212,43,36,.9) 0 3px,rgba(212,43,36,.35) 3.6px,transparent 4.6px);background-size:22px 22px;
@@ -623,13 +623,13 @@ body.is-loading{overflow:hidden}
 body.gsap .reveal{opacity:1;transform:none;transition:none}
 
 @media (pointer:coarse),(max-width:980px){
-  .fb--dim{display:none}
+  .fb{--o:.2 !important;--s:50px !important}
   .basePlate{opacity:.35}
 }
 @media (prefers-reduced-motion:reduce){
   .loader{display:none}
   .brandTicker .track{animation:none}
-  .fb{opacity:.9}
+  .fb{animation:none !important;opacity:.3}
   .timeline::before,.workflow::before{transform:none}
   .scrollBar{display:none}
 }
@@ -840,7 +840,7 @@ body.gsap .reveal{opacity:1;transform:none;transition:none}
             <li>Datas comemorativas</li>
           </ul>
         </div>
-        <div style="margin-top:24px">
+        <div class="bizBtnWrap">
           <a class="btn btn--red" href="#projetos">Ver projetos <span class="arr">→</span></a>
         </div>
       </div>
@@ -863,7 +863,7 @@ body.gsap .reveal{opacity:1;transform:none;transition:none}
             <li>Ações com fãs</li>
           </ul>
         </div>
-        <div style="margin-top:24px">
+        <div class="bizBtnWrap">
           <a class="btn btn--red" href="parceiro.html?t=collab">Fale conosco <span class="arr">→</span></a>
         </div>
       </div>
@@ -886,7 +886,7 @@ body.gsap .reveal{opacity:1;transform:none;transition:none}
             <li>Distribuidores</li>
           </ul>
         </div>
-        <div style="margin-top:24px">
+        <div class="bizBtnWrap">
           <a class="btn btn--red" href="parceiro.html?t=revenda">Solicitar catálogo <span class="arr">→</span></a>
         </div>
       </div>
@@ -1080,7 +1080,7 @@ body.gsap .reveal{opacity:1;transform:none;transition:none}
     <div class="faqList reveal">
       <details class="faqItem" open>
         <summary aria-expanded="true"><span>A Oxford é uma fabricante?</span> <span class="faqIcon" aria-hidden="true">−</span></summary>
-        <div class="faqAns">Sim. A Oxford é fabricante sul-coreana com produção própria de blocos de montar.</div>
+        <div class="faqAns">Sim. A Oxford é uma fabricante sul-coreana de blocos de montar, com produção própria e décadas de tradição global.</div>
       </details>
       <details class="faqItem">
         <summary aria-expanded="false"><span>Vocês fazem projetos personalizados?</span> <span class="faqIcon" aria-hidden="true">+</span></summary>
@@ -1392,26 +1392,38 @@ function paintIcons(root){
 }
 paintIcons();
 
-/* ===== HERO BRICKS (depth-2) ===== */
+/* ===== HERO BRICKS — continuous falling particle rain ===== */
 (function(){
   var c=document.getElementById('heroBricks'); if(!c) return;
-  var spec=[
-    {l:'4%', t:'58%', s:150, par:.55, rot:-8,  dim:false},
-    {l:'30%',t:'78%', s:95,  par:.8,  rot:12,  dim:true},
-    {l:'54%',t:'8%',  s:110, par:.65, rot:-14, dim:false},
-    {l:'84%',t:'50%', s:70,  par:1.1, rot:20,  dim:true},
-    {l:'-3%',t:'14%', s:120, par:.45, rot:6,   dim:true, yellow:true},
-    {l:'72%',t:'86%', s:130, par:.7,  rot:-4,  dim:false, yellow:true}
-  ];
-  spec.forEach(function(b,i){
+  var COUNT=22;
+  for(var i=0;i<COUNT;i++){
     var d=document.createElement('div');
-    d.className='fb'+(b.dim?' fb--dim':'');
-    d.style.cssText='--s:'+b.s+'px;left:'+b.l+';top:'+b.t+';';
-    if(b.yellow) d.style.cssText+='--bt:#F7B33A;--bf:#F5A623;--bsd:#B87413;--bst:#FFC966;';
-    d.dataset.par=b.par; d.dataset.rot=b.rot; d.dataset.i=i;
-    d.innerHTML=brickSVG();
+    d.className='fb';
+    var size=45+Math.random()*95;            // 45-140px
+    var left=Math.random()*100;              // 0-100% horizontal
+    var opacity=.14+Math.random()*.32;       // .14-.46 opacity
+    var dur=11+Math.random()*16;             // 11-27s fall speed
+    var delay=-(Math.random()*dur);          // stagger start (negative = already mid-fall)
+    var swayDur=5+Math.random()*7;           // sway cycle
+    var swayAmp=(Math.random()>.5?1:-1)*(20+Math.random()*50); // sway distance
+    var spinDur=12+Math.random()*18;         // rotation speed
+    var startRot=Math.floor(Math.random()*360);
+    var endRot=startRot+(Math.random()>.5?360:-360);
+    var isYellow=Math.random()>.75;
+    d.style.cssText=
+      '--s:'+size.toFixed(0)+'px;'
+      +'left:'+left.toFixed(1)+'%;'
+      +'--o:'+opacity.toFixed(2)+';'
+      +'--dur:'+dur.toFixed(1)+'s;'
+      +'--delay:'+delay.toFixed(1)+'s;';
+    if(isYellow) d.style.cssText+='--bt:#F7B33A;--bf:#F5A623;--bsd:#B87413;--bst:#FFC966;';
+    d.innerHTML=
+      '<div class="fbSpin" style="animation:fbSpin '+spinDur.toFixed(1)+'s '+delay.toFixed(1)+'s linear infinite;--r0:'+startRot+'deg;--r1:'+endRot+'deg;">'
+      +'<div class="fbSway" style="animation:fbSway '+swayDur.toFixed(1)+'s '+delay.toFixed(1)+'s ease-in-out infinite alternate;--sx:'+swayAmp.toFixed(0)+'px;">'
+      +brickSVG()
+      +'</div></div>';
     c.appendChild(d);
-  });
+  }
 })();
 
 /* ===== COLLAB BRANDS — PORTFOLIO MODELS & LIGHTBOX ===== */
@@ -1949,7 +1961,6 @@ document.querySelectorAll('.faqItem').forEach(function(d){
   gsap.set(['.heroTagline','.heroPills','.heroText .btn--lg','.scrollHint'],{opacity:0,y:24});
   gsap.set('.heroVideoFrame',{opacity:0,scale:.94,clipPath:'inset(14% 10% 14% 10% round 12px)'});
   gsap.set('.basePlate',{opacity:0,y:40});
-  gsap.set('.fb',{opacity:0});
 
   /* ---------- hero intro ---------- */
   function heroIntro(){
@@ -1961,21 +1972,9 @@ document.querySelectorAll('.faqItem').forEach(function(d){
       .to(['.heroTagline','.heroPills','.heroText .btn--lg'],{opacity:1,y:0,duration:.7,stagger:.09},'-=.45')
       .to('.heroVideoFrame',{opacity:1,scale:1,clipPath:'inset(0% 0% 0% 0% round 12px)',duration:1.15},'-=1.1')
       .to('.basePlate',{opacity:1,y:0,duration:.9},'-=.85')
-      .fromTo('.fb',{y:-180,x:function(i){return i%2?90:-90},rotate:function(i,el){return +el.dataset.rot-45}},
-        {y:0,x:0,rotate:function(i,el){return +el.dataset.rot},opacity:function(i,el){return el.classList.contains('fb--dim')?.5:.95},duration:1.25,stagger:.07},'-=1.05')
       .to('.scrollHint',{opacity:1,y:0,duration:.6},'-=.5')
       .add(function(){
         gsap.set('.heroVideoFrame',{clearProps:'clip-path,transform,opacity'});
-        // continuous free-floating animation for bricks
-        document.querySelectorAll('.fb').forEach(function(el,i){
-          var dur=6+Math.random()*5;
-          var yAmp=18+Math.random()*22;
-          var xAmp=10+Math.random()*14;
-          var rotAmp=6+Math.random()*10;
-          gsap.to(el,{y:'+='+yAmp, duration:dur, yoyo:true, repeat:-1, ease:'sine.inOut', delay:i*.4});
-          gsap.to(el,{x:'+='+xAmp*(i%2?1:-1), duration:dur*1.3, yoyo:true, repeat:-1, ease:'sine.inOut', delay:i*.3});
-          gsap.to(el,{rotate:'+='+(i%2?rotAmp:-rotAmp), duration:dur*1.1, yoyo:true, repeat:-1, ease:'sine.inOut', delay:i*.2});
-        });
       });
     return tl;
   }
@@ -2001,9 +2000,7 @@ document.querySelectorAll('.faqItem').forEach(function(d){
   gsap.to('.heroInner',{y:90,opacity:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'25% top',end:'bottom top',scrub:true}});
   if(fine){
     var hero=document.querySelector('.hero');
-    var movers=Array.prototype.map.call(document.querySelectorAll('.fb'),function(el){
-      return {el:el,p:parseFloat(el.dataset.par)||.6,x:gsap.quickTo(el,'x',{duration:.9,ease:'power3'}),y:gsap.quickTo(el,'y',{duration:.9,ease:'power3'})};
-    });
+    var movers=[];
     var frameX=gsap.quickTo('.heroVideoFrame','rotateY',{duration:1,ease:'power3'}), frameY=gsap.quickTo('.heroVideoFrame','rotateX',{duration:1,ease:'power3'});
     gsap.set('.heroVideoFrame',{transformPerspective:1400});
     hero.addEventListener('pointermove',function(e){
