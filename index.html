@@ -523,10 +523,134 @@ img{max-width:100%;display:block}
 @media (max-width:540px){
   .footerGrid{grid-template-columns:1fr}
 }
+
+/* =====================================================================
+   BRICK SYSTEM & MOTION — the block is the brand object
+   ===================================================================== */
+/* --- Loader: three bricks stack, then the page is revealed --- */
+.loader{position:fixed;inset:0;z-index:1000;background:var(--ink);display:grid;place-items:center;clip-path:inset(0 0 0 0)}
+.loader.is-done{display:none}
+.loaderStack{position:relative;width:140px;height:130px}
+.loaderStack .lb{position:absolute;left:50%;width:120px;transform:translateX(-50%);opacity:0;filter:drop-shadow(0 18px 24px rgba(0,0,0,.6))}
+.loaderStack .lb:nth-child(1){bottom:0}
+.loaderStack .lb:nth-child(2){bottom:26px}
+.loaderStack .lb:nth-child(3){bottom:52px}
+.loaderStack .lb svg{width:100%;height:auto;display:block}
+.loaderWord{position:absolute;left:50%;bottom:calc(50% - 110px);transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:var(--muted2);white-space:nowrap;opacity:0}
+body.is-loading{overflow:hidden}
+
+/* --- Scroll progress + nav behaviour --- */
+.scrollBar{position:fixed;top:0;left:0;height:3px;width:100%;z-index:101;background:linear-gradient(90deg,var(--yellow),var(--red));transform-origin:left center;transform:scaleX(0);pointer-events:none}
+.topbar{transition:transform .38s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s}
+.topbar.is-hidden{transform:translateY(-100%)}
+.topbar.is-solid{background:rgba(4,5,6,.94)}
+.nav a{position:relative;padding-bottom:4px}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;border-radius:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.nav a:hover::after,.nav a.is-active::after{transform:scaleX(1)}
+.nav a.is-active{color:var(--white)}
+.btn--red{position:relative;overflow:hidden;transition:transform .22s cubic-bezier(.16,1,.3,1),box-shadow .22s,background .22s}
+.btn--red::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.btn--red:hover{background:#e0332b;box-shadow:0 12px 30px -8px rgba(212,43,36,.6),0 6px 18px rgba(0,0,0,.4)}
+.btn--red:hover::after{transform:translateX(120%)}
+.btn--red:active{transform:translateY(1px) scale(.985)}
+
+/* --- Brick icon tile: replaces emoji everywhere --- */
+.brickIco{--bs:46px;width:var(--bs);height:var(--bs);border-radius:7px;display:grid;place-items:center;position:relative;color:#fff;
+  background:linear-gradient(160deg,#e0352d 0%,var(--red) 45%,var(--red2) 100%);
+  box-shadow:0 10px 22px -8px rgba(212,43,36,.7),0 3px 0 var(--red2),inset 0 1px 0 rgba(255,255,255,.25);margin-bottom:18px;font-size:0;line-height:0}
+.brickIco::before{content:"";position:absolute;left:22%;right:22%;top:-5px;height:7px;
+  background:radial-gradient(circle at 25% 60%,#f0655d 0 3px,var(--red2) 3.4px,transparent 3.9px),radial-gradient(circle at 75% 60%,#f0655d 0 3px,var(--red2) 3.4px,transparent 3.9px)}
+.brickIco svg{width:calc(var(--bs) * .52);height:calc(var(--bs) * .52);fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
+.brickIco--sm{--bs:38px;margin-bottom:0;border-radius:6px}
+.brickIco--sm::before{top:-4px;height:6px;background:radial-gradient(circle at 25% 60%,#f0655d 0 2.4px,var(--red2) 2.8px,transparent 3.2px),radial-gradient(circle at 75% 60%,#f0655d 0 2.4px,var(--red2) 2.8px,transparent 3.2px)}
+.brickIco--ink{background:linear-gradient(160deg,#1a1d1f,#0d0f10);box-shadow:0 8px 18px -8px rgba(0,0,0,.8),0 3px 0 #000,inset 0 1px 0 rgba(255,255,255,.08);color:var(--red)}
+.brickIco--ink::before{background:radial-gradient(circle at 25% 60%,#2a2e31 0 3px,#000 3.4px,transparent 3.9px),radial-gradient(circle at 75% 60%,#2a2e31 0 3px,#000 3.4px,transparent 3.9px)}
+.segName .brickIco{margin-right:4px}
+.channelList .chIco.brickIco{border:0;background:linear-gradient(160deg,#1a1d1f,#0d0f10);color:var(--red)}
+
+/* --- Brick seam between sections --- */
+.seam{position:absolute;left:0;right:0;top:0;height:1px;pointer-events:none;background:linear-gradient(90deg,transparent 0%,rgba(212,43,36,.45) 35%,rgba(212,43,36,.45) 65%,transparent 100%)}
+.seam::after{content:"";position:absolute;left:50%;top:-5px;transform:translateX(-50%);width:132px;height:10px;
+  background:radial-gradient(circle at 50% 50%,var(--red) 0 2.6px,rgba(212,43,36,.35) 3px,transparent 3.6px);background-size:12px 10px;background-repeat:repeat-x;opacity:.9}
+
+/* --- Hero: bricks & product boxes in depth --- */
+.heroLayer{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.heroLayer.depth-2{z-index:3}
+.heroLayer.depth-3{z-index:4}
+.fb{position:absolute;width:var(--s,120px);opacity:0;will-change:transform;filter:drop-shadow(0 26px 30px rgba(0,0,0,.62))}
+.fb svg{width:100%;height:auto;display:block}
+.fb--dim{opacity:0;filter:drop-shadow(0 26px 30px rgba(0,0,0,.62)) brightness(.8) blur(1.5px)}
+.heroBox{position:absolute;width:var(--s,150px);opacity:0;will-change:transform;filter:drop-shadow(0 30px 40px rgba(0,0,0,.75))}
+.heroBox img{width:100%;height:auto;display:block}
+.heroVideoWrapper{isolation:isolate}
+.basePlate{position:absolute;left:-10%;right:-10%;bottom:-38px;height:120px;z-index:-1;pointer-events:none;opacity:.55;
+  background-image:radial-gradient(circle at 50% 50%,rgba(212,43,36,.9) 0 3px,rgba(212,43,36,.35) 3.6px,transparent 4.6px);background-size:22px 22px;
+  transform:perspective(520px) rotateX(64deg);transform-origin:50% 0;
+  mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 78%);-webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 78%)}
+.heroVideoFrame{will-change:transform}
+.hero h1 .wd,.hero h1 .ch{display:inline-block;will-change:transform}
+.hero h1 .ch{transform-origin:50% 100%}
+.sHead h2 .wd{display:inline-block;transform-origin:50% 100%}
+.heroEyebrow i{transform-origin:left center}
+
+/* --- Brand ticker (uses existing portfolio names only) --- */
+.brandTicker{overflow:hidden;margin:0 0 30px;padding:14px 0;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);
+  mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.brandTicker .track{display:flex;width:max-content;animation:ticker 70s linear infinite}
+.brandTicker:hover .track{animation-play-state:paused}
+.brandTicker .set{display:flex;align-items:center;gap:0}
+.brandTicker .set span{display:inline-flex;align-items:center;gap:22px;padding-right:22px;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.brandTicker .set span::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 8px rgba(212,43,36,.6)}
+@keyframes ticker{to{transform:translateX(-50%)}}
+
+/* --- Timeline & workflow build lines --- */
+.timeline,.workflow{position:relative;--build:0}
+.timeline::before,.workflow::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;z-index:2;background:linear-gradient(90deg,var(--yellow),var(--red));transform:scaleX(var(--build,0));transform-origin:left}
+.tlItem,.wfStep{transform-style:preserve-3d}
+.wfNum{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:6px;background:linear-gradient(160deg,#e0352d,var(--red2));color:#fff;font-size:12px;box-shadow:0 3px 0 var(--red2),0 8px 16px -6px rgba(212,43,36,.6);letter-spacing:.02em;position:relative}
+.wfNum::before{content:"";position:absolute;left:8px;right:8px;top:-4px;height:6px;background:radial-gradient(circle at 25% 60%,#f0655d 0 2.4px,var(--red2) 2.8px,transparent 3.2px),radial-gradient(circle at 75% 60%,#f0655d 0 2.4px,var(--red2) 2.8px,transparent 3.2px)}
+.triadNum,.bizPriority{font-variant-numeric:tabular-nums}
+
+/* --- Tilt & shine for interactive cards --- */
+.tilt{transform-style:preserve-3d;--mx:50%;--my:50%}
+.tilt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx) var(--my),rgba(255,255,255,.08),transparent 60%)}
+.tilt:hover::after{opacity:1}
+.tilt .btn,.tilt h3,.tilt p{transform:translateZ(1px)}
+
+/* --- FAQ animated open/close --- */
+.faqItem .faqAns{overflow:hidden}
+.faqItem summary .faqIcon{transition:transform .3s cubic-bezier(.16,1,.3,1),color .2s}
+
+/* --- Card entrance state when GSAP drives motion --- */
+body.gsap .reveal{opacity:1;transform:none;transition:none}
+
+@media (pointer:coarse),(max-width:980px){
+  .heroLayer.depth-3{display:none}
+  .fb--dim{display:none}
+  .basePlate{opacity:.35}
+}
+@media (prefers-reduced-motion:reduce){
+  .loader{display:none}
+  .brandTicker .track{animation:none}
+  .fb,.heroBox{opacity:.9}
+  .timeline::before,.workflow::before{transform:none}
+  .scrollBar{display:none}
+}
 </style>
 </head>
-<body>
+<body class="is-loading">
 <a href="#main" class="skipLink">Pular para o conteúdo</a>
+
+<!-- Shared isometric brick symbol (drawn at runtime, reused everywhere) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs id="brickDefs"></defs></svg>
+
+<!-- Loader: bricks stack, then the site is revealed -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loaderStack" id="loaderStack"></div>
+  <div class="loaderWord">Oxford Blocks Brasil</div>
+</div>
+<div class="scrollBar" id="scrollBar" aria-hidden="true"></div>
 
 <!-- NAV -->
 <nav class="topbar">
@@ -551,10 +675,17 @@ img{max-width:100%;display:block}
 <!-- 1. HOME / BANNER PRINCIPAL -->
 <main id="main">
 <section class="hero" id="top">
-  <div class="heroSun"></div>
-  <div class="heroGrid"></div>
-  <div class="heroStuds" id="heroStuds"></div>
-  <div class="gridBg"></div>
+  <div class="heroSun" data-depth="0" aria-hidden="true"></div>
+  <div class="heroGrid" data-depth="1" aria-hidden="true"></div>
+  <div class="gridBg" data-depth="1" aria-hidden="true"></div>
+  <!-- depth-2: floating Oxford bricks (the brand object) -->
+  <div class="heroLayer depth-2" id="heroBricks" data-depth="2" aria-hidden="true"></div>
+  <!-- depth-3: real Oxford product boxes orbiting the reel -->
+  <div class="heroLayer depth-3" id="heroBoxes" data-depth="3" aria-hidden="true">
+    <div class="heroBox" data-par="0.9" style="--s:clamp(150px,15vw,230px);right:2%;top:12%"><img src="assets/portfolio-korea-transparent/02-aviacao-ferrovia-e-transporte/008__227__대한항공.png" alt="" loading="eager" decoding="async"></div>
+    <div class="heroBox" data-par="0.7" style="--s:clamp(110px,11vw,170px);right:41%;bottom:6%"><img src="assets/portfolio-korea-transparent/08-esportes-e-lazer/056__146__한국야구위원회 KBO.png" alt="" loading="eager" decoding="async"></div>
+    <div class="heroBox" data-par="1.1" style="--s:clamp(120px,12vw,190px);right:6%;bottom:4%"><img src="assets/portfolio-korea-transparent/03-automotivo-e-mobilidade/003__1420__현대자동차.png" alt="" loading="eager" decoding="async"></div>
+  </div>
   <div class="heroInner">
     <div class="heroMainGrid">
       <div class="heroText">
@@ -576,6 +707,7 @@ img{max-width:100%;display:block}
       </div>
 
       <div class="heroVideoWrapper">
+        <div class="basePlate" aria-hidden="true"></div>
         <div class="heroVideoFrame" id="heroVideoFrame">
           <video id="heroVideo" playsinline preload="metadata" loop muted autoplay>
             <source src="assets/oxford-intro.mp4" type="video/mp4">
@@ -626,25 +758,25 @@ img{max-width:100%;display:block}
 
     <div class="whyGrid reveal">
       <div class="whyPillar">
-        <span class="whyIco">🏆</span>
+        <span class="whyIco brickIco" data-ico="trophy" aria-hidden="true"></span>
         <span class="whyBar"></span>
         <h4>Experiência</h4>
         <p>Mais de 60 anos de atuação no mercado de blocos de montar.</p>
       </div>
       <div class="whyPillar">
-        <span class="whyIco">🏭</span>
+        <span class="whyIco brickIco" data-ico="factory" aria-hidden="true"></span>
         <span class="whyBar"></span>
         <h4>Fabricação Própria</h4>
         <p>Todos os projetos são desenvolvidos e produzidos na fábrica Oxford na Coreia do Sul.</p>
       </div>
       <div class="whyPillar">
-        <span class="whyIco">✨</span>
+        <span class="whyIco brickIco" data-ico="sparkle" aria-hidden="true"></span>
         <span class="whyBar"></span>
         <h4>Projetos Personalizados</h4>
         <p>Sua marca, produto ou espaço transformado em um modelo exclusivo de blocos.</p>
       </div>
       <div class="whyPillar">
-        <span class="whyIco">🤝</span>
+        <span class="whyIco brickIco" data-ico="handshake" aria-hidden="true"></span>
         <span class="whyBar"></span>
         <h4>Soluções para Negócios</h4>
         <p>Projetos corporativos, licenciamentos, collabs e linha de revenda.</p>
@@ -702,7 +834,7 @@ img{max-width:100%;display:block}
     <div class="bizGrid">
       <div class="bizCard bizFirst reveal">
         <span class="bizPriority">01</span>
-        <span class="bizIco">🏭</span>
+        <span class="bizIco brickIco" data-ico="factory" aria-hidden="true"></span>
         <p class="bizLabel">Projetos Corporativos</p>
         <h3>Sua empresa em blocos.</h3>
         <p>Fábricas, máquinas, produtos e prédios transformados em modelos exclusivos de blocos de montar.</p>
@@ -725,7 +857,7 @@ img{max-width:100%;display:block}
 
       <div class="bizCard reveal">
         <span class="bizPriority">02</span>
-        <span class="bizIco">🤝</span>
+        <span class="bizIco brickIco" data-ico="handshake" aria-hidden="true"></span>
         <p class="bizLabel">Collabs &amp; Licenciamentos</p>
         <h3>Coleções exclusivas com sua marca.</h3>
         <p>Produtos desenvolvidos em parceria com marcas, clubes, franquias e personagens — para fãs, consumidores e colecionadores.</p>
@@ -748,7 +880,7 @@ img{max-width:100%;display:block}
 
       <div class="bizCard reveal">
         <span class="bizPriority">03</span>
-        <span class="bizIco">🏪</span>
+        <span class="bizIco brickIco" data-ico="store" aria-hidden="true"></span>
         <p class="bizLabel">Linha Oxford para Revenda</p>
         <h3>Produtos prontos para o varejo.</h3>
         <p>Linha própria de blocos de montar disponível para comercialização no Brasil.</p>
@@ -823,6 +955,8 @@ img{max-width:100%;display:block}
       </div>
     </div>
 
+    <div class="brandTicker reveal" id="brandTicker" aria-hidden="true"><div class="track"></div></div>
+
     <div class="collabFilters reveal" id="collabFilters">
       <button class="filterBtn active" data-filter="all">Todos</button>
       <button class="filterBtn" data-filter="entretenimento">🎬 Destaques</button>
@@ -854,27 +988,27 @@ img{max-width:100%;display:block}
 
     <div class="segTable reveal">
       <div class="segRow">
-        <div class="segName"><span class="segIco">⚽</span> Esportes</div>
+        <div class="segName"><span class="segIco brickIco brickIco--sm brickIco--ink" data-ico="ball" aria-hidden="true"></span> Esportes</div>
         <div class="segHook">Estádios, mascotes e produtos exclusivos para clubes e torcedores.</div>
       </div>
       <div class="segRow">
-        <div class="segName"><span class="segIco">🏭</span> Indústria</div>
+        <div class="segName"><span class="segIco brickIco brickIco--sm brickIco--ink" data-ico="factory" aria-hidden="true"></span> Indústria</div>
         <div class="segHook">Máquinas, fábricas e equipamentos transformados em modelos de blocos.</div>
       </div>
       <div class="segRow">
-        <div class="segName"><span class="segIco">🏢</span> Empresas</div>
+        <div class="segName"><span class="segIco brickIco brickIco--sm brickIco--ink" data-ico="building" aria-hidden="true"></span> Empresas</div>
         <div class="segHook">Presentes corporativos, campanhas e ações de relacionamento com clientes.</div>
       </div>
       <div class="segRow">
-        <div class="segName"><span class="segIco">🎬</span> Entretenimento</div>
+        <div class="segName"><span class="segIco brickIco brickIco--sm brickIco--ink" data-ico="film" aria-hidden="true"></span> Entretenimento</div>
         <div class="segHook">Franquias, personagens e marcas transformados em colecionáveis.</div>
       </div>
       <div class="segRow">
-        <div class="segName"><span class="segIco">🛍️</span> Varejo</div>
+        <div class="segName"><span class="segIco brickIco brickIco--sm brickIco--ink" data-ico="bag" aria-hidden="true"></span> Varejo</div>
         <div class="segHook">Produtos exclusivos para lojas e campanhas de consumo.</div>
       </div>
       <div class="segRow">
-        <div class="segName"><span class="segIco">🏛️</span> Museus &amp; Turismo</div>
+        <div class="segName"><span class="segIco brickIco brickIco--sm brickIco--ink" data-ico="museum" aria-hidden="true"></span> Museus &amp; Turismo</div>
         <div class="segHook">Monumentos e atrações turísticas em versão colecionável.</div>
       </div>
     </div>
@@ -1015,21 +1149,21 @@ img{max-width:100%;display:block}
     
     <div class="partnerActions">
       <a class="paBtn reveal" href="parceiro.html?t=institucional">
-        <span class="paIco">🏭</span>
+        <span class="paIco brickIco" data-ico="factory" aria-hidden="true"></span>
         <span class="paLabel">Projetos Corporativos</span>
         <span class="paSub">Sua empresa em blocos</span>
         <p class="paDesc">Modelos exclusivos de fábricas, produtos, máquinas e sedes.</p>
         <span class="paArr">Falar com a equipe <span class="arr">→</span></span>
       </a>
       <a class="paBtn reveal" href="parceiro.html?t=collab">
-        <span class="paIco">🤝</span>
+        <span class="paIco brickIco" data-ico="handshake" aria-hidden="true"></span>
         <span class="paLabel">Collabs &amp; Licenciamentos</span>
         <span class="paSub">Coleções exclusivas</span>
         <p class="paDesc">Parcerias com marcas, clubes, franquias e personagens.</p>
         <span class="paArr">Falar com a equipe <span class="arr">→</span></span>
       </a>
       <a class="paBtn reveal" href="parceiro.html?t=revenda">
-        <span class="paIco">🏪</span>
+        <span class="paIco brickIco" data-ico="store" aria-hidden="true"></span>
         <span class="paLabel">Revenda Oxford</span>
         <span class="paSub">Linha para varejo</span>
         <p class="paDesc">Blocos Oxford para lojas, papelarias, hobby shops e e-commerce.</p>
@@ -1100,6 +1234,8 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
 /* ===== HERO VIDEO PLAYER ===== */
 (function(){
@@ -1213,20 +1349,79 @@ img{max-width:100%;display:block}
   });
 })();
 
-/* ===== HERO STUDS ===== */
+/* ===== BRICK SYMBOL (isometric 2x4 Oxford brick, drawn once, reused via <use>) ===== */
 (function(){
-  var c=document.getElementById('heroStuds');
-  if(!c) return;
-  var n=7;
-  for(var i=0;i<n;i++){
-    var s=document.createElement('i');
-    s.className='stud';
-    s.style.left=(8+i*12)+'%';
-    s.style.top=(18+Math.sin(i)*10)+'%';
-    s.style.animation='floatStud '+(4+i*0.4)+'s ease-in-out '+(i*0.3)+'s infinite';
-    s.style.opacity=.4;
-    c.appendChild(s);
+  var defs=document.getElementById('brickDefs'); if(!defs) return;
+  var U=20, L=4*U, D=2*U, H=24, SH=6, c30=Math.cos(Math.PI/6), s30=.5;
+  function iso(x,y,z){return [(x-y)*c30, (x+y)*s30 - z];}
+  function poly(pts,fill){return '<polygon points="'+pts.map(function(p){return p[0].toFixed(2)+','+p[1].toFixed(2)}).join(' ')+'" fill="'+fill+'"/>';}
+  var top=[iso(0,0,H),iso(L,0,H),iso(L,D,H),iso(0,D,H)];
+  var front=[iso(0,D,H),iso(L,D,H),iso(L,D,0),iso(0,D,0)];
+  var side=[iso(L,0,H),iso(L,D,H),iso(L,D,0),iso(L,0,0)];
+  var s='<g id="brickBody">'+poly(front,'var(--bf,#D42B24)')+poly(side,'var(--bsd,#9B1A14)')+poly(top,'var(--bt,#E8483F)');
+  var r=6.4, rx=r*c30*1.155, ry=r*s30*1.155;
+  for(var i=0;i<4;i++)for(var j=0;j<2;j++){
+    var cx=U/2+i*U, cy=U/2+j*U;
+    var b=iso(cx,cy,H), t=iso(cx,cy,H+SH);
+    s+='<path d="M'+(b[0]-rx).toFixed(2)+','+b[1].toFixed(2)+' a'+rx.toFixed(2)+','+ry.toFixed(2)+' 0 0 0 '+(rx*2).toFixed(2)+',0 L'+(t[0]+rx).toFixed(2)+','+t[1].toFixed(2)+' a'+rx.toFixed(2)+','+ry.toFixed(2)+' 0 0 1 -'+(rx*2).toFixed(2)+',0 Z" fill="var(--bsd,#9B1A14)"/>';
+    s+='<ellipse cx="'+t[0].toFixed(2)+'" cy="'+t[1].toFixed(2)+'" rx="'+rx.toFixed(2)+'" ry="'+ry.toFixed(2)+'" fill="var(--bst,#F0655D)"/>';
   }
+  s+='</g>';
+  // bounding box: x from -D*c30 to L*c30, y from -H-SH-ry to (L+D)*s30
+  var minX=-D*c30-1, maxX=L*c30+1, minY=-H-SH-ry-1, maxY=(L+D)*s30+1;
+  var sym='<symbol id="brick" viewBox="'+minX.toFixed(2)+' '+minY.toFixed(2)+' '+(maxX-minX).toFixed(2)+' '+(maxY-minY).toFixed(2)+'">'+s+'</symbol>';
+  defs.innerHTML=sym;
+  window.__brickAspect=(maxY-minY)/(maxX-minX);
+})();
+function brickSVG(cls){return '<svg class="'+(cls||'')+'" viewBox="0 0 100 '+Math.round(100*(window.__brickAspect||.85))+'" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><use href="#brick" width="100" height="'+Math.round(100*(window.__brickAspect||.85))+'"/></svg>';}
+
+/* ===== ICON SET (stroke icons rendered inside brick tiles) ===== */
+var ICONS={
+  trophy:'<path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 6H5.5a2.5 2.5 0 0 0 2.5 4M16 6h2.5a2.5 2.5 0 0 1-2.5 4"/><path d="M12 13v3M9 20h6M10 16h4v4h-4z"/>',
+  factory:'<path d="M3 20V10l5 3v-3l5 3v-3l5 3v7H3z"/><path d="M17 13V5h3v15"/><path d="M6 17h2M11 17h2"/>',
+  sparkle:'<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7z"/>',
+  handshake:'<path d="M2 10l4-4 4 3 3-3 4 4 5-1"/><path d="M6 6l-4 4v5l6 4 3-2 3 1 4-3"/><path d="M10 9l3 3M13 12l2 2M15 14l2 1"/>',
+  store:'<path d="M4 9l1.5-5h13L20 9"/><path d="M4 9a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0"/><path d="M5 11v9h14v-9M10 20v-5h4v5"/>',
+  ball:'<circle cx="12" cy="12" r="9"/><path d="M12 7.5l4 3-1.5 4.5h-5L8 10.5z"/><path d="M12 3v4.5M3.5 10.5L8 10.5M20.5 10.5L16 10.5M6 19l3.5-4M18 19l-3.5-4"/>',
+  building:'<rect x="5" y="3" width="14" height="18"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M10 21v-3h4v3"/>',
+  film:'<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 9h18M3 15h18M7 5v14M17 5v14"/>',
+  bag:'<path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+  museum:'<path d="M3 9l9-5 9 5H3z"/><path d="M5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 18h18v3H3z"/>',
+  toy:'<rect x="3" y="12" width="9" height="7"/><rect x="12" y="12" width="9" height="7"/><rect x="7.5" y="5" width="9" height="7"/><path d="M9.5 5V3h2v2M12.5 5V3h2v2"/>',
+  pencil:'<path d="M4 20l4-1 11-11-3-3L5 16l-1 4z"/><path d="M13 7l3 3"/>',
+  book:'<path d="M4 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4V4zM20 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6V4z"/>',
+  puzzle:'<path d="M10 4a2 2 0 1 1 4 0v2h4v4a2 2 0 1 1 0 4v4h-4a2 2 0 1 1-4 0H6v-4a2 2 0 1 1 0-4V6h4V4z"/>',
+  gamepad:'<path d="M7 8h10a4 4 0 0 1 4 4v3a3 3 0 0 1-5 2l-2-2H10l-2 2a3 3 0 0 1-5-2v-3a4 4 0 0 1 4-4z"/><path d="M8 11v3M6.5 12.5h3M15.5 12h.01M17.5 13.5h.01"/>',
+  laptop:'<rect x="4" y="5" width="16" height="11" rx="1"/><path d="M2 19h20"/>',
+  mall:'<path d="M3 21V9h18v12"/><path d="M3 9l2-5h14l2 5"/><path d="M7 21v-6h4v6M14 13h4v4h-4z"/>'
+};
+function paintIcons(root){
+  (root||document).querySelectorAll('.brickIco[data-ico]:empty').forEach(function(el){
+    var p=ICONS[el.dataset.ico]; if(p) el.innerHTML='<svg viewBox="0 0 24 24">'+p+'</svg>';
+  });
+}
+paintIcons();
+
+/* ===== HERO BRICKS (depth-2) ===== */
+(function(){
+  var c=document.getElementById('heroBricks'); if(!c) return;
+  var spec=[
+    {l:'4%', t:'58%', s:150, par:.55, rot:-8,  dim:false},
+    {l:'30%',t:'78%', s:95,  par:.8,  rot:12,  dim:true},
+    {l:'54%',t:'8%',  s:110, par:.65, rot:-14, dim:false},
+    {l:'84%',t:'50%', s:70,  par:1.1, rot:20,  dim:true},
+    {l:'-3%',t:'14%', s:120, par:.45, rot:6,   dim:true, yellow:true},
+    {l:'72%',t:'86%', s:130, par:.7,  rot:-4,  dim:false, yellow:true}
+  ];
+  spec.forEach(function(b,i){
+    var d=document.createElement('div');
+    d.className='fb'+(b.dim?' fb--dim':'');
+    d.style.cssText='--s:'+b.s+'px;left:'+b.l+';top:'+b.t+';';
+    if(b.yellow) d.style.cssText+='--bt:#F7B33A;--bf:#F5A623;--bsd:#B87413;--bst:#FFC966;';
+    d.dataset.par=b.par; d.dataset.rot=b.rot; d.dataset.i=i;
+    d.innerHTML=brickSVG();
+    c.appendChild(d);
+  });
 })();
 
 /* ===== COLLAB BRANDS — PORTFOLIO MODELS & LIGHTBOX ===== */
@@ -1381,11 +1576,20 @@ function renderBrands(filter){
 }
 renderBrands('all');
 
+/* Brand ticker — names come straight from PORT_MODELS */
+(function(){
+  var t=document.querySelector('#brandTicker .track'); if(!t) return;
+  var names=PORT_MODELS.map(function(m){return m.n});
+  var set='<div class="set">'+names.map(function(n){return '<span>'+n+'</span>'}).join('')+'</div>';
+  t.innerHTML=set+set;
+})();
+
 document.querySelectorAll('#collabFilters .filterBtn').forEach(function(btn){
   btn.addEventListener('click',function(){
     document.querySelectorAll('#collabFilters .filterBtn').forEach(function(b){b.classList.remove('active')});
     btn.classList.add('active');
     renderBrands(btn.dataset.filter);
+    if(window.animateGrid) window.animateGrid();
   });
 });
 
@@ -1583,15 +1787,15 @@ if(cl) CATS.forEach(function(c,index){
 
 /* ===== CHANNELS ===== */
 var CHANNELS=[
-  {i:'🧸',t:'Lojas de brinquedos'},{i:'✏️',t:'Papelarias'},
-  {i:'📖',t:'Livrarias'},{i:'🧩',t:'Hobby Shops'},
-  {i:'🎮',t:'Lojas Geek'},{i:'💻',t:'E-commerce'},
-  {i:'🏬',t:'Redes de varejo'}
+  {i:'toy',t:'Lojas de brinquedos'},{i:'pencil',t:'Papelarias'},
+  {i:'book',t:'Livrarias'},{i:'puzzle',t:'Hobby Shops'},
+  {i:'gamepad',t:'Lojas Geek'},{i:'laptop',t:'E-commerce'},
+  {i:'mall',t:'Redes de varejo'}
 ];
 var ch=document.getElementById('channelList');
 if(ch) CHANNELS.forEach(function(c){
   var li=document.createElement('li');
-  li.innerHTML='<span class="chIco">'+c.i+'</span> '+c.t;
+  li.innerHTML='<span class="chIco brickIco brickIco--sm" data-ico="'+c.i+'" aria-hidden="true"></span> '+c.t;
   ch.appendChild(li);
 });
 
@@ -1599,10 +1803,24 @@ if(ch) CHANNELS.forEach(function(c){
 document.querySelectorAll('.faqItem').forEach(function(d){
   var s=d.querySelector('summary');
   var icon=s.querySelector('.faqIcon');
+  var ans=d.querySelector('.faqAns');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var busy=false;
   if(icon) icon.textContent=d.open?'−':'+';
-  d.addEventListener('toggle',function(){
-    s.setAttribute('aria-expanded',d.open?'true':'false');
-    if(icon) icon.textContent=d.open?'−':'+';
+  function sync(){ s.setAttribute('aria-expanded',d.open?'true':'false'); if(icon) icon.textContent=d.open?'−':'+'; }
+  d.addEventListener('toggle',sync);
+  if(reduce || !ans || !ans.animate) return;
+  s.addEventListener('click',function(e){
+    e.preventDefault(); if(busy) return; busy=true;
+    var pb=getComputedStyle(ans).paddingBottom;
+    if(!d.open){
+      d.open=true;
+      var h=ans.offsetHeight-parseFloat(pb);
+      ans.animate([{height:'0px',paddingBottom:'0px',opacity:0,transform:'translateY(-6px)'},{height:h+'px',paddingBottom:pb,opacity:1,transform:'none'}],{duration:380,easing:'cubic-bezier(.16,1,.3,1)'}).onfinish=function(){busy=false};
+    } else {
+      var h0=ans.offsetHeight-parseFloat(pb);
+      ans.animate([{height:h0+'px',paddingBottom:pb,opacity:1},{height:'0px',paddingBottom:'0px',opacity:0}],{duration:260,easing:'cubic-bezier(.4,0,.6,1)'}).onfinish=function(){d.open=false;busy=false};
+    }
   });
 });
 
@@ -1644,6 +1862,240 @@ document.querySelectorAll('.faqItem').forEach(function(d){
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'&&isOpen) close();
   });
+})();
+
+/* =====================================================================
+   MOTION ENGINE — the site "builds itself", block by block
+   Focal moment: hero headline assembles from bricks while real Oxford
+   product boxes settle around the reel. Everything else is supporting:
+   scroll-built timelines, staggered grids, tilt, nav feedback.
+   ===================================================================== */
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia('(pointer: fine)').matches;
+  var hasGsap=typeof gsap!=='undefined' && typeof ScrollTrigger!=='undefined';
+  var loader=document.getElementById('loader');
+  var stack=document.getElementById('loaderStack');
+  var body=document.body;
+
+  /* brick seams between sections */
+  document.querySelectorAll('main .section').forEach(function(s){
+    var d=document.createElement('div'); d.className='seam'; d.setAttribute('aria-hidden','true'); s.prepend(d);
+  });
+
+  /* nav: progress bar, hide-on-scroll, active link */
+  (function(){
+    var bar=document.getElementById('scrollBar'), top=document.querySelector('.topbar');
+    var lastY=window.scrollY, ticking=false;
+    function onScroll(){
+      var y=window.scrollY, max=document.documentElement.scrollHeight-window.innerHeight;
+      if(bar) bar.style.transform='scaleX('+(max>0?Math.min(1,y/max):0)+')';
+      if(top){
+        top.classList.toggle('is-solid', y>40);
+        if(y>lastY && y>260 && !document.querySelector('.nav--open')) top.classList.add('is-hidden'); else top.classList.remove('is-hidden');
+      }
+      lastY=y; ticking=false;
+    }
+    window.addEventListener('scroll',function(){ if(!ticking){ requestAnimationFrame(onScroll); ticking=true; } },{passive:true});
+    onScroll();
+    var links=Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+    if('IntersectionObserver' in window && links.length){
+      var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(a){a.classList.remove('is-active')}); var a=map[e.target.id]; if(a) a.classList.add('is-active'); } });
+      },{rootMargin:'-35% 0px -55% 0px'});
+      Object.keys(map).forEach(function(id){ var s=document.getElementById(id); if(s) io.observe(s); });
+    }
+  })();
+
+  /* loader stack */
+  if(stack){ for(var i=0;i<3;i++){ var b=document.createElement('div'); b.className='lb'; b.innerHTML=brickSVG(); if(i===1) b.style.cssText='--bt:#F7B33A;--bf:#F5A623;--bsd:#B87413;--bst:#FFC966'; stack.appendChild(b); } }
+
+  function finishLoader(){ if(loader) loader.classList.add('is-done'); body.classList.remove('is-loading'); }
+
+  if(!hasGsap || reduce){
+    body.classList.add(hasGsap?'gsap-off':'nogsap');
+    finishLoader();
+    return;
+  }
+
+  body.classList.add('gsap');
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.defaults({ease:'expo.out'});
+
+  /* ---------- text splitting (text content is never changed) ---------- */
+  function splitWords(el){
+    var walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null,false), nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function(n){
+      if(!n.nodeValue.trim()) return;
+      var frag=document.createDocumentFragment();
+      n.nodeValue.split(/(\s+)/).forEach(function(part){
+        if(!part) return;
+        if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(part)); return; }
+        var s=document.createElement('span'); s.className='wd'; s.textContent=part; frag.appendChild(s);
+      });
+      n.parentNode.replaceChild(frag,n);
+    });
+  }
+  function splitChars(el){
+    var txt=el.textContent; el.textContent='';
+    Array.prototype.forEach.call(txt,function(chr){ var s=document.createElement('span'); s.className='ch'; s.textContent=chr; el.appendChild(s); });
+  }
+  var h1=document.querySelector('.hero h1');
+  if(h1){
+    var red=h1.querySelector('.red');
+    if(red){ splitChars(red); }
+    // words outside .red
+    Array.prototype.slice.call(h1.childNodes).forEach(function(n){ if(n.nodeType===3 && n.nodeValue.trim()){ var w=document.createElement('span'); w.appendChild(n.cloneNode()); h1.replaceChild(w,n); splitWords(w); while(w.firstChild) h1.insertBefore(w.firstChild,w); h1.removeChild(w);} });
+  }
+  document.querySelectorAll('.sHead h2, .partner h2').forEach(function(h){ h.classList.remove('reveal'); splitWords(h); });
+
+  /* ---------- initial states ---------- */
+  var heroBits=['.heroEyebrow','.hero h1 .wd','.hero h1 .ch','.heroTagline','.heroPills','.heroText .btn--lg','.heroVideoFrame','.basePlate','.scrollHint'];
+  gsap.set('.heroEyebrow',{opacity:0,y:10});
+  gsap.set('.heroEyebrow i',{scaleX:0});
+  gsap.set('.hero h1 .wd',{yPercent:110,opacity:0});
+  gsap.set('.hero h1 .ch',{y:-110,opacity:0,rotateX:-75});
+  gsap.set(['.heroTagline','.heroPills','.heroText .btn--lg','.scrollHint'],{opacity:0,y:24});
+  gsap.set('.heroVideoFrame',{opacity:0,scale:.94,clipPath:'inset(14% 10% 14% 10% round 12px)'});
+  gsap.set('.basePlate',{opacity:0,y:40});
+  gsap.set('.fb',{opacity:0});
+  gsap.set('.heroBox',{opacity:0,y:60});
+
+  /* ---------- hero intro ---------- */
+  function heroIntro(){
+    var tl=gsap.timeline();
+    tl.to('.heroEyebrow',{opacity:1,y:0,duration:.6})
+      .to('.heroEyebrow i',{scaleX:1,duration:.7},'<')
+      .to('.hero h1 .wd',{yPercent:0,opacity:1,duration:.9,stagger:.09},'-=.35')
+      .to('.hero h1 .ch',{y:0,opacity:1,rotateX:0,duration:.75,stagger:.055,ease:'back.out(1.7)'},'-=.55')
+      .to(['.heroTagline','.heroPills','.heroText .btn--lg'],{opacity:1,y:0,duration:.7,stagger:.09},'-=.45')
+      .to('.heroVideoFrame',{opacity:1,scale:1,clipPath:'inset(0% 0% 0% 0% round 12px)',duration:1.15},'-=1.1')
+      .to('.basePlate',{opacity:1,y:0,duration:.9},'-=.85')
+      .fromTo('.fb',{y:-180,x:function(i){return i%2?90:-90},rotate:function(i,el){return +el.dataset.rot-45}},
+        {y:0,x:0,rotate:function(i,el){return +el.dataset.rot},opacity:function(i,el){return el.classList.contains('fb--dim')?.5:.95},duration:1.25,stagger:.07},'-=1.05')
+      .to('.heroBox',{opacity:1,y:0,duration:1,stagger:.1},'-=.95')
+      .to('.scrollHint',{opacity:1,y:0,duration:.6},'-=.5')
+      .add(function(){
+        gsap.set('.heroVideoFrame',{clearProps:'clip-path,transform,opacity'});
+        // idle float: bricks & boxes breathe
+        document.querySelectorAll('.fb svg,.heroBox img').forEach(function(el,i){
+          gsap.to(el,{y:'+='+(8+(i%3)*4),rotate:(i%2?1:-1)*(1.5+i%3),duration:5+i*.9,yoyo:true,repeat:-1,ease:'sine.inOut'});
+        });
+      });
+    return tl;
+  }
+
+  /* ---------- loader ---------- */
+  var seen=false; try{ seen=sessionStorage.getItem('oxLoaded')==='1'; }catch(e){}
+  if(loader && !seen){
+    try{ sessionStorage.setItem('oxLoaded','1'); }catch(e){}
+    var lt=gsap.timeline({onComplete:function(){ finishLoader(); }});
+    lt.fromTo('.loaderStack .lb',{y:-70,opacity:0},{y:0,opacity:1,duration:.5,stagger:.14,ease:'back.out(1.6)'})
+      .to('.loaderWord',{opacity:1,duration:.4},'-=.3')
+      .to(loader,{clipPath:'inset(0 0 100% 0)',duration:.75,ease:'expo.inOut'},'+=.25')
+      .add(heroIntro,'-=.55');
+  } else {
+    finishLoader();
+    heroIntro();
+  }
+
+  /* ---------- hero: scroll parallax (layers) + mouse parallax (elements) ---------- */
+  var heroST={trigger:'.hero',start:'top top',end:'bottom top',scrub:true};
+  gsap.to('#heroBricks',{yPercent:16,ease:'none',scrollTrigger:heroST});
+  gsap.to('#heroBoxes',{yPercent:26,ease:'none',scrollTrigger:heroST});
+  gsap.to('.heroSun',{yPercent:-18,ease:'none',scrollTrigger:heroST});
+  gsap.to('.heroInner',{y:90,opacity:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'25% top',end:'bottom top',scrub:true}});
+  if(fine){
+    var hero=document.querySelector('.hero');
+    var movers=Array.prototype.map.call(document.querySelectorAll('.fb,.heroBox'),function(el){
+      return {el:el,p:parseFloat(el.dataset.par)||.6,x:gsap.quickTo(el,'x',{duration:.9,ease:'power3'}),y:gsap.quickTo(el,'y',{duration:.9,ease:'power3'})};
+    });
+    var frameX=gsap.quickTo('.heroVideoFrame','rotateY',{duration:1,ease:'power3'}), frameY=gsap.quickTo('.heroVideoFrame','rotateX',{duration:1,ease:'power3'});
+    gsap.set('.heroVideoFrame',{transformPerspective:1400});
+    hero.addEventListener('pointermove',function(e){
+      var r=hero.getBoundingClientRect(), nx=((e.clientX-r.left)/r.width-.5)*2, ny=((e.clientY-r.top)/r.height-.5)*2;
+      movers.forEach(function(m){ m.x(nx*34*m.p); m.y(ny*22*m.p); });
+      frameX(nx*3); frameY(-ny*2.2);
+    });
+    hero.addEventListener('pointerleave',function(){ movers.forEach(function(m){m.x(0);m.y(0)}); frameX(0); frameY(0); });
+  }
+
+  /* ---------- section headings: words rise, kicker line draws ---------- */
+  document.querySelectorAll('.sHead h2, .partner h2').forEach(function(h){
+    gsap.from(h.querySelectorAll('.wd'),{yPercent:70,opacity:0,rotateX:-35,duration:.95,stagger:.05,transformOrigin:'50% 100%',scrollTrigger:{trigger:h,start:'top 86%'}});
+  });
+  document.querySelectorAll('.kicker i').forEach(function(i){
+    gsap.from(i,{scaleX:0,transformOrigin:'left center',duration:.8,scrollTrigger:{trigger:i,start:'top 90%'}});
+  });
+
+  /* ---------- structured groups: children stagger instead of one block ---------- */
+  var groups=['.whyGrid','.timeline','.workflow','.segTable','.solutionTriad','.faqList','.bizGrid','.partnerActions','.commSplit'];
+  groups.forEach(function(sel){
+    var g=document.querySelector(sel); if(!g) return;
+    g.classList.remove('reveal');
+    var kids=Array.prototype.filter.call(g.children,function(k){return !k.classList.contains('seam')});
+    kids.forEach(function(k){k.classList.remove('reveal')});
+    gsap.from(kids,{y:44,opacity:0,rotateX:-14,transformOrigin:'50% 100%',duration:.9,stagger:{each:.09,from:'start'},clearProps:'transform',scrollTrigger:{trigger:g,start:'top 82%'}});
+  });
+
+  /* ---------- timeline & workflow: build line scrubs with scroll, years count up ---------- */
+  ['.timeline','.workflow'].forEach(function(sel){
+    var el=document.querySelector(sel); if(!el) return;
+    gsap.to(el,{'--build':1,ease:'none',scrollTrigger:{trigger:el,start:'top 78%',end:'bottom 45%',scrub:.6}});
+  });
+  document.querySelectorAll('.tlYear').forEach(function(y){
+    var txt=y.textContent.trim(); if(!/^\d{4}$/.test(txt)) return;
+    var target=+txt, o={v:target-58};
+    ScrollTrigger.create({trigger:y,start:'top 85%',once:true,onEnter:function(){
+      gsap.to(o,{v:target,duration:1.4,ease:'power3.out',onUpdate:function(){y.textContent=Math.round(o.v)},onComplete:function(){y.textContent=txt}});
+    }});
+  });
+  gsap.utils.toArray('.wfNum').forEach(function(n,i){
+    gsap.from(n,{scale:.4,opacity:0,duration:.6,ease:'back.out(2)',delay:.15+i*.08,scrollTrigger:{trigger:'.workflow',start:'top 80%'}});
+  });
+
+  /* ---------- generic reveals (remaining .reveal elements) ---------- */
+  var rest=Array.prototype.filter.call(document.querySelectorAll('.reveal'),function(e){return !e.classList.contains('portCard')});
+  gsap.set(rest,{opacity:0,y:36});
+  ScrollTrigger.batch(rest,{start:'top 88%',onEnter:function(b){gsap.to(b,{opacity:1,y:0,duration:.85,stagger:.08,overwrite:true,clearProps:'transform'})}});
+
+  /* ---------- portfolio grid: cards snap in, re-run on filter ---------- */
+  function animateGrid(){
+    var cards=document.querySelectorAll('#brandGrid .portCard'); if(!cards.length) return;
+    gsap.fromTo(cards,{y:36,opacity:0,scale:.96},{y:0,opacity:1,scale:1,duration:.7,stagger:{each:.045,from:'start'},overwrite:true,clearProps:'transform'});
+  }
+  window.animateGrid=animateGrid;
+  (function(){
+    var cards=document.querySelectorAll('#brandGrid .portCard'); if(!cards.length) return;
+    gsap.set(cards,{opacity:0,y:36});
+    ScrollTrigger.batch(cards,{start:'top 90%',onEnter:function(b){gsap.to(b,{opacity:1,y:0,duration:.7,stagger:.05,overwrite:true,clearProps:'transform'})}});
+  })();
+
+  /* ---------- tilt + shine on primary cards, magnetic CTAs ---------- */
+  if(fine){
+    document.querySelectorAll('.bizCard,.triadCard,.paBtn,.pathCard,.heCard').forEach(function(el){
+      el.classList.add('tilt');
+      el.addEventListener('pointermove',function(e){
+        var r=el.getBoundingClientRect(), px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+        el.style.setProperty('--mx',(px*100)+'%'); el.style.setProperty('--my',(py*100)+'%');
+        el.style.transform='perspective(900px) rotateX('+((py-.5)*-7).toFixed(2)+'deg) rotateY('+((px-.5)*9).toFixed(2)+'deg) translateY(-4px)';
+      });
+      el.addEventListener('pointerleave',function(){ el.style.transform=''; });
+    });
+    document.querySelectorAll('.btn--red').forEach(function(b){
+      b.addEventListener('pointermove',function(e){
+        var r=b.getBoundingClientRect(), dx=e.clientX-(r.left+r.width/2), dy=e.clientY-(r.top+r.height/2);
+        b.style.transform='translate('+(dx*.12).toFixed(1)+'px,'+(dy*.22).toFixed(1)+'px)';
+      });
+      b.addEventListener('pointerleave',function(){ b.style.transform=''; });
+    });
+  }
+
+  /* ---------- footer & contact: partner grid studs fade in ---------- */
+  gsap.from('.partnerGrid',{opacity:0,scale:1.08,duration:1.4,scrollTrigger:{trigger:'.partner',start:'top 75%'}});
+
+  ScrollTrigger.refresh();
 })();
 </script>
 </body>
