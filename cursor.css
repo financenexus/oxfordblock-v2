@@ -3,7 +3,7 @@
   html.oxford-cursor,html.oxford-cursor body,html.oxford-cursor body *{cursor:none!important}
   html.oxford-cursor input,html.oxford-cursor textarea,html.oxford-cursor [contenteditable="true"]{cursor:text!important}
 
-  .oxfordCursorPointer{position:fixed;left:0;top:0;z-index:2147483000;width:30px;height:30px;margin:-3px 0 0 -3px;pointer-events:none;opacity:0;will-change:transform,opacity;contain:layout style paint;background:center/contain no-repeat url("assets/oxford-cursor-exact.png");transition:opacity .12s ease,scale .14s cubic-bezier(.16,1,.3,1)}
+  .oxfordCursorPointer{position:fixed;left:0;top:0;z-index:2147483000;width:30px;height:30px;pointer-events:none;opacity:0;will-change:transform,opacity;contain:layout style paint;background:0 0/contain no-repeat url("assets/oxford-cursor-exact.png");transform-origin:0 0;transition:opacity .12s ease,scale .14s cubic-bezier(.16,1,.3,1)}
   .oxfordCursorPointer.is-visible{opacity:1}
   .oxfordCursorPointer.is-interactive{scale:1.08}
   .oxfordCursorPointer.is-pressed{scale:.88}
