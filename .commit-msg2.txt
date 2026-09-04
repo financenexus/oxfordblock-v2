@@ -1,0 +1,10 @@
+fix: remove unused 192MB portfolio-korea dir that broke Deno Deploy
+
+The assets/portfolio-korea/ directory (411 files, 192MB) was never
+referenced by the site (only portfolio-korea-transparent/ is used) and
+exceeded Deno Deploy's deployment size limit, causing all deploys to
+fail silently. Removed from git and added to .gitignore.
+
+Generated with [Devin](https://devin.ai)
+
+Co-Authored-By: Devin <158243242+devin-ai-integration[bot]@users.noreply.github.com>

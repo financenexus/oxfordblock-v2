@@ -3,3 +3,4 @@ config.json
 submissions/
 *.log
 .claude/
+assets/portfolio-korea/
