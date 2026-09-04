@@ -573,15 +573,12 @@ body.is-loading{overflow:hidden}
 .seam::after{content:"";position:absolute;left:50%;top:-5px;transform:translateX(-50%);width:132px;height:10px;
   background:radial-gradient(circle at 50% 50%,var(--red) 0 2.6px,rgba(212,43,36,.35) 3px,transparent 3.6px);background-size:12px 10px;background-repeat:repeat-x;opacity:.9}
 
-/* --- Hero: bricks & product boxes in depth --- */
+/* --- Hero: bricks --- */
 .heroLayer{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .heroLayer.depth-2{z-index:3}
-.heroLayer.depth-3{z-index:4}
 .fb{position:absolute;width:var(--s,120px);opacity:0;will-change:transform;filter:drop-shadow(0 26px 30px rgba(0,0,0,.62))}
 .fb svg{width:100%;height:auto;display:block}
-.fb--dim{opacity:0;filter:drop-shadow(0 26px 30px rgba(0,0,0,.62)) brightness(.8) blur(1.5px)}
-.heroBox{position:absolute;width:var(--s,150px);opacity:0;will-change:transform;filter:drop-shadow(0 30px 40px rgba(0,0,0,.75))}
-.heroBox img{width:100%;height:auto;display:block}
+.fb--dim{filter:drop-shadow(0 26px 30px rgba(0,0,0,.62)) brightness(.8) blur(1.5px)}
 .heroVideoWrapper{isolation:isolate}
 .basePlate{position:absolute;left:-10%;right:-10%;bottom:-38px;height:120px;z-index:-1;pointer-events:none;opacity:.55;
   background-image:radial-gradient(circle at 50% 50%,rgba(212,43,36,.9) 0 3px,rgba(212,43,36,.35) 3.6px,transparent 4.6px);background-size:22px 22px;
@@ -626,14 +623,13 @@ body.is-loading{overflow:hidden}
 body.gsap .reveal{opacity:1;transform:none;transition:none}
 
 @media (pointer:coarse),(max-width:980px){
-  .heroLayer.depth-3{display:none}
   .fb--dim{display:none}
   .basePlate{opacity:.35}
 }
 @media (prefers-reduced-motion:reduce){
   .loader{display:none}
   .brandTicker .track{animation:none}
-  .fb,.heroBox{opacity:.9}
+  .fb{opacity:.9}
   .timeline::before,.workflow::before{transform:none}
   .scrollBar{display:none}
 }
@@ -678,14 +674,8 @@ body.gsap .reveal{opacity:1;transform:none;transition:none}
   <div class="heroSun" data-depth="0" aria-hidden="true"></div>
   <div class="heroGrid" data-depth="1" aria-hidden="true"></div>
   <div class="gridBg" data-depth="1" aria-hidden="true"></div>
-  <!-- depth-2: floating Oxford bricks (the brand object) -->
+  <!-- depth-2: floating Oxford bricks (animated) -->
   <div class="heroLayer depth-2" id="heroBricks" data-depth="2" aria-hidden="true"></div>
-  <!-- depth-3: real Oxford product boxes orbiting the reel -->
-  <div class="heroLayer depth-3" id="heroBoxes" data-depth="3" aria-hidden="true">
-    <div class="heroBox" data-par="0.9" style="--s:clamp(150px,15vw,230px);right:2%;top:12%"><img src="assets/portfolio-korea-transparent/02-aviacao-ferrovia-e-transporte/008__227__대한항공.png" alt="" loading="eager" decoding="async"></div>
-    <div class="heroBox" data-par="0.7" style="--s:clamp(110px,11vw,170px);right:41%;bottom:6%"><img src="assets/portfolio-korea-transparent/08-esportes-e-lazer/056__146__한국야구위원회 KBO.png" alt="" loading="eager" decoding="async"></div>
-    <div class="heroBox" data-par="1.1" style="--s:clamp(120px,12vw,190px);right:6%;bottom:4%"><img src="assets/portfolio-korea-transparent/03-automotivo-e-mobilidade/003__1420__현대자동차.png" alt="" loading="eager" decoding="async"></div>
-  </div>
   <div class="heroInner">
     <div class="heroMainGrid">
       <div class="heroText">
@@ -1960,7 +1950,6 @@ document.querySelectorAll('.faqItem').forEach(function(d){
   gsap.set('.heroVideoFrame',{opacity:0,scale:.94,clipPath:'inset(14% 10% 14% 10% round 12px)'});
   gsap.set('.basePlate',{opacity:0,y:40});
   gsap.set('.fb',{opacity:0});
-  gsap.set('.heroBox',{opacity:0,y:60});
 
   /* ---------- hero intro ---------- */
   function heroIntro(){
@@ -1974,13 +1963,18 @@ document.querySelectorAll('.faqItem').forEach(function(d){
       .to('.basePlate',{opacity:1,y:0,duration:.9},'-=.85')
       .fromTo('.fb',{y:-180,x:function(i){return i%2?90:-90},rotate:function(i,el){return +el.dataset.rot-45}},
         {y:0,x:0,rotate:function(i,el){return +el.dataset.rot},opacity:function(i,el){return el.classList.contains('fb--dim')?.5:.95},duration:1.25,stagger:.07},'-=1.05')
-      .to('.heroBox',{opacity:1,y:0,duration:1,stagger:.1},'-=.95')
       .to('.scrollHint',{opacity:1,y:0,duration:.6},'-=.5')
       .add(function(){
         gsap.set('.heroVideoFrame',{clearProps:'clip-path,transform,opacity'});
-        // idle float: bricks & boxes breathe
-        document.querySelectorAll('.fb svg,.heroBox img').forEach(function(el,i){
-          gsap.to(el,{y:'+='+(8+(i%3)*4),rotate:(i%2?1:-1)*(1.5+i%3),duration:5+i*.9,yoyo:true,repeat:-1,ease:'sine.inOut'});
+        // continuous free-floating animation for bricks
+        document.querySelectorAll('.fb').forEach(function(el,i){
+          var dur=6+Math.random()*5;
+          var yAmp=18+Math.random()*22;
+          var xAmp=10+Math.random()*14;
+          var rotAmp=6+Math.random()*10;
+          gsap.to(el,{y:'+='+yAmp, duration:dur, yoyo:true, repeat:-1, ease:'sine.inOut', delay:i*.4});
+          gsap.to(el,{x:'+='+xAmp*(i%2?1:-1), duration:dur*1.3, yoyo:true, repeat:-1, ease:'sine.inOut', delay:i*.3});
+          gsap.to(el,{rotate:'+='+(i%2?rotAmp:-rotAmp), duration:dur*1.1, yoyo:true, repeat:-1, ease:'sine.inOut', delay:i*.2});
         });
       });
     return tl;
@@ -2003,12 +1997,11 @@ document.querySelectorAll('.faqItem').forEach(function(d){
   /* ---------- hero: scroll parallax (layers) + mouse parallax (elements) ---------- */
   var heroST={trigger:'.hero',start:'top top',end:'bottom top',scrub:true};
   gsap.to('#heroBricks',{yPercent:16,ease:'none',scrollTrigger:heroST});
-  gsap.to('#heroBoxes',{yPercent:26,ease:'none',scrollTrigger:heroST});
   gsap.to('.heroSun',{yPercent:-18,ease:'none',scrollTrigger:heroST});
   gsap.to('.heroInner',{y:90,opacity:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'25% top',end:'bottom top',scrub:true}});
   if(fine){
     var hero=document.querySelector('.hero');
-    var movers=Array.prototype.map.call(document.querySelectorAll('.fb,.heroBox'),function(el){
+    var movers=Array.prototype.map.call(document.querySelectorAll('.fb'),function(el){
       return {el:el,p:parseFloat(el.dataset.par)||.6,x:gsap.quickTo(el,'x',{duration:.9,ease:'power3'}),y:gsap.quickTo(el,'y',{duration:.9,ease:'power3'})};
     });
     var frameX=gsap.quickTo('.heroVideoFrame','rotateY',{duration:1,ease:'power3'}), frameY=gsap.quickTo('.heroVideoFrame','rotateX',{duration:1,ease:'power3'});
