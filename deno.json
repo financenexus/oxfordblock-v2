@@ -2,5 +2,11 @@
   "tasks": {
     "start": "deno run --allow-net --allow-read --allow-env --unstable-kv server.js"
   },
-  "nodeModulesDir": "auto"
+  "nodeModulesDir": "auto",
+  "deploy": {
+    "org": "financenexus",
+    "app": "oxfordblock"
+  }
 }
+
+
