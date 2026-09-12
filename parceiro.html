@@ -446,11 +446,6 @@ img{max-width:100%;display:block}
 </footer>
 
 <script>
-/* preselect type from query string */
-(function(){
-  var p=new URLSearchParams(location.search).get('t');
-  if(p) selectType(p);
-})();
 
 var TITLES={
   institucional:{t:'Projeto institucional',s:'Conte-nos sobre a sua empresa e o que gostaria de ver em blocos: fábrica, máquina, sede ou produto. O ciclo é curto e o orçamento de marketing já existe.'},
@@ -478,6 +473,12 @@ document.querySelectorAll('#typePicker .typeOpt').forEach(function(b){
 document.querySelectorAll('#asidePaths .asidePath').forEach(function(b){
   b.addEventListener('click',function(){selectType(b.dataset.type);window.scrollTo({top:document.querySelector('.formCard').offsetTop-90,behavior:'smooth'})});
 });
+
+/* preselect type from query string — runs AFTER selectType and click handlers are defined */
+(function(){
+  var p=new URLSearchParams(location.search).get('t');
+  if(p) selectType(p);
+})();
 
 /* validation + submit to backend */
 document.getElementById('partnerForm').addEventListener('submit',async function(e){
