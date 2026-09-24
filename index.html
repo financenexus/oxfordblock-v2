@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#050607">
-<meta name="description" content="Oxford Blocks Brasil — Criatividade sem limites. Conectamos grandes marcas brasileiras a uma das maiores fabricantes de blocos de montar premium da Coreia do Sul. Colaborações exclusivas e linha comercial para varejo.">
-<title>Oxford Blocks Brasil — Criatividade sem limites</title>
+<meta name="description" content="Blocos de montar personalizados para empresas e marcas, fabricados pela Oxford na Coreia do Sul. Projetos corporativos, collabs e licenciamentos, e linha Oxford para revenda no Brasil.">
+<title>Blocos de montar personalizados para marcas | Oxford Blocks Brasil</title>
 <link rel="canonical" href="https://oxfordblocosbrasil.com.br/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Oxford Blocks Brasil">
-<meta property="og:title" content="Oxford Blocks Brasil — Criatividade sem limites">
-<meta property="og:description" content="Oxford Blocks Brasil — Criatividade sem limites. Conectamos grandes marcas brasileiras a uma das maiores fabricantes de blocos de montar premium da Coreia do Sul. Colaborações exclusivas e linha comercial para varejo.">
+<meta property="og:title" content="Blocos de montar personalizados para marcas | Oxford Blocks Brasil">
+<meta property="og:description" content="Blocos de montar personalizados para empresas e marcas, fabricados pela Oxford na Coreia do Sul. Projetos corporativos, collabs e licenciamentos, e linha Oxford para revenda no Brasil.">
 <meta property="og:url" content="https://oxfordblocosbrasil.com.br/">
 <meta property="og:image" content="https://oxfordblocosbrasil.com.br/assets/proof-stadium-owner.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -24,8 +24,8 @@
    "@id": "https://oxfordblocosbrasil.com.br/#org",
    "name": "Oxford Blocks Brasil",
    "url": "https://oxfordblocosbrasil.com.br/",
-   "logo": "https://oxfordblocosbrasil.com.br/assets/oxford-logo-official-master.png",
-   "description": "Oxford Blocks Brasil — Criatividade sem limites. Conectamos grandes marcas brasileiras a uma das maiores fabricantes de blocos de montar premium da Coreia do Sul. Colaborações exclusivas e linha comercial para varejo.",
+   "logo": "https://oxfordblocosbrasil.com.br/assets/oxford-logo-official-nav@2x.png",
+   "description": "Blocos de montar personalizados para empresas e marcas, fabricados pela Oxford na Coreia do Sul. Projetos corporativos, collabs e licenciamentos, e linha Oxford para revenda no Brasil.",
    "email": "parceria@oxfordblocosbrasil.com.br",
    "contactPoint": {
     "@type": "ContactPoint",
@@ -956,7 +956,7 @@ body.gsap .reveal{opacity:1;transform:none;transition:none}
         <span class="whyIco brickIco" data-ico="trophy" aria-hidden="true"></span>
         <span class="whyBar"></span>
         <h4>Experiência</h4>
-        <p>Mais de 60 anos de atuação no mercado de blocos de montar.</p>
+        <p>Mais de 60 anos de história, mais de 30 fabricando blocos de montar.</p>
       </div>
       <div class="whyPillar">
         <span class="whyIco brickIco" data-ico="factory" aria-hidden="true"></span>
@@ -1181,12 +1181,12 @@ body.gsap .reveal{opacity:1;transform:none;transition:none}
           <h3>Linhas disponíveis no Brasil</h3>
           <a class="igSource" href="https://www.instagram.com/oxfordblock_official/" target="_blank" rel="noopener">Oxford no Instagram ↗</a>
         </div>
-        <div class="catList" id="catList"></div>
+        <div class="catList" id="catList"><div class="catItem catItem--text"><div class="catContent"><h4>Cobra Combat</h4><span class="catTag">Militar</span><p>Linha militar própria da Oxford — veículos, soldados e cenários de combate.</p></div></div><div class="catItem catItem--text"><div class="catContent"><h4>Brickmania — King Tiger</h4><span class="catTag">Veículos militares</span><p>Collab Brickmania: veículos militares históricos de alta precisão, incluindo o King Tiger.</p></div></div><div class="catItem catItem--text"><div class="catContent"><h4>Crayon Shin-chan</h4><span class="catTag">Licenciado</span><p>Personagens e cenas do anime Shin-chan em versão colecionável.</p></div></div><div class="catItem catItem--text"><div class="catContent"><h4>Brickmania — Merkava</h4><span class="catTag">Veículos militares</span><p>A lenda israelense dos blindados — o Merkava, famoso pelo motor frontal que protege a tripulação — recriado em blocos de alta precisão.</p></div></div><div class="catItem catItem--text"><div class="catContent"><h4>Patrimônio Cultural Coreano</h4><span class="catTag">Cultura</span><p>Palácios, templos e ícones do patrimônio coreano em blocos.</p></div></div><div class="catItem catItem--text"><div class="catContent"><h4>Heróis — Yi Sun-sin</h4><span class="catTag">Heróis</span><p>Série Heróis: o almirante Yi Sun-sin e o lendário navio tartaruga.</p></div></div></div>
       </div>
 
       <div class="channelStrip reveal">
         <h3>Canais de Venda</h3>
-        <ul class="channelList" id="channelList"></ul>
+        <ul class="channelList" id="channelList"><li>Lojas de brinquedos</li><li>Papelarias</li><li>Livrarias</li><li>Hobby Shops</li><li>Lojas Geek</li><li>E-commerce</li><li>Redes de varejo</li></ul>
         <div class="commNote commNote--bar">
           <p><b>Catálogo disponível.</b> Solicite o catálogo completo com SKUs, embalagens e condições comerciais.</p>
           <a class="btn btn--red" href="parceiro.html?t=revenda">Solicitar catálogo <span class="arr">→</span></a>
@@ -2004,6 +2004,7 @@ var CATS=[
   {t:'Heróis — Yi Sun-sin',tag:'Heróis',d:'Série Heróis: o almirante Yi Sun-sin e o lendário navio tartaruga.'}
 ];
 var cl=document.getElementById('catList');
+if(cl) cl.innerHTML=''; /* replace the static crawler-readable list */
 if(cl) CATS.forEach(function(c){
   var hasVid=!!(c.videos&&c.videos.length);
   var d=document.createElement('div');
@@ -2082,6 +2083,7 @@ var CHANNELS=[
   {i:'mall',t:'Redes de varejo'}
 ];
 var ch=document.getElementById('channelList');
+if(ch) ch.innerHTML='';
 if(ch) CHANNELS.forEach(function(c){
   var li=document.createElement('li');
   li.innerHTML='<span class="chIco brickIco brickIco--sm" data-ico="'+c.i+'" aria-hidden="true"></span> '+c.t;

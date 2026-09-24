@@ -68,6 +68,8 @@ app.use((req, res, next) => {
   // production domain should be crawled.
   if (!/^(www\.)?oxfordblocosbrasil\.com\.br$/i.test(req.hostname || '')) {
     res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+  } else {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000');
   }
   next();
 });
