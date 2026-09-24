@@ -64,6 +64,25 @@ app.use((req, res, next) => {
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '0');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  // Keep previews and deno.net deployments out of search indexes; only the
+  // production domain should be crawled.
+  if (!/^(www\.)?oxfordblocosbrasil\.com\.br$/i.test(req.hostname || '')) {
+    res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+  }
+  next();
+});
+
+// Only publish site files. Everything else in ROOT (internal docs, server
+// source, package manifests, tools/) must never be served.
+const PUBLIC_FILE = /^\/(?:[\w-]+\.html|assets\/.+|cursor\.(?:css|js)|robots\.txt|sitemap\.xml|llms\.txt)$/;
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  if (req.path === '/' || req.path.startsWith('/api/')) return next();
+  // Extensionless page URLs (e.g. /parceiro) are resolved by the fallback below.
+  if (/^\/[\w-]+\/?$/.test(req.path)) return next();
+  let decoded;
+  try { decoded = decodeURIComponent(req.path); } catch { return res.status(400).end(); }
+  if (!PUBLIC_FILE.test(decoded) || decoded.includes('..')) return res.status(404).type('text').send('Not Found');
   next();
 });
 
@@ -251,15 +270,17 @@ app.get('/api/health', (req, res) => {
   res.json({ ok: true, port: PORT, runtime: isDeno ? 'deno' : 'node', emailConfigured: mailConfigured });
 });
 
-// SPA fallback (catch-all for non-API routes; tolerates trailing slashes)
+// Page fallback: resolve /name and /name/ to name.html. Unknown paths get a
+// real 404 so crawlers don't index them as duplicates of the homepage.
 app.use((req, res, next) => {
   if (req.method !== 'GET' || req.path.startsWith('/api/')) return next();
-  // Strip trailing slash and resolve to a local .html file if it exists
   const clean = req.path.replace(/\/+$/, '') || '/';
   const candidate = path.join(ROOT, clean.endsWith('.html') ? clean : clean + '.html');
-  if (!candidate.startsWith(ROOT)) return res.status(403).end();
+  if (!candidate.startsWith(ROOT + path.sep) || !/^[\w-]+\.html$/.test(path.relative(ROOT, candidate))) {
+    return res.status(404).type('text').send('Not Found');
+  }
   res.sendFile(candidate, (err) => {
-    if (err) res.sendFile(path.join(ROOT, 'index.html'));
+    if (err) res.status(404).type('text').send('Not Found');
   });
 });
 
