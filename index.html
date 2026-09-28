@@ -403,11 +403,10 @@ img{max-width:100%;display:block}
 .catExpandInner video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#000;border-radius:4px;border:1px solid var(--line)}
 .catItem .catBody{display:flex;align-items:stretch}
 .catItem.has-photo .catBody{min-height:160px}
-.catBody .catContent{flex:1;min-width:0}
+.catBody .catContent{flex:1;min-width:0;display:flex;flex-direction:column}
 .catShot{position:relative;flex:0 0 240px;height:190px;align-self:flex-start;margin:18px 18px 18px 0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:rgba(0,0,0,.32);display:flex}
 .catItem img.catShotImg{position:static;inset:auto;display:block;width:100%;height:100%;object-fit:contain;padding:8px}
-.catShotCta{position:absolute;left:10px;right:10px;bottom:9px;z-index:2;display:flex;align-items:center;justify-content:center;gap:6px;padding:7px 8px;background:var(--red);border-radius:4px;color:#fff;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;pointer-events:none;box-shadow:0 4px 14px rgba(0,0,0,.45);animation:ctaPulse 2.4s ease-in-out infinite}
-.catShot.has-cta .scrubDots{bottom:38px}
+.catCtaBar{display:inline-flex;align-items:center;justify-content:center;gap:6px;align-self:center;margin-top:auto;padding:9px 22px;background:var(--red);border-radius:6px;color:#fff;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 4px 14px rgba(0,0,0,.45);animation:ctaPulse 2.4s ease-in-out infinite}
 @keyframes ctaPulse{0%,100%{box-shadow:0 4px 14px rgba(0,0,0,.45),0 0 0 0 rgba(212,43,36,.55)}50%{box-shadow:0 4px 14px rgba(0,0,0,.45),0 0 0 7px rgba(212,43,36,0)}}
 .catVideo{position:relative}
 .catVidBar{position:absolute;z-index:2;left:0;right:0;bottom:0;display:flex;align-items:center;padding:10px 12px;background:linear-gradient(0deg,rgba(5,6,7,.75),transparent)}
@@ -2185,12 +2184,11 @@ function renderCat(c,ci){
   var media=hasVid
     ?vidHTML(c.videos[0],c.t)
     :'<div class="catNoMedia">Fotos e vídeos desta linha em breve.</div>';
-  var ctaTxt=hasVid?'▶ Viva a experiência':(c.photos&&c.photos.length?'Explore a coleção':'');
+  var ctaTxt=c.photo?(hasVid?'▶ Viva a experiência':(c.photos&&c.photos.length?'Explore a coleção':'')):'';
   var shot=c.photo
-    ?'<div class="catShot'+(ctaTxt?' has-cta':'')+'"><img class="catShotImg" src="'+c.photo+'" alt="Foto da linha '+c.t+'" loading="lazy">'
-      +(ctaTxt?'<span class="catShotCta">'+ctaTxt+'</span>':'')+'</div>'
+    ?'<div class="catShot"><img class="catShotImg" src="'+c.photo+'" alt="Foto da linha '+c.t+'" loading="lazy"></div>'
     :'';
-  var more=c.photo?'':'<span class="catMore">'+(hasVid?'▶ Ver vídeo':'Saiba mais')+' <i></i></span>';
+  var more=c.photo?(ctaTxt?'<span class="catCtaBar">'+ctaTxt+'</span>':''):'<span class="catMore">'+(hasVid?'▶ Ver vídeo':'Saiba mais')+' <i></i></span>';
   var body=(c.photos&&c.photos.length)||(hasVid&&c.videos.length>1)?galItems(c,media):media;
   d.innerHTML='<div class="catBody"><div class="catContent"><h4>'+c.t+'</h4><span class="catTag">'+c.tag+'</span><p>'+c.d+'</p>'+more+'</div>'
     +shot+'</div>'
