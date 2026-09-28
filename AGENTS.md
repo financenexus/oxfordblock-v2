@@ -39,6 +39,15 @@ The `CATS` accordion (`#catList`) is the approved pattern for every product line
 - `robots.txt` disallows ripper bots. Never add search engines or AI crawlers to the block list (SEO/`llms.txt`).
 - Speed bump only — a spoofed UA gets through; screenshots/DevTools cannot be blocked by any website.
 
+## Security (server.js) — keep these when editing
+- `/api/partner` keeps ONLY `PARTNER_FIELDS` (string values); `id`/`timestamp`/`ip` are server-set LAST. Never spread `req.body` into a record — `id` becomes a filename in `submissions/`. New form field → add it to `PARTNER_FIELDS`.
+- JSON bodies only (100kb cap); no urlencoded parser (blocks cross-site HTML-form spam).
+- `query parser` is `'simple'` (no `qs`) and `x-powered-by` is off.
+- CSP allows only self + `cdn.jsdelivr.net` (scripts) + Google Fonts. Adding any new external script/font/embed/API → update the CSP or it will be blocked; verify zero CSP console violations in a browser.
+- CDN scripts carry SRI `integrity` hashes — changing a GSAP version means recomputing: `curl -sL <url> | openssl dgst -sha384 -binary | openssl base64 -A`.
+- Only `PUBLIC_FILE` paths are served; server source, docs, `submissions/`, `.git` return 404.
+- `deno.lock` (production) must be regenerated with Deno when dependencies change — it can lag `package-lock.json`.
+
 ## Git rules
 - **NEVER commit or push without an explicit order from the owner.** Make changes, verify them locally, and wait to be told to sync/commit/push.
 

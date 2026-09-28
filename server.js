@@ -55,8 +55,10 @@ async function saveSubmission(submission) {
 }
 
 // Middleware
-app.use(express.json({ limit: '2mb' }));
-app.use(express.urlencoded({ extended: true }));
+app.disable('x-powered-by');
+// Node's querystring instead of qs — no route reads req.query, and qs has had DoS advisories.
+app.set('query parser', 'simple');
+app.use(express.json({ limit: '100kb' }));
 
 // Security headers
 app.use((req, res, next) => {
@@ -64,6 +66,22 @@ app.use((req, res, next) => {
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '0');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  // Only the origins the site actually uses may load code/styles/fonts.
+  res.setHeader('Content-Security-Policy', [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com",
+    "img-src 'self' data: blob:",
+    "media-src 'self' blob:",
+    "connect-src 'self'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'none'",
+  ].join('; '));
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=(), usb=()');
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
   // Keep previews and deno.net deployments out of search indexes; only the
   // production domain should be crawled.
   if (!/^(www\.)?oxfordblocosbrasil\.com\.br$/i.test(req.hostname || '')) {
@@ -147,12 +165,20 @@ app.use(express.static(ROOT, {
 }));
 
 // ===== API: Partner form submission =====
+const PARTNER_FIELDS = ['tipo', 'nome', 'cargo', 'empresa', 'site', 'email', 'telefone', 'segmento', 'porte',
+  'orcamento', 'prazo', 'quantidade', 'como_conheceu', 'mensagem', 'newsletter'];
 app.post('/api/partner', async (req, res) => {
   try {
-    const data = req.body;
+    // Whitelist: only known string fields are kept, so clients can never set
+    // id/ip/timestamp (id becomes a filename in submissions/) or add junk keys.
+    const body = req.body || {};
+    const data = {};
+    for (const k of PARTNER_FIELDS) {
+      if (typeof body[k] === 'string') data[k] = body[k].trim().slice(0, 5000);
+    }
 
     // Honeypot: if filled, silently discard (bot detection)
-    if (data.website && String(data.website).trim() !== '') {
+    if (typeof body.website === 'string' && body.website.trim() !== '') {
       return res.json({ ok: true, id: crypto.randomUUID(), message: 'Cadastro recebido.' });
     }
 
@@ -164,7 +190,7 @@ app.post('/api/partner', async (req, res) => {
 
     // Basic validation
     const required = ['tipo', 'nome', 'empresa', 'email', 'mensagem'];
-    const missing = required.filter(f => !data[f] || !String(data[f]).trim());
+    const missing = required.filter(f => !data[f]);
     if (missing.length > 0) {
       return res.status(400).json({
         ok: false,
@@ -177,21 +203,13 @@ app.post('/api/partner', async (req, res) => {
       return res.status(400).json({ ok: false, error: 'E-mail inválido.' });
     }
 
-    // Sanitize string inputs (trim + length cap)
-    for (const key of Object.keys(data)) {
-      if (typeof data[key] === 'string') {
-        data[key] = data[key].trim().slice(0, 5000);
-      }
-    }
-
-    // Build submission record
+    // Build submission record — server-owned fields last so they always win
     const submission = {
+      ...data,
       id: crypto.randomUUID(),
       timestamp: new Date().toISOString(),
-      ip,
-      ...data
+      ip
     };
-    delete submission.website;
 
     await saveSubmission(submission);
     console.log(`[submission] Saved ${submission.id} from ${data.nome} (${data.empresa})`);
