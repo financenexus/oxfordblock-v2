@@ -409,6 +409,7 @@ img{max-width:100%;display:block}
 .catCtaBar{display:inline-flex;align-items:center;justify-content:center;gap:6px;align-self:center;margin-top:auto;padding:9px 22px;background:var(--red);border-radius:6px;color:#fff;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 4px 14px rgba(0,0,0,.45);animation:ctaPulse 2.4s ease-in-out infinite}
 @keyframes ctaPulse{0%,100%{box-shadow:0 4px 14px rgba(0,0,0,.45),0 0 0 0 rgba(212,43,36,.55)}50%{box-shadow:0 4px 14px rgba(0,0,0,.45),0 0 0 7px rgba(212,43,36,0)}}
 .catVideo{position:relative}
+.catVideo video{cursor:pointer}
 .catVidBar{position:absolute;z-index:2;left:0;right:0;bottom:0;display:flex;align-items:center;padding:10px 12px;background:linear-gradient(0deg,rgba(5,6,7,.75),transparent)}
 .catVidBtn{display:inline-flex;align-items:center;gap:7px;background:rgba(5,6,7,.6);border:1px solid rgba(255,255,255,.16);border-radius:4px;color:#fff;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;cursor:pointer;font-family:inherit;backdrop-filter:blur(4px);transition:background .2s,border-color .2s}
 .catVidBtn svg{width:13px;height:13px;flex-shrink:0}
@@ -2065,7 +2066,10 @@ var cl=document.getElementById('catList');
 function vidPoster(src){return src.replace(/\.[^.\/]+$/,'')+'-poster.webp'}
 function vidHTML(src,t){
   return '<div class="catVideo"><video src="'+src+'" poster="'+vidPoster(src)+'" muted loop playsinline preload="metadata" aria-label="Vídeo da linha '+t+'"></video>'
-    +'<div class="catVidBar"><button type="button" class="catVidBtn vMute" aria-pressed="false">'
+    +'<div class="catVidBar"><button type="button" class="catVidBtn vReplay" aria-label="Rever vídeo">'
+    +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>'
+    +'<span>Rever</span></button>'
+    +'<button type="button" class="catVidBtn vMute" aria-pressed="false">'
     +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>'
     +'<span>Ativar som</span></button></div></div>';
 }
@@ -2194,7 +2198,7 @@ function renderCat(c,ci){
     +shot+'</div>'
     +'<div class="catExpand"><div><div class="catExpandInner">'+body+'</div></div></div>';
   d.addEventListener('click',function(e){
-    if(e.target.closest('a,button,.gal')) return;
+    if(e.target.closest('a,button,.gal,.catVideo')) return;
     var wasOpen=d.classList.contains('is-open');
     cl.querySelectorAll('.catItem.is-open').forEach(function(o){o.classList.remove('is-open');o.querySelectorAll('video').forEach(function(v){v.pause()})});
     if(!wasOpen){
@@ -2211,6 +2215,18 @@ renderCats();
 if(cl) cl.addEventListener('click',function(e){
   var g=e.target.closest('.waGo');
   if(g) openWa(g.dataset.line);
+  var rp=e.target.closest('.vReplay');
+  if(rp){
+    var rv=rp.closest('.catVideo').querySelector('video');
+    rv.currentTime=0;var rpp=rv.play();if(rpp!==undefined)rpp.catch(function(){});
+    return;
+  }
+  var vv=e.target.closest('.catVideo video');
+  if(vv){
+    if(vv.paused){var vp2=vv.play();if(vp2!==undefined)vp2.catch(function(){})}
+    else vv.pause();
+    return;
+  }
   var m=e.target.closest('.vMute');
   if(m){
     var v=m.closest('.catVideo').querySelector('video');
