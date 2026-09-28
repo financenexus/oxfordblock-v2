@@ -1142,13 +1142,26 @@ footer
 
 ### Behavior Standard
 - Clicking anywhere on the card toggles `.is-open` → `.catExpand` (grid-template-rows transition) drops the video down and calls `play()`. Only one card stays open — the others close and pause their video.
-- Expanded area: video (16:9) + CTA row — "Solicitar catálogo" link (`parceiro.html?t=revenda`) and "WhatsApp" button (opens the quick-quote sheet pre-selected to that line).
+- Expanded area: media only — the "Solicitar catálogo"/"WhatsApp" CTA row was removed by owner decision (Sep 28); WhatsApp stays reachable via the floating `waBubble`.
+
+### Multi-Media Galleries (photos + multiple videos)
+**Status:** A/B test in progress — 4 selectable modes behind `?g=` param / `.galSwitch` bar (`bento` / `deck` / `film` / `classic`) + hover-scrub toggle on the cover photo. Temporary until the owner picks one; then the losers and the switcher are deleted.
+
+- Data: cards may add `photos:[]` and any number of `videos:[]` — built to scale to 20+ videos per line (Cobra Combat, Crayon Shin-chan, Heróis — Yi Sun-sin).
+- **Bento** — hero video (autoplay muted) + mosaic of lazy video-badge tiles (▶ frame preview, video injected only on focus) + photo tiles; overflow collapses into a `+N Ver tudo` tile that opens the lightbox.
+- **Deck** — big stage showing the current top card + swipeable/drag card stack; videos and photos all cycle through the stage via arrows/drag.
+- **Filmstrip** — 16:9 stage + auto-scrolling rail; ▶ items swap the stage video (`data-src`), photo items show images with a Ken Burns pan.
+- **Clássico** — expand video + horizontal thumb strip; ▶ thumbs swap the main video, photo thumbs open the lightbox.
+- **Lazy-video rule:** never create more than ~2 live `<video>` elements per card — extras exist only as `data-vsrc` badges/posters until selected.
+- The portfolio lightbox (`openPortModal`) accepts `videos:[]` — video items come first (▶ thumbs), photos after; `allowPhotos=true` bypasses `HIDE_PORTFOLIO_PHOTOS` for card galleries.
+- `.catItem:before`/`:after` decorative overlays use `pointer-events:none` so gallery controls receive clicks.
 
 ### Media Asset Standard
 - Photos: WebP, ≤1600px wide, quality ~82 (e.g., produced with `sharp`).
 - Videos: h264 mp4 **with audio track** — sound is user-controlled, never auto-played.
 - Playback is **muted by default** (`muted` attribute). An "Ativar som" pill button overlays the video bottom-left (`.catVidBar`/`.vMute`) and toggles mute/unmute, swapping speaker icon + label ("Ativar som"/"Desativar som") and turning red while active. No fullscreen button — kept minimal by owner decision.
-- `<video>` uses `muted loop playsinline preload="metadata"`.
+- `<video>` uses `muted loop playsinline preload="metadata"` plus a `poster` first frame.
+- Every video gets a poster at `assets/<slug>-poster.webp` (auto-derived by `vidPoster()`): `ffmpeg -i <slug>.mp4 -frames:v 1 -vf scale=640:-1 -quality 82 <slug>-poster.webp`. Missing posters fall back to a plain ▶ badge.
 - Asset naming: `assets/<slug>.webp` / `assets/<slug>.mp4` (e.g., `brickmania-king-tiger.webp`).
 
 ---
