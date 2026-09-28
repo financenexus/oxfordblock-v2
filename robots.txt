@@ -1,3 +1,16 @@
+User-agent: HTTrack
+User-agent: Wget
+User-agent: WebCopier
+User-agent: WebZIP
+User-agent: Offline Explorer
+User-agent: Teleport
+User-agent: TeleportPro
+User-agent: SiteSnagger
+User-agent: WebStripper
+User-agent: WebReaper
+User-agent: SiteSucker
+Disallow: /
+
 User-agent: *
 Allow: /
 Disallow: /api/

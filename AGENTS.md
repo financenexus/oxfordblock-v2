@@ -30,11 +30,19 @@ The `CATS` accordion (`#catList`) is the approved pattern for every product line
 ## Media assets
 - Photos: WebP ≤1600px, q82 — `sharp(src).resize({width:1600}).webp({quality:82})`.
 - Videos: h264 mp4 WITH audio track — muted by default, user toggles via "Ativar som".
-- `<video>` uses `muted loop playsinline preload="metadata"` + a `poster` frame.
+- `<video>` uses `muted playsinline preload="metadata"` + a `poster` frame — NO `loop`: videos play once and stop. Clicking the video toggles play/pause (and replays after it ends; must not collapse the card). Only control: `.vMute` "Ativar som" pill.
 - Every video needs a poster at `assets/<slug>-poster.webp` (auto-derived by `vidPoster()`): `ffmpeg -i <slug>.mp4 -frames:v 1 -vf scale=640:-1 -quality 82 <slug>-poster.webp`. Badges/thumbs fall back to a plain ▶ badge if the poster 404s.
 - Names: `assets/<slug>.webp` / `assets/<slug>.mp4`.
 
+## Anti-copy (site rippers)
+- `server.js` returns 403 to offline-downloader / scraper user-agents (`RIPPER_UA`: HTTrack, Wget, WebCopy, SiteSucker, python-requests, ...) and to empty UAs; 429 after 300 requests/min per IP (a full visit is ~23).
+- `robots.txt` disallows ripper bots. Never add search engines or AI crawlers to the block list (SEO/`llms.txt`).
+- Speed bump only — a spoofed UA gets through; screenshots/DevTools cannot be blocked by any website.
+
+## Git rules
+- **NEVER commit or push without an explicit order from the owner.** Make changes, verify them locally, and wait to be told to sync/commit/push.
+
 ## Environment notes
-- Repo dir is on an NTFS mount; its `node_modules` holds Windows junction links — broken on Linux. Reinstall with `npm install` on whatever OS runs it.
-- Local preview copy lives at `~/oxfordblock-local`; sync `index.html` back to the repo after edits.
-- The NTFS `assets/` dir is read-only from Linux — new asset files must be copied in on the Windows side before deploying.
+- Repo dir is on an NTFS mount (currently `/mnt/Windows_Drive/Users/Nexus-Dev/Downloads/oxfordblock`, previously `/run/media/...`); its `node_modules` holds Windows junction links — broken on Linux. Reinstall with `npm install` on whatever OS runs it.
+- Local preview copy lives at `~/oxfordblock-local`; sync files back to the repo after edits when the drive is mounted.
+- If `assets/` is read-only from Linux, new asset files must be copied in on the Windows side before deploying.

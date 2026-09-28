@@ -74,6 +74,28 @@ app.use((req, res, next) => {
   next();
 });
 
+// Anti site-ripper: refuse offline downloaders / scraping libraries by
+// user-agent, and throttle request bursts that no human visitor produces.
+// Search engines and AI crawlers are deliberately NOT listed (SEO/llms.txt).
+// Speed bump only: a determined copier can spoof the UA.
+const RIPPER_UA = /httrack|wget|webcopy|sitesucker|offline ?explorer|teleport|webzip|webreaper|webstripper|website ?(downloader|extractor|copier)|getright|pavuk|grab-site|heritrix|scrapy|python-requests|python-urllib|aiohttp|httpx|go-http-client|libwww-perl|java\/|okhttp|node-fetch|axios|colly|nutch/i;
+const burst = new Map();
+const BURST_MAX = 300;
+const BURST_WINDOW = 60 * 1000;
+app.use((req, res, next) => {
+  const ua = req.get('user-agent') || '';
+  if (!ua || RIPPER_UA.test(ua)) return res.status(403).type('text').send('Forbidden');
+  const ip = (req.get('x-forwarded-for') || '').split(',')[0].trim() || req.ip || 'unknown', now = Date.now();
+  const b = burst.get(ip);
+  if (!b || now > b.resetAt) burst.set(ip, { count: 1, resetAt: now + BURST_WINDOW });
+  else if (++b.count > BURST_MAX) return res.status(429).type('text').send('Too Many Requests');
+  next();
+});
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, b] of burst) if (now > b.resetAt) burst.delete(ip);
+}, 5 * 60 * 1000);
+
 // Only publish site files. Everything else in ROOT (internal docs, server
 // source, package manifests, tools/) must never be served.
 const PUBLIC_FILE = /^\/(?:[\w-]+\.html|assets\/.+|cursor\.(?:css|js)|robots\.txt|sitemap\.xml|llms\.txt)$/;

@@ -2065,11 +2065,8 @@ var cl=document.getElementById('catList');
 /* Gallery — deck mode is the approved standard (owner pick, Sep 28): stage + swipeable card stack */
 function vidPoster(src){return src.replace(/\.[^.\/]+$/,'')+'-poster.webp'}
 function vidHTML(src,t){
-  return '<div class="catVideo"><video src="'+src+'" poster="'+vidPoster(src)+'" muted loop playsinline preload="metadata" aria-label="Vídeo da linha '+t+'"></video>'
-    +'<div class="catVidBar"><button type="button" class="catVidBtn vReplay" aria-label="Rever vídeo">'
-    +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>'
-    +'<span>Rever</span></button>'
-    +'<button type="button" class="catVidBtn vMute" aria-pressed="false">'
+  return '<div class="catVideo"><video src="'+src+'" poster="'+vidPoster(src)+'" muted playsinline preload="metadata" aria-label="Vídeo da linha '+t+'"></video>'
+    +'<div class="catVidBar"><button type="button" class="catVidBtn vMute" aria-pressed="false">'
     +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>'
     +'<span>Ativar som</span></button></div></div>';
 }
@@ -2215,12 +2212,6 @@ renderCats();
 if(cl) cl.addEventListener('click',function(e){
   var g=e.target.closest('.waGo');
   if(g) openWa(g.dataset.line);
-  var rp=e.target.closest('.vReplay');
-  if(rp){
-    var rv=rp.closest('.catVideo').querySelector('video');
-    rv.currentTime=0;var rpp=rv.play();if(rpp!==undefined)rpp.catch(function(){});
-    return;
-  }
   var vv=e.target.closest('.catVideo video');
   if(vv){
     if(vv.paused){var vp2=vv.play();if(vp2!==undefined)vp2.catch(function(){})}
