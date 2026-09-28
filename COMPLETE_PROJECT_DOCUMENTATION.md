@@ -1145,14 +1145,12 @@ footer
 - Expanded area: media only — the "Solicitar catálogo"/"WhatsApp" CTA row was removed by owner decision (Sep 28); WhatsApp stays reachable via the floating `waBubble`.
 
 ### Multi-Media Galleries (photos + multiple videos)
-**Status:** A/B test in progress — 4 selectable modes behind `?g=` param / `.galSwitch` bar (`bento` / `deck` / `film` / `classic`) + hover-scrub toggle on the cover photo. Temporary until the owner picks one; then the losers and the switcher are deleted.
+**Approved:** Deck gallery is the standard (owner pick, Sep 28) — used by Cobra Combat, Crayon Shin-chan, Patrimônio Cultural Coreano, Heróis — Yi Sun-sin, and any future multi-media line. The other A/B modes (bento/filmstrip/classic) and the test switcher were removed.
 
-- Data: cards may add `photos:[]` and any number of `videos:[]` — built to scale to 20+ videos per line (Cobra Combat, Crayon Shin-chan, Heróis — Yi Sun-sin).
-- **Bento** — hero video (autoplay muted) + mosaic of lazy video-badge tiles (▶ frame preview, video injected only on focus) + photo tiles; overflow collapses into a `+N Ver tudo` tile that opens the lightbox.
-- **Deck** — big stage showing the current top card + swipeable/drag card stack; videos and photos all cycle through the stage via arrows/drag.
-- **Filmstrip** — 16:9 stage + auto-scrolling rail; ▶ items swap the stage video (`data-src`), photo items show images with a Ken Burns pan.
-- **Clássico** — expand video + horizontal thumb strip; ▶ thumbs swap the main video, photo thumbs open the lightbox.
-- **Lazy-video rule:** never create more than ~2 live `<video>` elements per card — extras exist only as `data-vsrc` badges/posters until selected.
+- Data: cards may add `photos:[]` and any number of `videos:[]` — built to scale to 20+ videos per line.
+- **Deck** — `.gDeckStage` (16:9 left) shows the current top card: video autoplays muted or photo displays; `.gDeckStack` (right) is a drag/swipe card fan with ‹ › arrows and a position counter. Every arrow/drag sends the top card to the back and the next item takes the stage. Clicking a photo on the stage opens the lightbox at that index.
+- Cover photos carry a red `.catShotCta` pill ("▶ Viva a experiência" / "Explore a coleção") so visitors know the card opens media.
+- **Lazy-video rule:** never more than ~2 live `<video>` elements per card — deck video cards are static poster faces (`data-vsrc`); the single stage video swaps `src`/`poster`.
 - The portfolio lightbox (`openPortModal`) accepts `videos:[]` — video items come first (▶ thumbs), photos after; `allowPhotos=true` bypasses `HIDE_PORTFOLIO_PHOTOS` for card galleries.
 - `.catItem:before`/`:after` decorative overlays use `pointer-events:none` so gallery controls receive clicks.
 

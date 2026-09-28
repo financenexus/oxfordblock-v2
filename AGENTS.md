@@ -14,18 +14,18 @@
 ## Product line cards (CATS) — THE STANDARD
 The `CATS` accordion (`#catList`) is the approved pattern for every product line:
 
-- Data: `{t, tag, d, photo?, videos?}` — plain object, PT-BR copy.
-- Layout: `.catBody` flex row — text left, `.catShot` photo right (240px, `object-fit:contain`, framed). Mobile: stacked, photo on top.
+- Data: `{t, tag, d, photo?, videos?[], photos?[]}` — plain object, PT-BR copy.
+- Layout: `.catBody` flex row — text left, `.catShot` photo right (240px×190px, `object-fit:contain`, framed). Mobile: stacked, photo on top.
 - The photo shows the FULL image — contain, never cropped, no overlay badges.
-- Click card → `.is-open` → `.catExpand` drops the video down + autoplays MUTED. One card open at a time.
+- Photo cards carry a red `.catShotCta` pill on the shot ("▶ Viva a experiência" with videos, "Explore a coleção" photo-only) — pulsing glow, pointer-events none (it's a label, the card click opens).
+- Click card → `.is-open` → `.catExpand` drops media + autoplays MUTED. One card open at a time.
 - Sound is opt-in: `.vMute` pill on the video ("Ativar som"/"Desativar som") toggles mute — owner decision, no fullscreen button.
 - Photo cards omit `.catMore`; text-only cards keep it.
-- Expand area: video only — the "Solicitar catálogo"/"WhatsApp" buttons were removed by owner decision (Sep 28). WhatsApp stays available via the floating `waBubble`.
-- Cards may add `photos:[]` and multiple `videos:[]` — the gallery is built to scale to 20+ videos per line (Crayon Shin-chan, Yi Sun-sin, Cobra Combat). NEVER create more than ~2 live `<video>` elements: extra videos stay as lazy badges (`data-vsrc`) and the real element is injected only on focus/top/selection, then reverted.
-- Gallery has 4 TEST modes switched by the `?g=` param / `.galSwitch` bar (bento / deck / film / classic, + hover-scrub toggle) — TEMPORARY until the owner picks one; then delete the losers and the switcher.
-- Bento caps at hero + 8 tiles; overflow becomes a `+N Ver tudo` tile (`.gMore`) that opens the lightbox.
+- Expand area: media only — the "Solicitar catálogo"/"WhatsApp" buttons were removed by owner decision (Sep 28). WhatsApp stays available via the floating `waBubble`.
+- Cards with `photos:[]` and/or 2+ `videos:[]` render the DECK gallery (approved standard — Cobra Combat, Crayon Shin-chan, Patrimônio Cultural Coreano, Heróis — Yi Sun-sin): `.gDeckStage` shows the top item (video muted-autoplay or photo), `.gDeckStack` is a swipeable/arrow card fan; all items cycle through the stage, clicked stage photos open the lightbox at that index.
+- Scales to 20+ videos: deck cards are static poster faces (`data-vsrc`), only ONE stage `<video>` exists per card — its `src` swaps.
 - Lightbox `openPortModal({n,c,photos,videos}, true, idx)` takes a `videos:[]` array — video items come first (idx 0..n-1), photos after; `true` bypasses `HIDE_PORTFOLIO_PHOTOS`.
-- `.catItem:before`/`:after` overlays are `pointer-events:none` — decorative only; children (shot, thumbs, video bar) must receive clicks.
+- `.catItem:before`/`:after` overlays are `pointer-events:none` — decorative only; children (shot, video bar, deck cards) must receive clicks.
 
 ## Media assets
 - Photos: WebP ≤1600px, q82 — `sharp(src).resize({width:1600}).webp({quality:82})`.
