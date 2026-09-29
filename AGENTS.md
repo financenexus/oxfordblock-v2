@@ -48,6 +48,24 @@ The `CATS` accordion (`#catList`) is the approved pattern for every product line
 - Only `PUBLIC_FILE` paths are served; server source, docs, `submissions/`, `.git` return 404.
 - `deno.lock` (production) must be regenerated with Deno when dependencies change — it can lag `package-lock.json`.
 
+## GO-LIVE CHECKLIST — do this when moving to https://oxfordblocosbrasil.com.br/ + Supabase
+Status (Sep 28): the free preview `oxfordblock-v2.financenexus.deno.net` serves the repo as STATIC files — `server.js` does NOT run there. So online: `/api/partner` is broken (405), no security headers, rippers not blocked, and `/server.js`, `/AGENTS.md`, docs are publicly downloadable. Everything below must be done and verified at go-live — remind the owner.
+
+1. **Run `server.js`, not static hosting.** Host must execute `server.js` (Deno: `deno task start`, entrypoint `server.js`; Node: `node server.js`). Verify online: `/api/health` returns JSON, `/server.js` and `/AGENTS.md` return 404.
+2. **Domain + HTTPS.** Point `oxfordblocosbrasil.com.br` (+ `www`) to the host, HTTPS forced. `server.js` already sends HSTS and allows indexing only on that hostname — confirm `Strict-Transport-Security` is present and `X-Robots-Tag: noindex` is absent. Update `sitemap.xml`/canonical URLs if paths change.
+3. **Supabase for submissions** (replaces Deno KV / `submissions/` in `saveSubmission()`):
+   - Table e.g. `partner_submissions` with the `PARTNER_FIELDS` columns + `id uuid`, `timestamp timestamptz`, `ip text`.
+   - Enable **Row Level Security** with NO public policies — only the server writes.
+   - Insert from `server.js` with the **service role key** read from env (`SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`). NEVER put the service key (or any Supabase key) in `index.html`/`parceiro.html` or git.
+   - Keep the `PARTNER_FIELDS` whitelist — never insert `req.body` directly.
+   - Server-side calls need no CSP change; if the browser ever talks to Supabase directly, add its URL to `connect-src` and use only the anon key + strict RLS.
+   - Turn on Supabase backups; export old Deno KV submissions before switching.
+4. **Env vars on the host:** `RESEND_API_KEY`, `MAIL_TO`, `MAIL_FROM` (verified domain sender, e.g. `parceria@oxfordblocosbrasil.com.br`), Supabase vars. Never commit `config.json`.
+5. **Dependencies:** regenerate `deno.lock` with `deno install` (it pins old `qs@6.15.3`/`express@4.22.2`), then `npm audit` → 0.
+6. **Rate limit:** in-memory limits are per-instance; move the `/api/partner` limit to a Supabase table (or Deno KV) so it holds across instances.
+7. **LGPD:** add a privacy policy page + consent checkbox on `parceiro.html` (form stores name, email, phone, IP). Define retention/deletion.
+8. **Verify live after deploy:** security headers present (CSP, X-Frame-Options, Permissions-Policy, no X-Powered-By); HTTrack UA → 403; submit the real form end-to-end (row in Supabase + email arrives); zero CSP violations in browser console on both pages.
+
 ## Git rules
 - **NEVER commit or push without an explicit order from the owner.** Make changes, verify them locally, and wait to be told to sync/commit/push.
 
