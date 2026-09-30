@@ -24,6 +24,7 @@ The `CATS` accordion (`#catList`) is the approved pattern for every product line
 - Photo cards omit `.catMore`; text-only cards keep it.
 - Expand area: media only — the "Solicitar catálogo"/"WhatsApp" buttons were removed by owner decision (Sep 28). WhatsApp stays available via the floating `waBubble`.
 - Cards with `photos:[]` and/or 2+ `videos:[]` render the DECK gallery (approved standard — Cobra Combat, Crayon Shin-chan, Patrimônio Cultural Coreano, Heróis — Yi Sun-sin): `.gDeckStage` shows the top item (video muted-autoplay or photo), `.gDeckStack` is a swipeable/arrow card fan; all items cycle through the stage, clicked stage photos open the lightbox at that index.
+- Deck order is grouped PER MODEL: a video pairs with photos sharing its name stem (`assets/<slug>.mp4` ↔ `assets/<slug>-front.webp`/`assets/<slug>-back.webp`); each group shows that model's photos then its video; videos with no photos (e.g. intro clips) lead. Name new assets `cobra-combat-<unit>.mp4` / `cobra-combat-<unit>-front.webp`.
 - Scales to 20+ videos: deck cards are static poster faces (`data-vsrc`), only ONE stage `<video>` exists per card — its `src` swaps.
 - Lightbox `openPortModal({n,c,photos,videos}, true, idx)` takes a `videos:[]` array — video items come first (idx 0..n-1), photos after; `true` bypasses `HIDE_PORTFOLIO_PHOTOS`.
 - `.catItem:before`/`:after` overlays are `pointer-events:none` — decorative only; children (shot, video bar, deck cards) must receive clicks.
@@ -73,4 +74,4 @@ Status (Sep 28): the free preview `oxfordblock-v2.financenexus.deno.net` serves 
 ## Environment notes
 - Repo dir is on an NTFS mount (currently `/mnt/Windows_Drive/Users/Nexus-Dev/Downloads/oxfordblock`, previously `/run/media/...`); its `node_modules` holds Windows junction links — broken on Linux. Reinstall with `npm install` on whatever OS runs it.
 - Local preview copy lives at `~/oxfordblock-local`; sync files back to the repo after edits when the drive is mounted.
-- If `assets/` is read-only from Linux, new asset files must be copied in on the Windows side before deploying.
+- The NTFS mount is writable from Linux — copy new assets into `assets/` directly. If the drive refuses to mount ("volume is dirty"), Windows didn't shut down cleanly: fix with `ntfsfix -d` or a full Windows shutdown. If it ever mounts read-only, new assets must be copied in on the Windows side before deploying.
