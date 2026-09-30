@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050607">
+<meta name="author" content="Ez Eldin Al Ali — Nexus OS">
+<meta name="description" content="Política de Privacidade da Oxford Blocks Brasil — como coletamos, usamos, armazenamos e protegemos dados pessoais, conforme a LGPD (Lei nº 13.709/2018).">
+<title>Política de Privacidade — Oxford Blocks Brasil</title>
+<link rel="canonical" href="https://oxfordblocosbrasil.com.br/privacidade.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Oxford Blocks Brasil">
+<meta property="og:title" content="Política de Privacidade — Oxford Blocks Brasil">
+<meta property="og:url" content="https://oxfordblocosbrasil.com.br/privacidade.html">
+<link rel="icon" type="image/png" href="assets/oxford-logo-official-nav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cursor.css">
+<style>
+:root{
+  --red:#D42B24; --red2:#9B1A14; --yellow:#F5A623; --ink:#050607; --ink2:#0a0c0d; --ink3:#101314;
+  --line:rgba(255,255,255,.09); --text:#eeede8; --muted:#a8adb2; --muted2:#858b90;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{margin:0;background:var(--ink);color:var(--text);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+.topbar{position:fixed;z-index:100;top:0;left:0;width:100%;height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4.5vw,64px);border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(4,5,6,.92),rgba(4,5,6,.55));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand img{height:64px;width:auto;max-width:240px;object-fit:contain}
+.brand small{font-size:9px;font-weight:800;letter-spacing:.14em;color:var(--red);border:1px solid var(--red);padding:2px 6px;border-radius:3px}
+.btn{display:inline-flex;align-items:center;gap:9px;height:40px;padding:0 20px;border-radius:3px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;transition:.22s;border:1px solid var(--line);background:rgba(8,9,10,.6);color:var(--text);text-decoration:none;white-space:nowrap}
+.btn:hover{border-color:rgba(255,255,255,.3);background:var(--ink3)}
+
+.pageHero{position:relative;padding:150px clamp(20px,5vw,64px) 48px;background:linear-gradient(180deg,#150f0f 0,var(--ink) 70%);border-bottom:1px solid var(--line)}
+.phInner{max-width:1100px;margin:0 auto}
+.kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:800;letter-spacing:.2em;color:var(--red);text-transform:uppercase;margin:0 0 20px}
+.kicker i{display:block;width:30px;height:1px;background:var(--red)}
+h1{margin:0;font-family:"Archivo Expanded","Archivo",system-ui,sans-serif;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:.95;letter-spacing:-.04em;text-transform:uppercase}
+h1 .red{color:var(--red)}
+.lead{margin:22px 0 0;font-size:clamp(16px,1.35vw,19px);line-height:1.65;color:var(--muted);max-width:720px}
+.meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 26px;font-size:13px;color:var(--muted2)}
+.meta b{color:var(--text);font-weight:700}
+
+.wrap{max-width:1100px;margin:0 auto;padding:64px clamp(20px,5vw,64px) 110px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:clamp(36px,5vw,70px);align-items:start}
+.toc{position:sticky;top:112px;border-top:1px solid var(--line)}
+.toc p{margin:18px 0 10px;font-size:12px;font-weight:800;letter-spacing:.15em;color:var(--red);text-transform:uppercase}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:t}
+.toc li{counter-increment:t}
+.toc a{display:flex;gap:10px;padding:7px 0;font-size:13px;color:var(--muted);text-decoration:none;line-height:1.4;transition:color .2s}
+.toc a:before{content:counter(t,decimal-leading-zero);color:var(--muted2);font-weight:700;font-size:11px;padding-top:1px}
+.toc a:hover{color:var(--text)}
+
+.doc{max-width:760px}
+.doc section{padding:0 0 38px;margin:0 0 38px;border-bottom:1px solid var(--line)}
+.doc section:last-child{border-bottom:0}
+.doc h2{margin:0 0 16px;font-size:clamp(21px,2vw,26px);font-weight:900;letter-spacing:-.025em;display:flex;gap:14px;align-items:baseline}
+.doc h2 span{font-size:13px;color:var(--red);font-weight:800;letter-spacing:.06em}
+.doc h3{margin:22px 0 8px;font-size:15px;font-weight:800}
+.doc p,.doc li{font-size:15.5px;line-height:1.75;color:#cfd2d4}
+.doc p{margin:0 0 14px}
+.doc ul{margin:0 0 14px;padding-left:20px}
+.doc li{margin-bottom:6px}
+.doc li::marker{color:var(--red)}
+.doc strong{color:var(--text)}
+.doc a{color:var(--text);text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}
+.doc a:hover{color:var(--red)}
+.law{font-size:12px;color:var(--muted2);font-weight:600;white-space:nowrap}
+.ph{background:rgba(245,166,35,.16);color:var(--yellow);padding:1px 6px;border-radius:3px;font-weight:700}
+
+.tbl{width:100%;border-collapse:collapse;margin:6px 0 16px;font-size:14px}
+.tbl th{text-align:left;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);padding:10px 12px;border-bottom:1px solid var(--line)}
+.tbl td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6;color:#cfd2d4}
+.tbl td:first-child{color:var(--text);font-weight:700}
+.tblWrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;margin:0 0 16px}
+.tblWrap .tbl{margin:0}
+.tblWrap .tbl tr:last-child td{border-bottom:0}
+
+.card{border:1px solid rgba(245,166,35,.22);border-radius:6px;background:linear-gradient(145deg,rgba(245,166,35,.07),var(--ink2) 72%);padding:22px 24px;margin:6px 0 14px}
+.card b{display:block;font-size:12px;letter-spacing:.14em;color:var(--yellow);text-transform:uppercase;margin-bottom:10px}
+.card p{margin:0 0 6px}
+
+.footer{padding:40px clamp(20px,5vw,64px);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;font-size:12px;color:var(--muted2)}
+.footer .fBrand{display:flex;align-items:center;gap:10px}
+.footer .fBrand img{height:48px;width:auto}
+.fDev{display:block;margin-top:6px}
+.fDev b{color:var(--muted);font-weight:700}
+.fDev a{color:inherit;text-decoration:none;transition:color .2s}
+.fDev a:hover,.fDev a:hover b{color:var(--red)}
+
+@media(max-width:900px){
+  .wrap{grid-template-columns:minmax(0,1fr)}
+  .toc{position:static}
+}
+@media(max-width:560px){
+  .topbar{height:74px}
+  .brand img{height:48px}
+  .pageHero{padding-top:124px}
+  .footer{flex-direction:column;align-items:flex-start}
+  .tbl{font-size:13px}
+}
+@media print{
+  .topbar,.toc,.footer .btn{display:none}
+  body{background:#fff;color:#000}
+  .pageHero{padding-top:20px;background:none}
+  .doc p,.doc li,.tbl td{color:#222}
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="brand" href="index.html"><img src="assets/oxford-logo-official-nav.png" srcset="assets/oxford-logo-official-nav.png 1x, assets/oxford-logo-official-nav@2x.png 2x" alt="Oxford Blocks" width="148" height="200"><small>BRASIL</small></a>
+  <a class="btn" href="index.html">← Voltar ao site</a>
+</nav>
+
+<header class="pageHero">
+  <div class="phInner">
+    <p class="kicker"><i></i> LGPD · Lei nº 13.709/2018</p>
+    <h1>Política de <span class="red">Privacidade</span></h1>
+    <p class="lead">Transparência sobre quais dados pessoais coletamos, por que coletamos, com quem compartilhamos, por quanto tempo guardamos e como você pode exercer seus direitos.</p>
+    <div class="meta"><span>Versão <b>1.0</b></span><span>Última atualização: <b>30 de setembro de 2026</b></span></div>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  <nav class="toc" aria-label="Índice">
+    <p>Nesta página</p>
+    <ol>
+      <li><a href="#controlador">Quem é o controlador</a></li>
+      <li><a href="#encarregado">Encarregado e contato</a></li>
+      <li><a href="#dados">Dados que coletamos</a></li>
+      <li><a href="#finalidades">Finalidades e bases legais</a></li>
+      <li><a href="#compartilhamento">Compartilhamento</a></li>
+      <li><a href="#internacional">Transferência internacional</a></li>
+      <li><a href="#retencao">Por quanto tempo guardamos</a></li>
+      <li><a href="#cookies">Cookies e armazenamento local</a></li>
+      <li><a href="#seguranca">Segurança</a></li>
+      <li><a href="#direitos">Seus direitos</a></li>
+      <li><a href="#menores">Crianças e adolescentes</a></li>
+      <li><a href="#alteracoes">Alterações e legislação</a></li>
+    </ol>
+  </nav>
+
+  <article class="doc">
+
+    <section id="controlador">
+      <h2><span>01</span>Quem é o controlador</h2>
+      <p>O controlador dos dados pessoais tratados neste site (<strong>oxfordblocosbrasil.com.br</strong>) é:</p>
+      <div class="card">
+        <b>Controlador</b>
+        <p><strong>Razão social:</strong> <span class="ph">[RAZÃO SOCIAL]</span></p>
+        <p><strong>CNPJ:</strong> <span class="ph">[CNPJ]</span></p>
+        <p><strong>Endereço:</strong> <span class="ph">[ENDEREÇO COMPLETO]</span> — São Paulo/SP, Brasil</p>
+        <p><strong>Nome comercial:</strong> Oxford Blocks Brasil</p>
+      </div>
+      <p>Controlador é quem toma as decisões sobre o tratamento de dados pessoais <span class="law">(LGPD, art. 5º, VI)</span>.</p>
+    </section>
+
+    <section id="encarregado">
+      <h2><span>02</span>Encarregado e canal de contato</h2>
+      <p>Para qualquer assunto relacionado a dados pessoais — dúvidas, solicitações ou reclamações — fale com nosso canal de atendimento ao titular <span class="law">(LGPD, art. 41; Resolução CD/ANPD nº 2/2022, art. 11)</span>:</p>
+      <div class="card">
+        <b>Canal do titular</b>
+        <p>E-mail: <a href="mailto:parceria@oxfordblocosbrasil.com.br?subject=LGPD%20-%20Solicita%C3%A7%C3%A3o%20do%20titular">parceria@oxfordblocosbrasil.com.br</a></p>
+        <p>Assunto sugerido: “LGPD — Solicitação do titular”</p>
+      </div>
+    </section>
+
+    <section id="dados">
+      <h2><span>03</span>Dados que coletamos</h2>
+      <p>Coletamos apenas o necessário para responder ao seu contato. <strong>Não usamos ferramentas de analytics, pixels de publicidade ou cookies de rastreamento.</strong></p>
+
+      <h3>a) Formulário “Seja um Parceiro”</h3>
+      <p>Dados que você informa: tipo de parceria, nome, cargo, empresa/marca, site ou Instagram, e-mail, telefone/WhatsApp, segmento, porte, faixa de orçamento, prazo, quantidade estimada, como conheceu a Oxford, a mensagem, a opção de newsletter e o registro do seu consentimento.</p>
+      <p>Dados gerados automaticamente no envio: endereço IP, data e hora e um número de protocolo.</p>
+
+      <h3>b) Atendimento por WhatsApp</h3>
+      <p>O assistente de orçamento do site apenas monta uma mensagem e abre o WhatsApp. <strong>Esses dados não são armazenados pelo nosso site</strong>; eles só chegam até nós se você decidir enviar a mensagem pelo WhatsApp.</p>
+
+      <h3>c) Dados técnicos de navegação</h3>
+      <p>Como em qualquer site, o servidor recebe temporariamente o endereço IP e o tipo de navegador de quem acessa, usados para entregar as páginas e proteger o site contra abusos (por exemplo, bloqueio de robôs e limite de requisições).</p>
+
+      <h3>d) E-mails que você nos envia</h3>
+      <p>Se você nos escrever por e-mail, trataremos seu endereço e o conteúdo da mensagem para responder.</p>
+    </section>
+
+    <section id="finalidades">
+      <h2><span>04</span>Finalidades e bases legais</h2>
+      <p>Cada tratamento tem uma finalidade específica e uma base legal prevista no art. 7º da LGPD:</p>
+      <div class="tblWrap">
+        <table class="tbl">
+          <thead><tr><th>Finalidade</th><th>Dados</th><th>Base legal</th></tr></thead>
+          <tbody>
+            <tr><td>Responder ao seu pedido de parceria, catálogo ou reunião</td><td>Dados do formulário</td><td>Consentimento <span class="law">(art. 7º, I)</span> e procedimentos preliminares a contrato, a seu pedido <span class="law">(art. 7º, V)</span></td></tr>
+            <tr><td>Enviar confirmação do recebimento com o número de protocolo</td><td>Nome e e-mail</td><td>Consentimento <span class="law">(art. 7º, I)</span></td></tr>
+            <tr><td>Enviar novidades e cases (newsletter)</td><td>Nome e e-mail</td><td>Consentimento específico e opcional <span class="law">(art. 7º, I)</span></td></tr>
+            <tr><td>Segurança do site, prevenção a fraudes e spam</td><td>IP, navegador, data e hora</td><td>Legítimo interesse <span class="law">(art. 7º, IX)</span></td></tr>
+            <tr><td>Cumprir obrigações legais e defender direitos</td><td>Registros de envio e comunicações</td><td>Obrigação legal <span class="law">(art. 7º, II)</span> e exercício regular de direitos <span class="law">(art. 7º, VI)</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Não utilizamos seus dados para decisões automatizadas, perfis de comportamento ou publicidade direcionada. <strong>Não vendemos nem alugamos dados pessoais.</strong></p>
+    </section>
+
+    <section id="compartilhamento">
+      <h2><span>05</span>Compartilhamento</h2>
+      <p>Compartilhamos dados apenas com prestadores de serviço (operadores) necessários para o funcionamento do site, que tratam os dados conforme nossas instruções <span class="law">(LGPD, art. 39)</span>:</p>
+      <div class="tblWrap">
+        <table class="tbl">
+          <thead><tr><th>Prestador</th><th>Função</th><th>Dados envolvidos</th></tr></thead>
+          <tbody>
+            <tr><td>Provedor de hospedagem e banco de dados</td><td>Hospedar o site e armazenar os envios do formulário</td><td>Dados do formulário, IP</td></tr>
+            <tr><td>Resend</td><td>Envio dos e-mails de notificação e confirmação</td><td>Nome, e-mail e dados do formulário</td></tr>
+            <tr><td>Google Fonts</td><td>Fornecer as fontes tipográficas do site</td><td>IP e navegador (acesso técnico)</td></tr>
+            <tr><td>jsDelivr</td><td>Entregar bibliotecas de animação do site</td><td>IP e navegador (acesso técnico)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Se você optar por falar conosco pelo <strong>WhatsApp</strong>, a conversa passa a seguir também a política de privacidade do WhatsApp/Meta.</p>
+      <p>Também poderemos compartilhar dados quando exigido por lei, ordem judicial ou autoridade competente.</p>
+    </section>
+
+    <section id="internacional">
+      <h2><span>06</span>Transferência internacional</h2>
+      <p>Alguns prestadores listados acima (como hospedagem, envio de e-mails e fontes) podem armazenar ou processar dados em servidores fora do Brasil, especialmente nos Estados Unidos. Essas transferências são realizadas nas hipóteses permitidas pelo <span class="law">art. 33 da LGPD</span>, com prestadores que adotam medidas de segurança e compromissos contratuais de proteção de dados compatíveis com a legislação brasileira.</p>
+    </section>
+
+    <section id="retencao">
+      <h2><span>07</span>Por quanto tempo guardamos</h2>
+      <div class="tblWrap">
+        <table class="tbl">
+          <thead><tr><th>Dado</th><th>Prazo</th></tr></thead>
+          <tbody>
+            <tr><td>Envios do formulário sem início de relação comercial</td><td>Até <strong>12 meses</strong> após o envio; depois, eliminados ou anonimizados</td></tr>
+            <tr><td>Envios que resultam em parceria ou contrato</td><td>Durante a relação comercial e pelos prazos legais aplicáveis (fiscais, contábeis e prescricionais)</td></tr>
+            <tr><td>Lista de newsletter</td><td>Até você cancelar ou revogar o consentimento</td></tr>
+            <tr><td>Dados técnicos de segurança (IP, navegador)</td><td>Pelo tempo necessário à proteção do site e, quando aplicável, pelo prazo legal de guarda de registros de acesso <span class="law">(Marco Civil da Internet, Lei nº 12.965/2014, art. 15)</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Encerrado o tratamento, os dados são eliminados, salvo nas hipóteses de conservação autorizadas pelo <span class="law">art. 16 da LGPD</span>.</p>
+    </section>
+
+    <section id="cookies">
+      <h2><span>08</span>Cookies e armazenamento local</h2>
+      <p><strong>Este site não utiliza cookies</strong> — nem de publicidade, nem de analytics, nem de terceiros para rastreamento.</p>
+      <p>Usamos apenas um item técnico no armazenamento de sessão do navegador (<em>sessionStorage</em>), que registra se a animação de abertura já foi exibida, para não repeti-la. Ele não identifica você, não é enviado a ninguém e é apagado automaticamente quando você fecha a aba.</p>
+    </section>
+
+    <section id="seguranca">
+      <h2><span>09</span>Segurança</h2>
+      <p>Adotamos medidas técnicas e administrativas para proteger os dados pessoais contra acessos não autorizados, perda, alteração ou divulgação indevida <span class="law">(LGPD, art. 46)</span>, entre elas:</p>
+      <ul>
+        <li>conexão criptografada (HTTPS);</li>
+        <li>aceitação apenas dos campos esperados do formulário e limites de tamanho de envio;</li>
+        <li>proteção contra robôs, spam e excesso de requisições;</li>
+        <li>cabeçalhos de segurança no navegador e verificação de integridade de bibliotecas externas;</li>
+        <li>acesso aos dados restrito às pessoas que precisam deles para atender você;</li>
+        <li>chaves e credenciais mantidas fora do código público.</li>
+      </ul>
+      <p>Em caso de incidente de segurança que possa acarretar risco ou dano relevante, comunicaremos a Autoridade Nacional de Proteção de Dados (ANPD) e os titulares afetados <span class="law">(LGPD, art. 48)</span>.</p>
+    </section>
+
+    <section id="direitos">
+      <h2><span>10</span>Seus direitos</h2>
+      <p>Você pode solicitar, a qualquer momento e gratuitamente <span class="law">(LGPD, art. 18)</span>:</p>
+      <ul>
+        <li>confirmação de que tratamos seus dados;</li>
+        <li>acesso aos seus dados;</li>
+        <li>correção de dados incompletos, inexatos ou desatualizados;</li>
+        <li>anonimização, bloqueio ou eliminação de dados desnecessários, excessivos ou tratados em desconformidade com a LGPD;</li>
+        <li>portabilidade dos dados a outro fornecedor, conforme regulamentação da ANPD;</li>
+        <li>eliminação dos dados tratados com base no seu consentimento;</li>
+        <li>informação sobre com quem compartilhamos seus dados;</li>
+        <li>informação sobre a possibilidade de não fornecer consentimento e suas consequências — sem o consentimento, não conseguimos registrar e responder ao formulário, mas você pode falar conosco por e-mail ou WhatsApp;</li>
+        <li>revogação do consentimento, a qualquer momento, por procedimento gratuito e facilitado <span class="law">(art. 8º, § 5º)</span> — inclusive para a newsletter;</li>
+        <li>oposição a tratamento realizado sem consentimento, em caso de descumprimento da LGPD <span class="law">(art. 18, § 2º)</span>.</li>
+      </ul>
+      <h3>Como exercer</h3>
+      <p>Envie um e-mail para <a href="mailto:parceria@oxfordblocosbrasil.com.br?subject=LGPD%20-%20Solicita%C3%A7%C3%A3o%20do%20titular">parceria@oxfordblocosbrasil.com.br</a> informando seu pedido e, se possível, o número de protocolo recebido. Poderemos pedir informações para confirmar sua identidade, a fim de proteger seus dados. A confirmação de existência ou o acesso aos dados serão fornecidos de forma simplificada imediatamente ou, por declaração completa, em até 15 dias <span class="law">(LGPD, art. 19)</span>.</p>
+      <p>Você também tem o direito de apresentar reclamação à <strong>Autoridade Nacional de Proteção de Dados (ANPD)</strong> — <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">gov.br/anpd</a> <span class="law">(art. 18, § 1º)</span>.</p>
+    </section>
+
+    <section id="menores">
+      <h2><span>11</span>Crianças e adolescentes</h2>
+      <p>Embora nossos produtos sejam brinquedos, <strong>este site e seus formulários são destinados a empresas, lojistas e profissionais maiores de 18 anos</strong>. Não coletamos intencionalmente dados de crianças ou adolescentes. Se identificarmos um envio desse tipo, os dados serão eliminados <span class="law">(LGPD, art. 14)</span>.</p>
+    </section>
+
+    <section id="alteracoes">
+      <h2><span>12</span>Alterações e legislação aplicável</h2>
+      <p>Esta política pode ser atualizada para refletir mudanças no site, nos prestadores de serviço ou na legislação. A data da última atualização fica sempre no topo desta página; mudanças relevantes serão destacadas no site.</p>
+      <p>Esta política é regida pela legislação brasileira, em especial a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018) e o Marco Civil da Internet (Lei nº 12.965/2014).</p>
+    </section>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="fBrand"><img src="assets/oxford-logo-official-footer.png" alt="Oxford Blocks" width="89" height="120"> <span>Brasil</span></div>
+  <a class="btn" href="index.html">← Voltar ao site</a>
+  <span>© 2026 Oxford Blocks Brasil. <span class="fDev">Desenvolvido por <a href="https://os-nexus.com.br/" target="_blank" rel="noopener"><b>Nexus OS</b></a> · Ez Eldin Al Ali</span></span>
+</footer>
+<script src="cursor.js"></script>
+</body>
+</html>

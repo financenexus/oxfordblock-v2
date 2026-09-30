@@ -133,12 +133,16 @@ img{max-width:100%;display:block}
 .formSection2{margin-top:38px;padding-top:34px;border-top:1px solid var(--line)}
 .fsLabel{font-size:14px;font-weight:850;letter-spacing:.11em;color:var(--red);text-transform:uppercase;margin:0 0 24px}
 .checkField{margin-top:24px}
-.checkLabel{display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-size:14px;color:var(--muted);line-height:1.6;text-transform:none;letter-spacing:0;font-weight:500}
+.field .checkLabel{display:flex;align-items:flex-start;gap:14px;margin-bottom:0;cursor:pointer;font-size:14px;color:var(--muted);line-height:1.6;text-transform:none;letter-spacing:0;font-weight:500}
 .checkLabel input{position:absolute;opacity:0;pointer-events:none}
-.checkBox{width:20px;height:20px;border:2px solid var(--line);border-radius:4px;flex-shrink:0;margin-top:1px;transition:.2s;position:relative}
-.checkLabel input:checked + .checkBox{background:var(--red);border-color:var(--red)}
-.checkLabel input:checked + .checkBox:after{content:"✓";position:absolute;top:-2px;left:3px;color:#fff;font-size:13px;font-weight:800}
+.checkBox{display:inline-block;width:26px;height:26px;border:1.5px solid rgba(255,255,255,.32);border-radius:6px;flex-shrink:0;position:relative;background:rgba(255,255,255,.03);transition:background .18s,border-color .18s,box-shadow .18s}
+.checkBox:after{content:"";position:absolute;left:50%;top:46%;width:6px;height:12px;border:solid #fff;border-width:0 2.5px 2.5px 0;border-radius:1px;transform:translate(-50%,-50%) rotate(45deg) scale(0);transition:transform .18s cubic-bezier(.3,1.6,.5,1)}
+.checkLabel input:checked + .checkBox{background:var(--red);border-color:var(--red);box-shadow:0 4px 14px rgba(212,43,36,.35)}
+.checkLabel input:checked + .checkBox:after{transform:translate(-50%,-50%) rotate(45deg) scale(1)}
+.checkLabel input:focus-visible + .checkBox{box-shadow:0 0 0 3px rgba(212,43,36,.35)}
 .checkLabel:hover .checkBox{border-color:var(--red)}
+.checkLink{color:var(--text);text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}
+.checkLink:hover{color:var(--red)}
 .formMsg{margin-top:24px;padding:20px 22px;border-radius:5px;font-size:14px;line-height:1.6;display:none}
 .formMsg.show{display:block}
 .formMsg b{display:block;font-size:15px;margin-bottom:4px}
@@ -150,6 +154,7 @@ img{max-width:100%;display:block}
 .formMsg--err a{color:var(--red);text-decoration:underline}
 .errText{display:none;margin-top:8px;font-size:12px;color:var(--red)}
 .field.err input,.field.err select,.field.err textarea{border-color:var(--red)}
+.field.err .checkBox{border-color:var(--red)}
 .field.err .errText{display:block}
 
 /* FOOTER */
@@ -424,6 +429,16 @@ img{max-width:100%;display:block}
           </div>
         </div>
 
+        <!-- LGPD consent (required) -->
+        <div class="field checkField">
+          <label class="checkLabel">
+            <input type="checkbox" id="fLgpd" name="consent_lgpd" required>
+            <span class="checkBox"></span>
+            <span>Autorizo a Oxford Blocks Brasil a utilizar os dados informados para responder à minha solicitação, conforme a <a class="checkLink" href="privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a> e a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018). <span class="req">*</span></span>
+          </label>
+          <span class="errText">É necessário autorizar o uso dos dados para prosseguir.</span>
+        </div>
+
         <!-- Newsletter opt-in -->
         <div class="field checkField">
           <label class="checkLabel">
@@ -435,7 +450,7 @@ img{max-width:100%;display:block}
 
         <div class="formActions">
           <button type="submit" class="btn btn--red" id="submitBtn">Enviar cadastro <span class="arr">→</span></button>
-          <span class="note">Ao enviar, você concorda em ser contatado pela equipe Oxford Blocks Brasil. Seus dados não são compartilhados com terceiros.</span>
+          <span class="note">Seus dados são usados apenas para responder à sua solicitação e nunca são vendidos. Saiba mais na <a class="checkLink" href="privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
         </div>
 
         <div class="formMsg formMsg--ok" id="formMsgOk">
@@ -456,7 +471,7 @@ img{max-width:100%;display:block}
 <footer class="footer">
   <div class="fBrand"><img src="assets/oxford-logo-official-footer.png" alt="Oxford Blocks" width="89" height="120"> <span>Brasil</span></div>
   <a class="btn btn--ghost" href="index.html">← Voltar ao site</a>
-  <span>© 2026 Oxford Blocks Brasil. <span class="fDev">Desenvolvido por <a href="https://os-nexus.com.br/" target="_blank" rel="noopener"><b>Nexus OS</b></a> · Ez Eldin Al Ali</span></span>
+  <span>© 2026 Oxford Blocks Brasil. · <a href="privacidade.html" style="color:inherit">Política de Privacidade</a> <span class="fDev">Desenvolvido por <a href="https://os-nexus.com.br/" target="_blank" rel="noopener"><b>Nexus OS</b></a> · Ez Eldin Al Ali</span></span>
 </footer>
 
 <script>
@@ -507,6 +522,8 @@ document.getElementById('partnerForm').addEventListener('submit',async function(
   if(email.value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value)){email.closest('.field').classList.add('err');ok=false}
   var type=document.getElementById('fType');
   if(!type.value){type.closest('.field').classList.add('err');ok=false}
+  var lgpd=document.getElementById('fLgpd');
+  if(!lgpd.checked){lgpd.closest('.field').classList.add('err');ok=false}
   if(!ok){var firstErr=document.querySelector('.field.err');if(firstErr)firstErr.scrollIntoView({behavior:'smooth',block:'center'});return}
 
   // Collect form data
@@ -526,7 +543,8 @@ document.getElementById('partnerForm').addEventListener('submit',async function(
     quantidade:document.getElementById('fQty').value,
     como_conheceu:document.getElementById('fSource').value,
     mensagem:document.getElementById('fMsg').value.trim(),
-    newsletter:document.getElementById('fNews').checked?'on':'off'
+    newsletter:document.getElementById('fNews').checked?'on':'off',
+    consent_lgpd:document.getElementById('fLgpd').checked?'on':'off'
   };
 
   // Submit to backend

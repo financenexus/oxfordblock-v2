@@ -65,7 +65,7 @@ Status (Sep 28): the free preview `oxfordblock-v2.financenexus.deno.net` serves 
 4. **Env vars on the host:** `RESEND_API_KEY`, `MAIL_TO`, `MAIL_FROM` (verified domain sender, e.g. `parceria@oxfordblocosbrasil.com.br`), Supabase vars. Never commit `config.json`.
 5. **Dependencies:** regenerate `deno.lock` with `deno install` (it pins old `qs@6.15.3`/`express@4.22.2`), then `npm audit` → 0.
 6. **Rate limit:** in-memory limits are per-instance; move the `/api/partner` limit to a Supabase table (or Deno KV) so it holds across instances.
-7. **LGPD:** add a privacy policy page + consent checkbox on `parceiro.html` (form stores name, email, phone, IP). Define retention/deletion.
+7. **LGPD:** `privacidade.html` (v1.0) + required consent checkbox (`consent_lgpd`, enforced server-side) are DONE. Before go-live: fill the yellow `.ph` placeholders ([RAZÃO SOCIAL], [CNPJ], [ENDEREÇO]) and have a Brazilian lawyer review it. Retention promised = 12 months for leads with no deal → implement the deletion job. Whenever a provider changes (Supabase, new host, analytics, cookies), update sections 05/06/08 of the policy and bump its version/date — the policy must match what the site really does.
 8. **Verify live after deploy:** security headers present (CSP, X-Frame-Options, Permissions-Policy, no X-Powered-By); HTTrack UA → 403; submit the real form end-to-end (row in Supabase + email arrives); zero CSP violations in browser console on both pages.
 
 ## Git rules

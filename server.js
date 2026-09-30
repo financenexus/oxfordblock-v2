@@ -166,7 +166,7 @@ app.use(express.static(ROOT, {
 
 // ===== API: Partner form submission =====
 const PARTNER_FIELDS = ['tipo', 'nome', 'cargo', 'empresa', 'site', 'email', 'telefone', 'segmento', 'porte',
-  'orcamento', 'prazo', 'quantidade', 'como_conheceu', 'mensagem', 'newsletter'];
+  'orcamento', 'prazo', 'quantidade', 'como_conheceu', 'mensagem', 'newsletter', 'consent_lgpd'];
 app.post('/api/partner', async (req, res) => {
   try {
     // Whitelist: only known string fields are kept, so clients can never set
@@ -186,6 +186,11 @@ app.post('/api/partner', async (req, res) => {
     const ip = req.ip || req.connection?.remoteAddress || 'unknown';
     if (!checkRateLimit(ip)) {
       return res.status(429).json({ ok: false, error: 'Muitas tentativas. Tente novamente em 1 hora ou nos escreva por e-mail.' });
+    }
+
+    // LGPD: explicit consent is required to store personal data
+    if (data.consent_lgpd !== 'on') {
+      return res.status(400).json({ ok: false, error: 'É necessário autorizar o tratamento dos dados (LGPD).' });
     }
 
     // Basic validation
@@ -222,6 +227,12 @@ app.post('/api/partner', async (req, res) => {
       } catch (emailErr) {
         console.error('[submission] Email failed:', emailErr.message);
         // Don't fail the request — submission is already saved
+      }
+      try {
+        await sendConfirmationEmail(submission);
+        console.log(`[submission] Confirmation sent to ${submission.email}`);
+      } catch (confErr) {
+        console.error('[submission] Confirmation email failed:', confErr.message);
       }
     } else {
       console.warn('[submission] No email configured — submission stored only.');
@@ -267,6 +278,7 @@ async function sendNotificationEmail(submission) {
     ['Quantidade estimada', submission.quantidade],
     ['Como conheceu', submission.como_conheceu],
     ['Newsletter', submission.newsletter === 'on' ? 'Sim' : 'Não'],
+    ['LGPD', submission.consent_lgpd === 'on' ? 'Autorizado' : 'Não autorizado'],
   ];
 
   const html = `
@@ -286,25 +298,62 @@ async function sendNotificationEmail(submission) {
 
   const text = `Nova solicitação de parceria\n\n${rows.map(([k, v]) => `${k}: ${v ?? '—'}`).join('\n')}\n\nMensagem:\n${submission.mensagem}\n\n---\nID: ${submission.id}\nTimestamp: ${submission.timestamp}`;
 
+  await resendSend({
+    from: MAIL.from,
+    to: [MAIL.to],
+    reply_to: submission.email,
+    subject: `[Oxford Brasil] ${typeLabel} — ${submission.empresa}`,
+    text,
+    html
+  });
+}
+
+async function resendSend(payload) {
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${MAIL.apiKey}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      from: MAIL.from,
-      to: [MAIL.to],
-      reply_to: submission.email,
-      subject: `[Oxford Brasil] ${typeLabel} — ${submission.empresa}`,
-      text,
-      html
-    })
+    body: JSON.stringify(payload)
   });
-
   if (!response.ok) {
     throw new Error(`Resend responded ${response.status}: ${await response.text()}`);
   }
+}
+
+// ===== Confirmation email to the partner =====
+// Only first name (capped) + protocol are echoed back, so the form can't be
+// abused to relay arbitrary text to third-party inboxes.
+async function sendConfirmationEmail(submission) {
+  const esc = (v) => String(v ?? '').replace(/[<>&"]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]));
+  const firstName = String(submission.nome || '').split(/\s+/)[0].slice(0, 40);
+  const protocol = submission.id.substring(0, 8).toUpperCase();
+
+  const html = `
+    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #f8f8f8; padding: 24px;">
+      <div style="background: #fff; border-radius: 8px; padding: 32px; border-top: 4px solid #D42B24;">
+        <h2 style="margin: 0 0 16px; color: #111; font-size: 22px;">Recebemos sua solicitação${firstName ? `, ${esc(firstName)}` : ''}!</h2>
+        <p style="color: #444; font-size: 15px; line-height: 1.6; margin: 0 0 20px;">Obrigado pelo interesse na Oxford Blocks Brasil. Nossa equipe vai analisar as informações e entrar em contato em até <b>2 dias úteis</b>.</p>
+        <div style="background: #f5f5f5; border-radius: 6px; padding: 16px 20px; margin: 0 0 20px;">
+          <span style="color: #888; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;">Protocolo</span><br>
+          <span style="color: #D42B24; font-size: 22px; font-weight: 800; letter-spacing: .06em;">${protocol}</span>
+        </div>
+        <p style="color: #666; font-size: 13px; line-height: 1.6; margin: 0;">Guarde este número para acompanhar o atendimento. Se precisar complementar algo, basta responder este e-mail.</p>
+      </div>
+      <p style="text-align: center; color: #aaa; font-size: 11px; margin-top: 16px;">Oxford Blocks Brasil · Você recebeu este e-mail porque preencheu o formulário de parceria em oxfordblocosbrasil.com.br.</p>
+    </div>
+  `;
+  const text = `Recebemos sua solicitação${firstName ? `, ${firstName}` : ''}!\n\nObrigado pelo interesse na Oxford Blocks Brasil. Nossa equipe entra em contato em até 2 dias úteis.\n\nProtocolo: ${protocol}\n\nSe precisar complementar algo, basta responder este e-mail.\n\n— Oxford Blocks Brasil`;
+
+  await resendSend({
+    from: MAIL.from,
+    to: [submission.email],
+    reply_to: MAIL.to,
+    subject: `Recebemos sua solicitação — Protocolo ${protocol}`,
+    text,
+    html
+  });
 }
 
 // ===== Health check =====
