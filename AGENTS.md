@@ -20,6 +20,7 @@ The `CATS` accordion (`#catList`) is the approved pattern for every product line
 - Photo cards carry a red `.catShotCta` pill on the shot ("▶ Viva a experiência" with videos, "Explore a coleção" photo-only) — pulsing glow, pointer-events none (it's a label, the card click opens).
 - Click card → `.is-open` → `.catExpand` drops media + autoplays MUTED. One card open at a time.
 - Sound is opt-in: `.vMute` pill on the video ("Ativar som"/"Desativar som") toggles mute — owner decision, no fullscreen button.
+- Cover slideshow (`initScrub`): with 2+ `photos`, the `.catShot` cover auto-crossfades every 3s (only while ≥40% on screen and tab visible; staggered per card; off for `prefers-reduced-motion`). Hover pauses it and scrubs by mouse X; progress dots always visible.
 - Photo cards omit `.catMore`; text-only cards keep it.
 - Expand area: media only — the "Solicitar catálogo"/"WhatsApp" buttons were removed by owner decision (Sep 28). WhatsApp stays available via the floating `waBubble`.
 - Cards with `photos:[]` and/or 2+ `videos:[]` render the DECK gallery (approved standard — Cobra Combat, Crayon Shin-chan, Patrimônio Cultural Coreano, Heróis — Yi Sun-sin): `.gDeckStage` shows the top item (video muted-autoplay or photo), `.gDeckStack` is a swipeable/arrow card fan; all items cycle through the stage, clicked stage photos open the lightbox at that index.
