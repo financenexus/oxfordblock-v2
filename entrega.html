@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#050607">
+<title>O que foi construído — Oxford Blocks Brasil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D42B24; --red2:#9B1A14; --red-soft:rgba(212,43,36,.12);
+  --yellow:#F5A623; --ink:#050607; --ink2:#0a0c0d; --ink3:#101314;
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.05);
+  --text:#EDEEF0; --muted:rgba(237,238,240,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--text);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+/* Hero */
+.hero{min-height:72svh;display:flex;align-items:center;border-bottom:1px solid var(--line);background:radial-gradient(circle at 50% 0%,#1a1414 0,var(--ink) 58%);position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2),transparent 40%,var(--ink) 97%);pointer-events:none}
+.heroIn{position:relative;z-index:2;padding:90px 0 70px}
+.kick{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);margin:0 0 22px}
+.kick:before{content:"";width:34px;height:2px;background:var(--red)}
+.hero h1{margin:0 0 22px;font-size:clamp(36px,6vw,72px);font-weight:900;line-height:.92;letter-spacing:-.04em;text-transform:uppercase;font-family:"Archivo Expanded","Archivo",system-ui,sans-serif}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p{margin:0;max-width:620px;font-size:17px;line-height:1.6;color:var(--muted)}
+.heroMeta{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.heroMeta span{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:30px;padding:8px 14px;background:rgba(255,255,255,.02)}
+/* Inventory strip */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--ink2);margin:64px 0}
+.stat{padding:26px 20px;text-align:center;border-right:1px solid var(--line2)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:"Archivo Expanded","Archivo",system-ui,sans-serif;font-size:clamp(28px,3.4vw,44px);font-weight:900;letter-spacing:-.03em;color:var(--red);line-height:1}
+.stat span{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+/* Sections */
+.sec{padding:64px 0}
+.secAlt{background:linear-gradient(180deg,var(--ink),var(--ink2) 50%,var(--ink))}
+.sHead{margin-bottom:14px}
+.sHead h2{margin:0;font-size:clamp(30px,4.4vw,54px);font-weight:900;line-height:.95;letter-spacing:-.035em;text-transform:uppercase;font-family:"Archivo Expanded","Archivo",system-ui,sans-serif}
+.sSub{margin:0 0 40px;max-width:640px;font-size:15px;line-height:1.65;color:var(--muted)}
+/* Feature blocks: ver / por trás / importa */
+.feat{border:1px solid var(--line);border-radius:8px;background:var(--ink2);margin:0 0 22px;overflow:hidden;position:relative;transition:border-color .25s}
+.feat:hover{border-color:rgba(212,43,36,.45)}
+.featTop{display:flex;align-items:baseline;gap:18px;padding:26px 28px 0}
+.featNum{font-family:"Archivo Expanded","Archivo",system-ui,sans-serif;font-size:26px;font-weight:900;color:var(--red);letter-spacing:-.02em}
+.featTop h3{margin:0;font-size:clamp(20px,2.4vw,26px);font-weight:800;letter-spacing:-.01em}
+.featGrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;padding:18px 28px 26px}
+.featCell{padding:16px 18px;border-left:1px solid var(--line2)}
+.featCell:first-child{padding-left:0;border-left:0}
+.featCell h4{margin:0 0 8px;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+.featCell:nth-child(1) h4{color:var(--text)}
+.featCell:nth-child(2) h4{color:var(--muted)}
+.featCell:nth-child(3) h4{color:var(--yellow)}
+.featCell p{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
+.featCell p strong{color:var(--text);font-weight:700}
+.featExtra{margin:0 28px 26px;padding:15px 18px;border:1px solid var(--line2);border-left:3px solid var(--red);border-radius:0 6px 6px 0;background:rgba(255,255,255,.02);font-size:14px;line-height:1.6;color:var(--muted)}
+.featExtra>b{display:block;margin-bottom:6px;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow)}
+.featExtra strong{color:var(--text);font-weight:700}
+/* Checklist */
+.todo{border:1px solid var(--line);border-radius:8px;background:var(--ink2);overflow:hidden}
+.todo li{list-style:none;display:flex;gap:16px;align-items:flex-start;padding:18px 24px;border-bottom:1px solid var(--line2);font-size:14.5px;line-height:1.55;color:var(--muted)}
+.todo li:last-child{border-bottom:0}
+.todo li b{color:var(--text)}
+.todoDot{flex:0 0 10px;width:10px;height:10px;border-radius:50%;margin-top:6px}
+.todoDot--r{background:var(--red);box-shadow:0 0 10px rgba(212,43,36,.5)}
+.todoDot--y{background:var(--yellow);box-shadow:0 0 10px rgba(245,166,35,.45)}
+.todoDot--g{background:#3fb950;box-shadow:0 0 10px rgba(63,185,80,.4)}
+/* Quote strip */
+.quote{margin:70px 0;padding:40px 36px;border:1px solid rgba(212,43,36,.3);border-radius:10px;background:linear-gradient(150deg,rgba(212,43,36,.09),var(--ink2));position:relative;overflow:hidden}
+.quote:before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--yellow),var(--red))}
+.quote p{margin:0;font-size:clamp(19px,2.6vw,26px);font-weight:700;line-height:1.45;letter-spacing:-.01em}
+.quote p em{font-style:normal;color:var(--red)}
+/* Footer */
+.foot{border-top:1px solid var(--line);padding:44px 0 56px;text-align:center}
+.foot p{margin:0 0 8px;font-size:13px;color:var(--muted)}
+.foot b{color:var(--text)}
+/* reveal */
+.rev{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.16,1,.3,1)}
+.rev.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rev{opacity:1;transform:none;transition:none}}
+@media(max-width:860px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line2)}
+  .featGrid{grid-template-columns:1fr}
+  .featCell{padding-left:0;border-left:0;border-top:1px solid var(--line2)}
+  .featCell:first-child{border-top:0;padding-top:0}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap heroIn">
+    <p class="kick">Apresentação do projeto — Oxford Blocks Brasil</p>
+    <h1>Não é um site.<br>É uma <em>ferramenta de vendas</em>.</h1>
+    <p>O que foi entregue, o que foi pensado em cada parte, e por que cada decisão existe. Este documento explica — em linguagem de negócio, sem termos técnicos — o trabalho por trás do que o visitante vê na tela.</p>
+    <div class="heroMeta">
+      <span>Versão de entrega · Set/2026</span>
+      <span>Idioma do site: Português (BR)</span>
+      <span>Foco: revenda B2B via WhatsApp</span>
+    </div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="stats rev">
+      <div class="stat"><b>3</b><span>Páginas</span></div>
+      <div class="stat"><b>6</b><span>Linhas de produto</span></div>
+      <div class="stat"><b>11</b><span>Vídeos</span></div>
+      <div class="stat"><b>16</b><span>Fotos otimizadas</span></div>
+    </div>
+    <p class="sSub rev" style="text-align:center;max-width:680px;margin:0 auto">Uma página principal com o catálogo interativo completo, uma página de parceria com formulário validado e uma política de privacidade conforme a LGPD — tudo num projeto único, sem dependência de plataforma pronta.</p>
+    <p class="sSub rev" style="text-align:center;max-width:680px;margin:14px auto 0"><strong style="color:var(--yellow)">Catálogo em expansão:</strong> novas fotos e vídeos são produzidos e adicionados por linha continuamente — o baralho de cada produto aceita quantos itens forem criados, sem alterar o site.</p>
+  </div>
+</section>
+
+<section class="sec secAlt">
+  <div class="wrap">
+    <div class="sHead rev">
+      <p class="kick">O tour guiado</p>
+      <h2>O que o visitante vê —<br>e o que está por trás.</h2>
+    </div>
+    <p class="sSub rev">Cada bloco abaixo mostra uma parte do site em três níveis: a experiência na tela, a decisão por trás dela e o que isso significa para o negócio.</p>
+
+    <div class="feat rev">
+      <div class="featTop"><span class="featNum">01</span><h3>Vitrine viva — o baralho de produtos</h3></div>
+      <div class="featGrid">
+        <div class="featCell"><h4>O que o visitante vê</h4><p>Cada linha (Cobra Combat, Brickmania, Crayon Shin-chan...) abre um <strong>baralho de modelos</strong>. Ele navega de quatro jeitos: <strong>arrastando a carta do topo</strong>, pelos botões <strong>Voltar/Próximo</strong>, <strong>deslizando sobre a foto grande</strong> — ou só observando, porque a pilha mostra que existe mais por trás.</p></div>
+        <div class="featCell"><h4>O que foi pensado</h4><p>O baralho agrupa mídia <strong>por modelo</strong>: foto frontal, verso e vídeo da mesma unidade ficam sempre juntos, nunca dois vídeos seguidos. A <strong>capa do card acompanha</strong> o que está na tela, o contador mostra a posição (4/11), e só existe <strong>um vídeo carregado por vez</strong> — as outras cartas são só capas leves.</p></div>
+        <div class="featCell"><h4>Por que importa</h4><p>O revendedor não lê uma lista — <strong>ele explora o produto</strong> como quem folheia um catálogo físico. Cada gesto revela a profundidade da coleção e transforma "ver o site" em <strong>manusear o produto</strong>.</p></div>
+      </div>
+      <div class="featExtra"><b>Exemplo real — Cobra Combat</b>Abrir a linha revela <strong>11 itens em sequência</strong>: Army, Força Aérea, Artilharia e Marine — cada modelo com foto frontal, verso e vídeo próprio. Tocou numa foto? Ela <strong>abre em tela cheia</strong> para ver os detalhes. Tocou no vídeo? Ele pausa e retoma com um toque, e o som liga só se o visitante quiser. Fechou a linha? A capa volta a girar sozinha a cada 3 segundos, convidando o próximo visitante.</div>
+    </div>
+
+    <div class="feat rev">
+      <div class="featTop"><span class="featNum">02</span><h3>Vídeos que se comportam</h3></div>
+      <div class="featGrid">
+        <div class="featCell"><h4>O que o visitante vê</h4><p>Vídeos que <strong>começam sozinhos, em silêncio</strong>, com imagem de capa instantânea. Um botão discreto — "Ativar som" — dá ao visitante o controle. Um toque pausa e retoma.</p></div>
+        <div class="featCell"><h4>O que foi pensado</h4><p>Som ligado por padrão afasta visitante (e navegadores bloqueiam). Por isso: <strong>mudo por padrão, som por escolha</strong>. Cada vídeo tem um quadro de capa leve gerado para carregar na hora.</p></div>
+        <div class="featCell"><h4>Por que importa</h4><p>Vídeo demonstra o produto melhor que qualquer texto — mas só funciona se <strong>não irritar</strong>. Aqui ele convence sem invadir.</p></div>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="featTop"><span class="featNum">03</span><h3>Funil feito para o WhatsApp</h3></div>
+      <div class="featGrid">
+        <div class="featCell"><h4>O que o visitante vê</h4><p>Um botão flutuante de WhatsApp sempre à mão e um <strong>montador de cotação rápida</strong>: escolhe linha, perfil e cidade — e a mensagem chega pronta no seu WhatsApp.</p></div>
+        <div class="featCell"><h4>O que foi pensado</h4><p>O botão não abre uma conversa vazia: ele <strong>já carrega o contexto</strong> (linha de interesse, perfil do comprador, volume estimado) para sua equipe responder com informação, não com "olá, como posso ajudar?".</p></div>
+        <div class="featCell"><h4>Por que importa</h4><p>Negócio B2B no Brasil <strong>fecha no WhatsApp</strong>, não em formulário frio. O site inteiro foi desenhado para conduzir até essa conversa.</p></div>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="featTop"><span class="featNum">04</span><h3>Formulário de parceria que filtra</h3></div>
+      <div class="featGrid">
+        <div class="featCell"><h4>O que o visitante vê</h4><p>Um formulário limpo na página de parceria. Ao enviar, o lead recebe um <strong>e-mail de confirmação</strong> e você recebe os dados organizados por e-mail.</p></div>
+        <div class="featCell"><h4>O que foi pensado</h4><p>O servidor <strong>só aceita os campos esperados</strong> — nada de lixo injetado. Consentimento LGPD é verificado no servidor, não só na tela. Limite de envios por minuto corta spam automatizado.</p></div>
+        <div class="featCell"><h4>Por que importa</h4><p>Cada lead que chega é <strong>real e utilizável</strong>. Sua caixa de entrada vira pipeline, não lixeira.</p></div>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="featTop"><span class="featNum">05</span><h3>Conformidade LGPD de verdade</h3></div>
+      <div class="featGrid">
+        <div class="featCell"><h4>O que o visitante vê</h4><p>Link de privacidade no rodapé, página de política completa e um <strong>consentimento obrigatório</strong> antes de enviar o formulário.</p></div>
+        <div class="featCell"><h4>O que foi pensado</h4><p>A política tem 12 seções escritas a partir da lei: direitos do titular, bases legais, prazo de retenção (12 meses), canal de contato e transferência internacional — <strong>não é um texto genérico copiado</strong>.</p></div>
+        <div class="featCell"><h4>Por que importa</h4><p>Coletar dados de lead sem LGPD é <strong>risco legal real</strong> no Brasil. Aqui a conformidade é funcional — o servidor recusa envio sem consentimento.</p></div>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="featTop"><span class="featNum">06</span><h3>Blindagem invisível</h3></div>
+      <div class="featGrid">
+        <div class="featCell"><h4>O que o visitante vê</h4><p>Nada. E é assim que deve ser — <strong>a melhor segurança é a que não aparece</strong>.</p></div>
+        <div class="featCell"><h4>O que foi pensado</h4><p>Programas que copiam sites inteiros são bloqueados. Robôs de raspagem agressivos recebem limite de acesso. Cabeçalhos de segurança impedem que o site seja embutido ou adulterado. Códigos externos têm <strong>verificação de integridade</strong>.</p></div>
+        <div class="featCell"><h4>Por que importa</h4><p>Seu catálogo, suas fotos e seus textos são <strong>ativo comercial</strong>. Concorrente não copia tudo com um comando — e o visitante não vê diferença nenhuma.</p></div>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="featTop"><span class="featNum">07</span><h3>Rápido em qualquer celular</h3></div>
+      <div class="featGrid">
+        <div class="featCell"><h4>O que o visitante vê</h4><p>O site abre rápido, rola liso e funciona igual no celular barato de um revendedor no interior e no computador de um comprador corporativo.</p></div>
+        <div class="featCell"><h4>O que foi pensado</h4><p>Zero frameworks pesadas: <strong>código enxuto escrito à mão</strong>, fotos em formato WebP otimizado, vídeos que só carregam dados quando precisam.</p></div>
+        <div class="featCell"><h4>Por que importa</h4><p>Cada segundo de espera <strong>perde cliente</strong>. Um site leve atende quem está no 4G fraco — que é boa parte do seu público real.</p></div>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="featTop"><span class="featNum">08</span><h3>Feito para ser encontrado</h3></div>
+      <div class="featGrid">
+        <div class="featCell"><h4>O que o visitante vê</h4><p>O site normal — mas o Google enxerga uma estrutura completa: quem é a empresa, quais páginas existem, quais perguntas o site responde. E ao compartilhar o link no WhatsApp, a <strong>prévia aparece com título, descrição e imagem</strong>.</p></div>
+        <div class="featCell"><h4>O que foi pensado</h4><p>Toda a camada de descoberta foi construída: <strong>sitemap.xml</strong> (mapa das páginas), <strong>robots.txt</strong> (regras para robôs), <strong>dados estruturados schema.org</strong> (empresa, site e FAQ), endereços canônicos, cartões Open Graph/Twitter e o <strong>conteúdo real escrito no HTML</strong> — legível mesmo sem executar scripts.</p></div>
+        <div class="featCell"><h4>Por que importa</h4><p>Quem procura "blocos de montar personalizados" ou "Oxford Brasil" precisa <strong>achar você</strong>. E quando o link circula no WhatsApp — onde o B2B acontece — ele chega <strong>com cara de marca séria</strong>, não como um link pelado.</p></div>
+      </div>
+      <div class="featExtra"><b>E não é só o Google — o site também fala com a IA</b>Foi criado um arquivo <strong>llms.txt</strong>, um padrão novo feito para inteligências artificiais: ele apresenta a empresa e o catálogo para sistemas como <strong>ChatGPT, Perplexity, Gemini e Claude</strong>. Combinado com os dados estruturados, quando alguém perguntar a uma IA "onde comprar blocos Oxford no Brasil" ou "blocos de montar personalizados para empresas", o site tem estrutura para ser <strong>citado como resposta</strong> — não apenas listado numa busca tradicional. A maioria dos concorrentes ainda não tem isso.</div>
+    </div>
+
+    <div class="feat rev">
+      <div class="featTop"><span class="featNum">09</span><h3>Cada detalhe tem um porquê</h3></div>
+      <div class="featGrid">
+        <div class="featCell"><h4>O que o visitante vê</h4><p>Animações suaves, uma linha que "constrói" conforme o scroll, cartões que respondem ao toque — uma experiência que <strong>parece produto grande</strong>.</p></div>
+        <div class="featCell"><h4>O que foi pensado</h4><p>Cada decisão foi debatida e documentada: quando a capa gira sozinha, quando pausa, quando o som aparece, o que acontece no celular vs. no desktop. Nada ficou "no automático".</p></div>
+        <div class="featCell"><h4>Por que importa</h4><p>A percepção de qualidade do site <strong>vira percepção de qualidade da marca</strong>. Um revendedor julga a Oxford pelo que ele toca aqui.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sHead rev">
+      <p class="kick">Situação atual</p>
+      <h2>O que falta<br>para ir ao ar.</h2>
+    </div>
+    <p class="sSub rev">O site está pronto e testado localmente. Para ficar no ar em <strong style="color:var(--text)">oxfordblocosbrasil.com.br</strong> com tudo funcionando, faltam apenas passos de infraestrutura — não de desenvolvimento:</p>
+    <ul class="todo rev">
+      <li><span class="todoDot todoDot--g"></span><span><b>Feito:</b> site completo, formulário, LGPD, segurança, proteção anti-cópia, SEO — tudo funcionando e testado.</span></li>
+      <li><span class="todoDot todoDot--r"></span><span><b>Hospedagem que execute o servidor</b> (hoje a prévia gratuita mostra o site, mas o formulário só funciona quando o servidor roda de verdade).</span></li>
+      <li><span class="todoDot todoDot--r"></span><span><b>Domínio + HTTPS</b>: apontar oxfordblocosbrasil.com.br para a hospedagem.</span></li>
+      <li><span class="todoDot todoDot--r"></span><span><b>Banco de dados (Supabase)</b> para guardar os leads do formulário com segurança.</span></li>
+      <li><span class="todoDot todoDot--r"></span><span><b>Chaves de e-mail</b> (serviço de envio + remetente verificado no domínio próprio).</span></li>
+      <li><span class="todoDot todoDot--y"></span><span><b>Completar a política de privacidade</b>: razão social, CNPJ e endereço (campos marcados) + revisão de um advogado.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec secAlt">
+  <div class="wrap">
+    <div class="quote rev">
+      <p>Um site institucional mostra a empresa. <em>Este foi construído para fazer a empresa vender</em> — cada parte existe porque resolve uma coisa concreta: o cliente que quer ver o produto, o lead que precisa chegar qualificado, a lei que precisa ser cumprida, o concorrente que não pode copiar.</p>
+    </div>
+    <p class="sSub rev" style="text-align:center;max-width:640px;margin:0 auto">Dúvidas sobre qualquer item desta apresentação? Todos os detalhes técnicos estão documentados no projeto para quem quiser verificar.</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><b>Oxford Blocks Brasil</b> — documento de entrega · Setembro 2026</p>
+    <p>Desenvolvido por <b>Ez Eldin Al Ali — Nexus OS</b></p>
+  </div>
+</footer>
+
+<script>
+/* Scroll reveal — purely decorative */
+(function(){
+  var els=document.querySelectorAll('.rev');
+  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches){
+    els.forEach(function(e){e.classList.add('on')});return;
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('on');io.unobserve(en.target)}});
+  },{threshold:.12});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
