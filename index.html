@@ -651,7 +651,7 @@ body.nogsap .reveal,body.gsap-off .reveal{opacity:1;transform:none}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:980px){
-  .nav{display:none}
+  .nav:not(.nav--open){display:none}
   .menuBtn{display:flex}
   .heroMainGrid{grid-template-columns:1fr;gap:28px;margin-bottom:28px}
   .sHead{grid-template-columns:1fr;gap:24px}
@@ -1820,11 +1820,11 @@ function renderBrands(filter){
     if(b.video){
       inner += '<div class="portBadgeVideo"><span class="vDot"></span> Vídeo</div>';
       inner += '<div class="videoHint">▶ Passe o mouse para ver</div>';
-      var posterAttr = b.poster ? ' poster="'+encodeURI(b.poster)+'?v=2.1"' : '';
+      var posterAttr = b.poster ? ' poster="'+cacheBust(encodeURI(b.poster))+'"' : '';
       inner += '<video class="portVideo" src="'+encodeURI(b.video)+'"'+posterAttr+' muted playsinline preload="auto" width="400" height="300"></video>';
     } else {
       var countBadge = b.photos.length > 1 ? '<div class="portBadge">📷 '+b.photos.length+' fotos</div>' : '';
-      inner += countBadge + '<img src="'+encodeURI(b.photos[0])+'?v=2.1" alt="Oxford Blocks — '+b.n+'" loading="lazy" width="400" height="300">';
+      inner += countBadge + '<img src="'+cacheBust(encodeURI(b.photos[0]))+'" alt="Oxford Blocks — '+b.n+'" loading="lazy" width="400" height="300">';
     }
     inner += '</div><div class="portInfo"><div class="portBrand">'+b.n+'</div><div class="portCat">'+CAT_LABEL[b.c]+'</div></div>';
     d.innerHTML = inner;
@@ -1964,7 +1964,7 @@ function updateModalView(){
     modalImg.style.opacity = '0';
     modalImg.style.transform = 'scale(0.96)';
     setTimeout(function(){
-      modalImg.src = encodeURI(activeModel.photos[realIdx]) + '?v=2.1';
+      modalImg.src = cacheBust(encodeURI(activeModel.photos[realIdx]));
       modalImg.alt = 'Oxford Blocks — ' + activeModel.n + ' (' + (realIdx + 1) + '/' + totalPhotos + ')';
       modalImg.style.opacity = '1';
       modalImg.style.transform = 'scale(1)';
@@ -2000,7 +2000,7 @@ function updateModalView(){
         var thumbIdx = pIdx + totalVids;
         var t = document.createElement('div');
         t.className = 'portModalThumb' + (thumbIdx === activePhotoIdx ? ' active' : '');
-        t.innerHTML = '<img src="' + encodeURI(photo) + '?v=2.1" alt="' + activeModel.n + ' ' + (pIdx + 1) + '">';
+        t.innerHTML = '<img src="' + cacheBust(encodeURI(photo)) + '" alt="' + activeModel.n + ' ' + (pIdx + 1) + '">';
         t.addEventListener('click', function(e){
           e.stopPropagation();
           activePhotoIdx = thumbIdx;
@@ -2073,6 +2073,7 @@ var CATS=[
 var cl=document.getElementById('catList');
 /* Gallery — deck mode is the approved standard (owner pick, Sep 28): stage + swipeable card stack */
 function vidPoster(src){return src.replace(/\.[^.\/]+$/,'')+'-poster.webp?v=3'}
+function cacheBust(u){return u.indexOf('?')>-1 ? u : u+'?v=2.1'}
 function vidHTML(src,t){
   return '<div class="catVideo"><video src="'+src+'" poster="'+vidPoster(src)+'" muted playsinline preload="metadata" aria-label="Vídeo da linha '+t+'"></video>'
     +'<div class="catVidBar"><button type="button" class="catVidBtn vMute" aria-pressed="false">'

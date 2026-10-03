@@ -59,6 +59,17 @@ app.disable('x-powered-by');
 // Node's querystring instead of qs — no route reads req.query, and qs has had DoS advisories.
 app.set('query parser', 'simple');
 app.use(express.json({ limit: '100kb' }));
+// Body-parser failures must answer with JSON — the Express default handler
+// leaks a stack trace with absolute server paths.
+app.use((err, req, res, next) => {
+  if (err.type === 'entity.too.large') {
+    return res.status(413).json({ ok: false, error: 'Envio muito grande.' });
+  }
+  if (err.type === 'entity.parse.failed' || err instanceof SyntaxError) {
+    return res.status(400).json({ ok: false, error: 'Corpo JSON inválido.' });
+  }
+  next(err);
+});
 
 // Security headers
 app.use((req, res, next) => {
