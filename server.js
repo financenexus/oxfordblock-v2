@@ -65,10 +65,9 @@ app.use((err, req, res, next) => {
   if (err.type === 'entity.too.large') {
     return res.status(413).json({ ok: false, error: 'Envio muito grande.' });
   }
-  if (err.type === 'entity.parse.failed' || err instanceof SyntaxError) {
-    return res.status(400).json({ ok: false, error: 'Corpo JSON inválido.' });
-  }
-  next(err);
+  // Any other body-parser failure (bad JSON, bad Content-Encoding, aborted
+  // stream) is a client error — answer JSON, never the default HTML stack page.
+  return res.status(400).json({ ok: false, error: 'Corpo da requisição inválido.' });
 });
 
 // Security headers
@@ -111,10 +110,19 @@ const RIPPER_UA = /httrack|wget|webcopy|sitesucker|offline ?explorer|teleport|we
 const burst = new Map();
 const BURST_MAX = 300;
 const BURST_WINDOW = 60 * 1000;
+// X-Forwarded-For is only trusted when the direct peer is a private/loopback
+// proxy — a public client can send any XFF value to reset rate limits and grow
+// the burst Map. Public peers are keyed by their real socket address.
+function clientIp(req) {
+  const peer = req.ip || (req.socket && req.socket.remoteAddress) || '';
+  const fwd = (req.get('x-forwarded-for') || '').split(',')[0].trim();
+  const isProxyPeer = /^(::1|127\.|::ffff:127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(peer);
+  return (fwd && isProxyPeer) ? fwd : (peer || 'unknown');
+}
 app.use((req, res, next) => {
   const ua = req.get('user-agent') || '';
   if (!ua || RIPPER_UA.test(ua)) return res.status(403).type('text').send('Forbidden');
-  const ip = (req.get('x-forwarded-for') || '').split(',')[0].trim() || req.ip || 'unknown', now = Date.now();
+  const ip = clientIp(req), now = Date.now();
   const b = burst.get(ip);
   if (!b || now > b.resetAt) burst.set(ip, { count: 1, resetAt: now + BURST_WINDOW });
   else if (++b.count > BURST_MAX) return res.status(429).type('text').send('Too Many Requests');
@@ -194,7 +202,7 @@ app.post('/api/partner', async (req, res) => {
     }
 
     // Rate limit
-    const ip = req.ip || req.connection?.remoteAddress || 'unknown';
+    const ip = clientIp(req);
     if (!checkRateLimit(ip)) {
       return res.status(429).json({ ok: false, error: 'Muitas tentativas. Tente novamente em 1 hora ou nos escreva por e-mail.' });
     }
@@ -384,6 +392,16 @@ app.use((req, res, next) => {
   res.sendFile(candidate, (err) => {
     if (err) res.status(404).type('text').send('Not Found');
   });
+});
+
+// Last-resort error handler — no error ever reaches Express's default handler,
+// which would render an HTML page with a stack trace and absolute paths.
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  console.error('[server] Unhandled error:', err && err.message);
+  if (res.headersSent) return;
+  res.status(err && err.status === 413 ? 413 : 500)
+     .json({ ok: false, error: 'Erro interno. Tente novamente ou nos contate por e-mail.' });
 });
 
 app.listen(PORT, () => {
